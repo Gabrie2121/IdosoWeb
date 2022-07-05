@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header/";
 
 import styled from 'styled-components'
@@ -11,9 +13,6 @@ import { MdLocationOn } from "react-icons/md";
 
 
 
-
-
-
 import logoIdoso from '../assets/fotohome.png'
 import nossaMissao from '../assets/NossaMissao.png'
 import todoCuidado from '../assets/TodoCuidado.png'
@@ -21,6 +20,7 @@ import nossoServico from '../assets/NossoServico.png'
 import imageOne from '../assets/ImageOne.png'
 import imageTwo from '../assets/ImageTwo.png'
 import imageThree from '../assets/ImageThree.png'
+
 
 
 const DivFoto = styled.div`
@@ -71,7 +71,7 @@ const DivRedonda = styled.div`
     margin-top: 80px;
 `
 
-const SpanRedonda = styled.span`
+const SpanRedonda = styled(Link)`
     background-color: #92CB90 ;
     width: 50px;
     height: 50px;
@@ -79,6 +79,9 @@ const SpanRedonda = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: #FFF;
+    scroll-behavior: smooth;
 `
 
 const DivDadOne = styled.div`
@@ -210,7 +213,7 @@ function HomeInstitucional() {
                 </DivInformacoes>
             </DivFoto>
             <DivRedonda>
-                <SpanRedonda>
+                <SpanRedonda  to="/">
                     <IoIosArrowDown size={30} />
                 </SpanRedonda>
             </DivRedonda>
