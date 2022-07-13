@@ -3,10 +3,15 @@ import React from "react";
 import Header from "../components/Header/";
 import SearchField from "../components/SearchField/";
 import OfferFilter from "../components/OfferFilter/";
+import Offer from "../components/Offer/";
 
 import styled from 'styled-components'
 
 import heartImg from '../assets/listaOfertas/heart.png';
+import starImg from '../assets/listaOfertas/estrelasNaoCompletas.png';
+import aliceImage from '../assets/listaOfertas/ofertas/alice.png';
+import polygonSelection from '../assets/listaOfertas/polygonSelection.png';
+
 
 
 const DivBody = styled.div`
@@ -14,7 +19,6 @@ const DivBody = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: pink;
     margin-top: 40px;
 `
 
@@ -42,13 +46,13 @@ const SpanListaOfertas = styled.span`
 const HeartImage = styled.img`
     width: 30px;
     margin-top: 0px;
-    margin-left: 71px;
+    margin-left: 208px;
     position: absolute;
 `
 
 const SpanFavorites = styled.span`
     color: #878787;
-    margin-left: 15%;
+    margin-left: 42%;
     margin-top: 30px;
     font-size: 12pt;
 ` 
@@ -62,27 +66,286 @@ const DivFilters = styled.div`
     justify-content: center;
 ` 
 
+const DivOfferFilter = styled.div`
+    width: 120px;
+    height: 30px;
+    background-color: #5BB159;
+    border: 0px solid transparent;
+    border-radius: 15px;
+    margin-left: -265px;
+`
+
+const SpanFilterValueDistance = styled.span`
+    font-size: 9pt;
+    position: absolute;
+    margin-left: 21px;
+    margin-top: 8px;
+`
+const SpanFilterValuePCD = styled.span`
+    font-size: 12pt;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 45px;
+`
+
 const ItemFilter = styled.div`
     width: 200px;
     overflow-wrap: break-word;
     display: flex;
 `
-const SpanFilter = styled.span`
+const SpanFilterDistance = styled.span`
     width: 200px;
     overflow-wrap: break-word;
     display: flex;
-    margin-left: -370px;
+    margin-left: -248px;
     margin-top: 50px;
+    position: absolute;
+    color: #878787;
+`
+
+const SpanFilterPCD = styled.span`
+    width: 200px;
+    overflow-wrap: break-word;
+    display: flex;
+    margin-left: -225px;
+    margin-top: 50px;
+    position: absolute;
+    color: #878787;
+`
+const SpanFilterGenre = styled.span`
+    width: 200px;
+    overflow-wrap: break-word;
+    display: flex;
+    margin-left: -240px;
+    margin-top: 50px;
+    position: absolute;
+    color: #878787;
+`
+const SpanFilterPayment = styled.span`
+    width: 200px;
+    overflow-wrap: break-word;
+    display: flex;
+    margin-left: -272px;
+    margin-top: 50px;
+    position: absolute;
+    color: #878787;
+`
+
+const SelectImage = styled.img`
+    width: 13px;
+    height: 12px;
+    position; absolute;
+    margin-top: 10px;
+    margin-left: -20px;
+`
+const SelectImageComponent = styled.img`
+    width: 13px;
+    height: 12px;
+    position; absolute;
+    margin-top: 10px;
+    margin-left: -290px;
 `
 
 const DivOffers = styled.div`
     width: 70%;
-    height: 100px;
+    height: 190px;
     align-items: center;
     flex-direction: row;
     display: flex;
     justify-content: center;
     backgroud-color: gray;
+    margin-top: 40px;
+`
+
+const ItemOffer = styled.div`
+    width: 1200px;
+    overflow-wrap: break-word;
+    display: flex;
+    margin-top: 170px;
+`
+
+const AccessButtton1 = styled.button`
+    width: 100px;
+    height: 25px;
+    background-color: #5BB159;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    margin-left: 275px;
+`
+
+const ProfieImage1 = styled.img`
+    width: 90px;
+    height: 90px;
+    margin-left: -440px;
+    margin-top: -70px;
+`
+
+const SpanName1 = styled.span`
+    font-size: 18pt;
+    margin-left: 5px;
+    margin-top: -75px;
+    color: #000000;
+`
+const StarImage1 = styled.img`
+    width: 150px;
+    height: 25px;
+    margin-left: -280px;
+    margin-top: -40px;
+`
+
+const SpanPayment1 = styled.span`
+    margin-top: -33px;
+    margin-left: 310px;
+    position:absolute;
+    font-size: 12pt;
+    color: #000000;
+`
+
+const KmSpan1 = styled.span`
+    margin-left: -145px;
+    margin-top: -5px;
+    font-size: 11pt;
+    color: #000000;
+`
+
+const SpanAccess1 = styled.span`
+    font-size: 8pt;
+    margin-left: 202px;
+    margin-top: 5px;
+
+`
+
+const SpanPcd1 = styled.div`
+    margin-top: 50px;
+    margin-left: -320px;
+    color: #878787;
+    font-size: 8pt;
+`
+const DivPcd1 = styled.div`
+    width: 60px;
+    height: 25px;
+    background-color: #76BE74;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: -37px;
+`
+
+const SpanPcdValue1 = styled.span`
+    margin-left: 16px;
+    font-size: 10pt; 
+    
+`
+const SpanTime1 = styled.div`
+    margin-top: 50px;
+    margin-left: 40px;
+    color: #878787;
+    font-size: 8pt;
+`
+const DivTime1 = styled.div`
+    width: 90px;
+    height: 25px;
+    background-color: #76BE74;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: -60px;
+`
+
+const SpanTimeValue1 = styled.span`
+    margin-left: 19px;
+    font-size: 10pt;
+`
+
+// style segunda
+
+const AccessButtton2 = styled.button`
+    width: 100px;
+    height: 25px;
+    background-color: #5BB159;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    margin-left: 925px;
+    margin-top: 1px;
+`
+
+const ProfieImage2 = styled.img`
+    width: 90px;
+    height: 90px;
+    margin-left: -450px;
+    margin-top: -70px;
+`
+
+const SpanName2 = styled.span`
+    font-size: 18pt;
+    margin-left: 5px;
+    margin-top: -75px;
+    color: #000000;
+`
+const StarImage2 = styled.img`
+    width: 150px;
+    height: 25px;
+    margin-left: -280px;
+    margin-top: -40px;
+`
+
+const SpanPayment2 = styled.span`
+    margin-top: -33px;
+    margin-left: 1165px;
+    position:absolute;
+    font-size: 12pt;
+    color: #000000;
+`
+
+const KmSpan2 = styled.span`
+    margin-left: -145px;
+    margin-top: -5px;
+    font-size: 11pt;
+    color: #000000;
+`
+
+const SpanAccess2 = styled.span`
+    font-size: 8pt;
+    margin-left: 211px;
+    margin-top: 5px;
+`
+
+const SpanPcd2 = styled.div`
+    margin-top: 50px;
+    margin-left: -320px;
+    color: #878787;
+    font-size: 8pt;
+`
+const DivPcd2 = styled.div`
+    width: 60px;
+    height: 25px;
+    background-color: #76BE74;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: -37px;
+`
+
+const SpanPcdValue2 = styled.span`
+    margin-left: 16px;
+    font-size: 10pt; 
+    
+`
+const SpanTime2 = styled.div`
+    margin-top: 50px;
+    margin-left: 40px;
+    color: #878787;
+    font-size: 8pt;
+`
+const DivTime2 = styled.div`
+    width: 90px;
+    height: 25px;
+    background-color: #76BE74;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: -60px;
+`
+
+const SpanTimeValue2 = styled.span`
+    margin-left: 19px;
+    font-size: 10pt; 
 `
 
 function ListaOfertas() {
@@ -108,32 +371,250 @@ function ListaOfertas() {
                 </DivSearch>
                 <DivFilters>
                     <ItemFilter>
-                        <OfferFilter/>
-                        <SpanFilter>
-                            Exemplo
-                        </SpanFilter>
+                        {/* <OfferFilter/> */}
+                        <DivOfferFilter>
+                            <SpanFilterValueDistance>
+                                10km - 40 km
+                            </SpanFilterValueDistance>
+                        </DivOfferFilter>
+                        <SpanFilterDistance>
+                            Distância
+                        </SpanFilterDistance>
+                        <SelectImage src= {polygonSelection}/>
+                    </ItemFilter>
+                    <ItemFilter>
+                        {/* <OfferFilter/> */}
+                        <DivOfferFilter>
+                            <SpanFilterValuePCD>
+                                Não
+                            </SpanFilterValuePCD>
+                        </DivOfferFilter>
+                        <SelectImage src= {polygonSelection}/>
+                        <SpanFilterPCD style={ListaOfertas.pcd}>
+                            PCD
+                        </SpanFilterPCD>
                     </ItemFilter>
                     <ItemFilter>
                         <OfferFilter/>
-                        <SpanFilter>
-                            Exemplo
-                        </SpanFilter>
+                        <SpanFilterGenre>
+                            Gênero
+                        </SpanFilterGenre>
+                        <SelectImageComponent src= {polygonSelection}/>
                     </ItemFilter>
                     <ItemFilter>
                         <OfferFilter/>
-                        <SpanFilter>
-                            Exemplo
-                        </SpanFilter>
-                    </ItemFilter>
-                    <ItemFilter>
-                        <OfferFilter/>
-                        <SpanFilter>
-                            Exemplo
-                        </SpanFilter>
+                        <SpanFilterPayment>
+                            Valor a ser pago
+                        </SpanFilterPayment>
+                        <SelectImageComponent src= {polygonSelection}/>
                     </ItemFilter>
                 </DivFilters>
                 <DivOffers>
-
+                    <ItemOffer>
+                        <Offer/>
+                        {/* Primeira Oferta */}
+                        <AccessButtton1/>
+                        <ProfieImage1 src={aliceImage} />
+                        <SpanName1>
+                            Alice Dolores dos Santos
+                        </SpanName1>
+                        <StarImage1 src={starImg} />
+                        <SpanPayment1>
+                            R$ 100,00
+                        </SpanPayment1>
+                        <KmSpan1>
+                            15km
+                        </KmSpan1>
+                        <SpanAccess1>
+                            Acessar anúncio
+                        </SpanAccess1>                     
+                        <SpanPcd1>
+                                PCD
+                        </SpanPcd1>
+                        <DivPcd1>
+                            <SpanPcdValue1>
+                                Não
+                            </SpanPcdValue1>
+                        </DivPcd1>
+                        <SpanTime1>
+                            Período
+                        </SpanTime1>
+                        <DivTime1>
+                            <SpanTimeValue1>
+                                Matutino
+                            </SpanTimeValue1>
+                        </DivTime1>
+                       {/* Segunda Oferta */}
+                       <AccessButtton2/>
+                        <ProfieImage2 src={aliceImage} />
+                        <SpanName2>
+                            Camila Katharine Gomes
+                        </SpanName2>
+                        <StarImage2 src={starImg} />
+                        <SpanPayment2>
+                            R$ 210,00
+                        </SpanPayment2>
+                        <KmSpan2>
+                            20km
+                        </KmSpan2>
+                        <SpanAccess2>
+                            Acessar anúncio
+                        </SpanAccess2>                     
+                        <SpanPcd2>
+                                PCD
+                        </SpanPcd2>
+                        <DivPcd2>
+                            <SpanPcdValue2>
+                                Não
+                            </SpanPcdValue2>
+                        </DivPcd2>
+                        <SpanTime2>
+                            Período
+                        </SpanTime2>
+                        <DivTime2>
+                            <SpanTimeValue2>
+                                Matutino
+                            </SpanTimeValue2>
+                        </DivTime2>
+                    </ItemOffer>                   
+                </DivOffers>
+                <DivOffers>
+                <ItemOffer>
+                        <Offer/>
+                      {/* Primeira Oferta */}
+                      <AccessButtton1/>
+                        <ProfieImage1 src={aliceImage} />
+                        <SpanName1>
+                            Alice Dolores dos Santos
+                        </SpanName1>
+                        <StarImage1 src={starImg} />
+                        <SpanPayment1>
+                            R$ 100,00
+                        </SpanPayment1>
+                        <KmSpan1>
+                            15km
+                        </KmSpan1>
+                        <SpanAccess1>
+                            Acessar anúncio
+                        </SpanAccess1>                     
+                        <SpanPcd1>
+                                PCD
+                        </SpanPcd1>
+                        <DivPcd1>
+                            <SpanPcdValue1>
+                                Não
+                            </SpanPcdValue1>
+                        </DivPcd1>
+                        <SpanTime1>
+                            Período
+                        </SpanTime1>
+                        <DivTime1>
+                            <SpanTimeValue1>
+                                Matutino
+                            </SpanTimeValue1>
+                        </DivTime1>
+                        {/* Segunda Oferta */}
+                        <AccessButtton2/>
+                        <ProfieImage2 src={aliceImage} />
+                        <SpanName2>
+                            Camila Katharine Gomes
+                        </SpanName2>
+                        <StarImage2 src={starImg} />
+                        <SpanPayment2>
+                            R$ 210,00
+                        </SpanPayment2>
+                        <KmSpan2>
+                            20km
+                        </KmSpan2>
+                        <SpanAccess2>
+                            Acessar anúncio
+                        </SpanAccess2>                     
+                        <SpanPcd2>
+                                PCD
+                        </SpanPcd2>
+                        <DivPcd2>
+                            <SpanPcdValue2>
+                                Não
+                            </SpanPcdValue2>
+                        </DivPcd2>
+                        <SpanTime2>
+                            Período
+                        </SpanTime2>
+                        <DivTime2>
+                            <SpanTimeValue2>
+                                Matutino
+                            </SpanTimeValue2>
+                        </DivTime2>
+                    </ItemOffer>
+                </DivOffers>
+                <DivOffers>
+                    <ItemOffer>
+                        <Offer/>
+                        {/* Primeira Oferta */}
+                        <AccessButtton1/>
+                        <ProfieImage1 src={aliceImage} />
+                        <SpanName1>
+                            Alice Dolores dos Santos
+                        </SpanName1>
+                        <StarImage1 src={starImg} />
+                        <SpanPayment1>
+                            R$ 100,00
+                        </SpanPayment1>
+                        <KmSpan1>
+                            15km
+                        </KmSpan1>
+                        <SpanAccess1>
+                            Acessar anúncio
+                        </SpanAccess1>                     
+                        <SpanPcd1>
+                                PCD
+                        </SpanPcd1>
+                        <DivPcd1>
+                            <SpanPcdValue1>
+                                Não
+                            </SpanPcdValue1>
+                        </DivPcd1>
+                        <SpanTime1>
+                            Período
+                        </SpanTime1>
+                        <DivTime1>
+                            <SpanTimeValue1>
+                                Matutino
+                            </SpanTimeValue1>
+                        </DivTime1>
+                        {/* Segunda Oferta */}
+                        <AccessButtton2/>
+                        <ProfieImage2 src={aliceImage} />
+                        <SpanName2>
+                            Camila Katharine Gomes
+                        </SpanName2>
+                        <StarImage2 src={starImg} />
+                        <SpanPayment2>
+                            R$ 210,00
+                        </SpanPayment2>
+                        <KmSpan2>
+                            20km
+                        </KmSpan2>
+                        <SpanAccess2>
+                            Acessar anúncio
+                        </SpanAccess2>                     
+                        <SpanPcd2>
+                                PCD
+                        </SpanPcd2>
+                        <DivPcd2>
+                            <SpanPcdValue2>
+                                Não
+                            </SpanPcdValue2>
+                        </DivPcd2>
+                        <SpanTime2>
+                            Período
+                        </SpanTime2>
+                        <DivTime2>
+                            <SpanTimeValue2>
+                                Matutino
+                            </SpanTimeValue2>
+                        </DivTime2>
+                    </ItemOffer>
                 </DivOffers>
             </DivBody>
         </div>

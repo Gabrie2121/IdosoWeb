@@ -15,7 +15,7 @@ const Button = styled.button`
     background-color: #878787;
     border: 0px solid transparent;
     border-radius: 15px;
-    margin-left: -270px;
+    margin-left: -265px;
 `
 
 const SelectImage = styled.img`
@@ -28,7 +28,7 @@ function OfferFilter() {
         <div>
             <DivFilter>
                 <Button title="example"/>
-                    <SelectImage src= {polygonSelection}/>
+                    {/* <SelectImage src= {polygonSelection}/> */}
             </DivFilter>
         </div>
     )
