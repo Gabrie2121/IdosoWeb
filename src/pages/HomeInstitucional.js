@@ -33,14 +33,13 @@ const DivInformacoes = styled.div`
    border-radius: 20px;
    margin-top: 27%;
    position: absolute;
-
 `
 
 const SpanInformacoes = styled.span`
     font-size: 15px;
     overflow-wrap: break-word;
     display: flex;
-    justify-content: center;
+     
 `
 
 const ImageInformacoes = styled.img`
