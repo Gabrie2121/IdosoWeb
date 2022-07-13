@@ -448,14 +448,14 @@ function ListaOfertas() {
                        <AccessButtton2/>
                         <ProfieImage2 src={aliceImage} />
                         <SpanName2>
-                            Camila Katharine Gomes
+                            Bernado Jones S. Silvino
                         </SpanName2>
                         <StarImage2 src={starImg} />
                         <SpanPayment2>
-                            R$ 210,00
+                            R$ 70,00
                         </SpanPayment2>
                         <KmSpan2>
-                            20km
+                            11km
                         </KmSpan2>
                         <SpanAccess2>
                             Acessar anúncio
@@ -473,7 +473,7 @@ function ListaOfertas() {
                         </SpanTime2>
                         <DivTime2>
                             <SpanTimeValue2>
-                                Matutino
+                                Vespertino
                             </SpanTimeValue2>
                         </DivTime2>
                     </ItemOffer>                   
@@ -485,14 +485,14 @@ function ListaOfertas() {
                       <AccessButtton1/>
                         <ProfieImage1 src={aliceImage} />
                         <SpanName1>
-                            Alice Dolores dos Santos
+                            Bruno M. Luis de Oliveira
                         </SpanName1>
                         <StarImage1 src={starImg} />
                         <SpanPayment1>
-                            R$ 100,00
+                            R$ 150,00
                         </SpanPayment1>
                         <KmSpan1>
-                            15km
+                            34km
                         </KmSpan1>
                         <SpanAccess1>
                             Acessar anúncio
@@ -510,7 +510,7 @@ function ListaOfertas() {
                         </SpanTime1>
                         <DivTime1>
                             <SpanTimeValue1>
-                                Matutino
+                                Noturno
                             </SpanTimeValue1>
                         </DivTime1>
                         {/* Segunda Oferta */}
@@ -554,14 +554,14 @@ function ListaOfertas() {
                         <AccessButtton1/>
                         <ProfieImage1 src={aliceImage} />
                         <SpanName1>
-                            Alice Dolores dos Santos
+                            David S. Mariano Paulino 
                         </SpanName1>
                         <StarImage1 src={starImg} />
                         <SpanPayment1>
-                            R$ 100,00
+                            R$ 180,00
                         </SpanPayment1>
                         <KmSpan1>
-                            15km
+                            20km
                         </KmSpan1>
                         <SpanAccess1>
                             Acessar anúncio
@@ -586,11 +586,11 @@ function ListaOfertas() {
                         <AccessButtton2/>
                         <ProfieImage2 src={aliceImage} />
                         <SpanName2>
-                            Camila Katharine Gomes
+                            Eduarda Beatriz C. Souza
                         </SpanName2>
                         <StarImage2 src={starImg} />
                         <SpanPayment2>
-                            R$ 210,00
+                            R$ 95,00
                         </SpanPayment2>
                         <KmSpan2>
                             20km
