@@ -8,10 +8,16 @@ import Offer from "../components/Offer/";
 import styled from 'styled-components'
 
 import heartImg from '../assets/listaOfertas/heart.png';
-import starImg from '../assets/listaOfertas/estrelasNaoCompletas.png';
+import starImgCompleta from '../assets/listaOfertas/estrelasCompletas.png';
+import starImgIncompleta from '../assets/listaOfertas/estrelasNaoCompletas.png';
 import aliceImage from '../assets/listaOfertas/ofertas/alice.png';
-import polygonSelection from '../assets/listaOfertas/polygonSelection.png';
+import bernadoImage from '../assets/listaOfertas/ofertas/bernado.png';
+import brunoImage from '../assets/listaOfertas/ofertas/bruno.png';
+import camilaImage from '../assets/listaOfertas/ofertas/camila.png';
+import davidImage from '../assets/listaOfertas/ofertas/david.png';
+import eduardaImage from '../assets/listaOfertas/ofertas/eduarda.png'
 
+import polygonSelection from '../assets/listaOfertas/polygonSelection.png';
 
 
 const DivBody = styled.div`
@@ -418,7 +424,7 @@ function ListaOfertas() {
                         <SpanName1>
                             Alice Dolores dos Santos
                         </SpanName1>
-                        <StarImage1 src={starImg} />
+                        <StarImage1 src={starImgIncompleta} />
                         <SpanPayment1>
                             R$ 100,00
                         </SpanPayment1>
@@ -446,11 +452,11 @@ function ListaOfertas() {
                         </DivTime1>
                        {/* Segunda Oferta */}
                        <AccessButtton2/>
-                        <ProfieImage2 src={aliceImage} />
+                        <ProfieImage2 src={bernadoImage} />
                         <SpanName2>
                             Bernado Jones S. Silvino
                         </SpanName2>
-                        <StarImage2 src={starImg} />
+                        <StarImage2 src={starImgCompleta} />
                         <SpanPayment2>
                             R$ 70,00
                         </SpanPayment2>
@@ -483,11 +489,11 @@ function ListaOfertas() {
                         <Offer/>
                       {/* Primeira Oferta */}
                       <AccessButtton1/>
-                        <ProfieImage1 src={aliceImage} />
+                        <ProfieImage1 src={brunoImage} />
                         <SpanName1>
                             Bruno M. Luis de Oliveira
                         </SpanName1>
-                        <StarImage1 src={starImg} />
+                        <StarImage1 src={starImgIncompleta} />
                         <SpanPayment1>
                             R$ 150,00
                         </SpanPayment1>
@@ -515,11 +521,11 @@ function ListaOfertas() {
                         </DivTime1>
                         {/* Segunda Oferta */}
                         <AccessButtton2/>
-                        <ProfieImage2 src={aliceImage} />
+                        <ProfieImage2 src={camilaImage} />
                         <SpanName2>
                             Camila Katharine Gomes
                         </SpanName2>
-                        <StarImage2 src={starImg} />
+                        <StarImage2 src={starImgIncompleta} />
                         <SpanPayment2>
                             R$ 210,00
                         </SpanPayment2>
@@ -552,11 +558,11 @@ function ListaOfertas() {
                         <Offer/>
                         {/* Primeira Oferta */}
                         <AccessButtton1/>
-                        <ProfieImage1 src={aliceImage} />
+                        <ProfieImage1 src={davidImage} />
                         <SpanName1>
                             David S. Mariano Paulino 
                         </SpanName1>
-                        <StarImage1 src={starImg} />
+                        <StarImage1 src={starImgIncompleta} />
                         <SpanPayment1>
                             R$ 180,00
                         </SpanPayment1>
@@ -584,11 +590,11 @@ function ListaOfertas() {
                         </DivTime1>
                         {/* Segunda Oferta */}
                         <AccessButtton2/>
-                        <ProfieImage2 src={aliceImage} />
+                        <ProfieImage2 src={eduardaImage} />
                         <SpanName2>
                             Eduarda Beatriz C. Souza
                         </SpanName2>
-                        <StarImage2 src={starImg} />
+                        <StarImage2 src={starImgCompleta} />
                         <SpanPayment2>
                             R$ 95,00
                         </SpanPayment2>
