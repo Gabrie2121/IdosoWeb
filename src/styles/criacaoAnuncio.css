@@ -1,0 +1,39 @@
+#nomeTextField {
+    width: 180px;
+    color: #686868;
+}
+
+#cpfTextField, #nasTextField {
+    width: 170px;
+    color: #686868;
+}
+
+#idadeTextField {
+    width: 90px;
+    color: #686868;
+}
+
+#parentescoSelect {
+    width: 120px;
+    color: white;
+    /* background-color: #5BB159; */
+}
+
+#sobrenomeTextField {
+    width: 270px;
+}
+
+#naoRadio {
+    margin-top: -45px;
+    margin-left: 70px;
+}
+
+#demo-row-radio-buttons-group-label, #demo-row-radio-buttons-group-label-doenca {
+    color: black;
+}
+
+#femininoRadio {
+    margin-top: -45px;
+    margin-left: 120px;
+}
+    
