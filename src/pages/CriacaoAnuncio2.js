@@ -129,63 +129,68 @@ const DivForm = styled.div`
 `
 
 const Column = styled.div`
-    width: 540px;
+    width: 100%;
     height: 100%;
     display: flex;
 `
 
-const DivNome = styled.div`
+const DivCep = styled.div`
     margin-top: 130px;
 `
 
-const DivCpf = styled.div`
-    margin-top: 240px;
-    margin-left: -209px;
+const DivEstado = styled.div`
+    margin-top: 130px;
+    margin-left: 60px;
 `
 
-const DivNas = styled.div`
-    margin-top: 340px;
-    margin-left: -197px;
+const DivCidade = styled.div`
+    margin-top: 130px;
+    margin-left: 60px;
 `
 
-const DivIdade = styled.div`
-    margin-top: 340px;
-    margin-left: 29px;
+
+const DivRadios = styled.div`
+    width: 500px;
+    margin-top: 130px;
+    margin-left: 40px;
 `
 
-const SpanParentesco = styled.span`
-    margin-top: 430px;
-    margin-left: 0px;
+const DivLogradouro= styled.div`
+    margin-top: 260px;
+    margin-left: -1173px;
+`
+
+const DivSelect = styled.div`
+    margin-top: 260px;
+    margin-left: 40px;
+
+`
+const SpanFrequecia = styled.span`
+    margin-top: 230px;
+    margin-left: 480px;
     position: absolute;
     font-weight: 100;
     color: gray;
 `
 
-const DivSelect = styled.div`
-    margin-top: 460px;
-    margin-left: -345px;
-
+const DivComplemento = styled.div`
+    margin-top: 380px;
+    margin-left: -716px;
 `
 
-const DivRadios = styled.div`
-    width: 300px;
-    margin-top: 460px;
-    margin-left: 80px;
+const DivApelido = styled.div`
+    margin-top: 380px;
+    margin-left: 38px;
 `
 
-const DivSobrenome = styled.div`
-    margin-top: 120px;
-    margin-left: -70px;
+const DivPagamento = styled.div`
+    margin-top: 380px;
+    margin-left: 55px;
 `
-
-const DivRadiosGenero = styled.div`
-    margin-top: 220px;
-    margin-left: -298px;
-`
-
-const DivRadiosDoencas = styled.div`
-    margin-top: 300px;
-    margin-left: -255px;
+const DivRadiosMoradia = styled.div`
+    width: 500px;
+    margin-top: 490px;
+    margin-left: -825px;
 `
 
 const DivFooter = styled.div`
@@ -197,13 +202,13 @@ const DivFooter = styled.div`
     align-items: center;
 `
 
-function CriacaoAnuncio() {
+function CriacaoAnuncio2() {
 
-    const [ parentesco, setParentesco] = React.useState('');
+    const [frequencia, setFrequencia] = React.useState('');
 
     const handleChange = (event) => {
-        setParentesco(event.target.value);
-    }
+        setFrequencia(event.target.value);
+    };
 
     return (
         <div>
@@ -234,90 +239,80 @@ function CriacaoAnuncio() {
                 </DivDescription>
                 <DivForm>
                     <Column>
-                        <DivNome>
-                            <TextField id="nomeTextField" label="Nome" variant="outlined"/>
-                        </DivNome>
-                        <DivCpf>
-                            <TextField id="cpfTextField" label="CPF" variant="outlined"/>
-                        </DivCpf>
-                        <DivNas>
-                            <TextField id="nasTextField" label="Data Nascimento" variant="outlined"/>
-                        </DivNas>
-                        <DivIdade>
-                            <TextField  id="idadeTextField" label="Idade" variant="outlined"/>
-                        </DivIdade>
-                        <SpanParentesco>Grau de parêntesco</SpanParentesco>
-                        <DivSelect>
-                        <FormControl fullWidth>
-                            <Select
-                                value={parentesco}
-                                label="Grau de parêntesco"
-                                style={style.idadeTextField} 
-                                id="parentescoSelect" 
-                                onChange={handleChange} 
-                            >
-                                 <MenuItem value={1}>Mãe</MenuItem>
-                                 <MenuItem value={2}>Tia</MenuItem>
-                                 <MenuItem value={3}>Avó</MenuItem>
-                                 <MenuItem value={4}>Tia avó</MenuItem>
-                                 <MenuItem value={5}>Prima</MenuItem>
-                            </Select>
-                            </FormControl>
-                            </DivSelect>
-                            <DivRadios>
+                        <DivCep>
+                            <TextField id="cepTextField" label="CEP" variant="outlined"/>
+                        </DivCep>
+                        <DivEstado>
+                            <TextField id="cpfTextField" label="Estado" variant="outlined"/>
+                        </DivEstado>
+                        <DivCidade>
+                            <TextField id="cidadeTextField" label="Cidade" variant="outlined"/>
+                        </DivCidade>
+                        <DivRadios>
                                 <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">PCD</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">Período</FormLabel>
                                     <RadioGroup
                                         row
                                         aria-labelledby="demo-row-radio-buttons-group-label"
                                         name="row-radio-buttons-group"
-                                        defaultValue="Nao"
                                     >
-                                        <FormControlLabel id="simRadio" value="Sim" control={<Radio  color="success" />} label="Sim" />
-                                        <FormControlLabel  id="naoRadio" value="Nao"  control={<Radio  color="success" />} label="Não" />
+                                        <FormControlLabel id="matutinoRadio" value="Matutino" control={<Radio  color="success" />} label="Matutino" />
+                                        <FormControlLabel id="vespertinoRadio" value="Vespertino"  control={<Radio  color="success" />} label="Vespertino" />
+                                        <FormControlLabel id="noturnoRadio" value="Noturno"  control={<Radio  color="success" />} label="Noturno" />
                                     </RadioGroup>
                                 </FormControl>
-                            </DivRadios>
-                    </Column>
-                    <Column>
-                        <DivSobrenome>
-                            <TextField  id="sobrenomeTextField" label="Sobrenome" variant="outlined"/>
-                        </DivSobrenome>
-                        <DivRadiosGenero>
-                            <FormControl>
-                                <FormLabel id="demo-row-radio-buttons-group-label">Gênero</FormLabel>
+                        </DivRadios>
+                        <DivLogradouro>
+                            <TextField id="logradouroTextField" label="Logradouro" variant="outlined"/>
+                        </DivLogradouro>
+                        <SpanFrequecia>Frequência</SpanFrequecia>
+                        <DivSelect>
+                            <FormControl fullWidth id="FormControl">
+                                <Select
+                                    value={frequencia}
+                                    label="Frequência"
+                                    id="parentescoSelect"
+                                    onChange={handleChange} 
+                                >
+                                    <MenuItem value={1}>Dia sim e dia não</MenuItem>
+                                    <MenuItem value={2}>Uma vez na semana</MenuItem>
+                                    <MenuItem value={3}>Duas vezes na semana</MenuItem>
+                                    <MenuItem value={4}>Final de semana</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </DivSelect>
+                        <DivComplemento>
+                            <TextField id="complementoTextField" label="Complemento" variant="outlined"/>
+                        </DivComplemento>
+                        <DivApelido>
+                            <TextField id="apelidoTextField" label="Apelido" variant="outlined"/>
+                        </DivApelido>
+                        <DivPagamento>
+                            <TextField id="pagamentoTextField" label="Pagamento base por dia" variant="outlined"/>
+                        </DivPagamento>
+                        <DivRadiosMoradia>
+                                <FormControl>
+                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">Moram juntos?</FormLabel>
                                     <RadioGroup
                                         row
                                         aria-labelledby="demo-row-radio-buttons-group-label"
                                         name="row-radio-buttons-group"
                                     >
-                                        <FormControlLabel value="Masculino" id="masculinoRadio" control={<Radio color="success" />} label="Masculino" />
-                                        <FormControlLabel id="femininoRadio" value="Feminino" control={<Radio color="success" />} label="Feminino" />
+                                        <FormControlLabel  id="simRadioOption" value="Sim" control={<Radio  color="success" />} label="Sim" />
+                                        <FormControlLabel id="naoRadioOption" value="Nao"  control={<Radio  color="success" />} label="Não" />
                                     </RadioGroup>
-                            </FormControl>
-                        </DivRadiosGenero>
-                        <DivRadiosDoencas>
-                            <FormControl>
-                                <FormLabel id="demo-row-radio-buttons-group-label">Doença ou disturbio diagnosticado</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
-                                        <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
-                                    </RadioGroup>
-                            </FormControl>
-                        </DivRadiosDoencas>
+                                </FormControl>
+                        </DivRadiosMoradia>
+                        <Button  id="criarAnuncioButton" variant="contained" >Criar anúncio</Button>
                     </Column>
                 </DivForm>
             </DivBody>
             <DivFooter>
-                <Button  id="numberOneButton" variant="contained" disabled>1</Button>
-                <Button  id="numberTwoButton" variant="contained">2</Button>
+                <Button id="numberOneReverseButton" variant="contained" >1</Button>
+                <Button id="numberTwoReverseButton" variant="contained" disabled>2</Button>
             </DivFooter>
         </div>
     )
 }
 
-export default CriacaoAnuncio;
+export default CriacaoAnuncio2;
