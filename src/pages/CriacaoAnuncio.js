@@ -1,6 +1,8 @@
 import React from "react";
 
 import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
+
 
 import Select from '@mui/material/Select';
 import MenuItem  from '@mui/material/MenuItem';
@@ -19,6 +21,15 @@ import Header from "../components/Header/";
 import aliceImage from '../assets/criacaoOfertas/alice.png';
 import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
+
+import Uppy from '@uppy/core'
+import { DragDrop } from '@uppy/react'
+import '@uppy/core/dist/style.css'
+import '@uppy/drag-drop/dist/style.css'
+
+
+import '@uppy/core/dist/style.css'
+import '@uppy/dashboard/dist/style.css'
 
 
 import styled from 'styled-components'
@@ -53,7 +64,6 @@ const DivCampoFoto = styled.div`
     width; 100%;
     height: 35%;
 `
-
 
 const ProfieImage1 = styled.img`
     width: 150px;
@@ -170,7 +180,7 @@ const DivSelect = styled.div`
 const DivRadios = styled.div`
     width: 300px;
     margin-top: 460px;
-    margin-left: 80px;
+    margin-left: 40px;
 `
 
 const DivSobrenome = styled.div`
@@ -197,6 +207,11 @@ const DivFooter = styled.div`
     align-items: center;
 `
 
+const DivDragDrop = styled.div`
+    margin-top: 380px;
+    margin-left: -240px;
+`
+
 function CriacaoAnuncio() {
 
     const [ parentesco, setParentesco] = React.useState('');
@@ -204,6 +219,17 @@ function CriacaoAnuncio() {
     const handleChange = (event) => {
         setParentesco(event.target.value);
     }
+
+    const uppy = new Uppy({
+        meta: { type: 'avatar' },
+        restrictions: { maxNumberOfFiles: 1 },
+        autoProceed: true,
+    })
+    
+    uppy.on('complete', (result) => {
+        const url = result.successful[0].uploadURL
+      })
+  
 
     return (
         <div>
@@ -309,12 +335,29 @@ function CriacaoAnuncio() {
                                     </RadioGroup>
                             </FormControl>
                         </DivRadiosDoencas>
+                        <DivDragDrop>
+                            <DragDrop
+                                width="200px"
+                                height="200px"
+                                id="dragdrop"
+                                uppy={uppy}
+                                locale={{
+                                strings: {
+                                    // Text to show on the droppable area.
+                                    // `%{browse}` is replaced with a link that opens the system file selection dialog.
+                                    dropHereOr: 'Drop here or %{browse}',
+                                    // Used as the label for the link that opens the system file selection dialog.
+                                    browse: 'browse',
+                                },
+                                }}
+                            />
+                        </DivDragDrop>                   
                     </Column>
                 </DivForm>
             </DivBody>
             <DivFooter>
                 <Button  id="numberOneButton" variant="contained" disabled>1</Button>
-                <Button  id="numberTwoButton" variant="contained">2</Button>
+                <Button component={Link} to="/CriacaoAnuncio2" id="numberTwoButton" variant="contained">2</Button>
             </DivFooter>
         </div>
     )

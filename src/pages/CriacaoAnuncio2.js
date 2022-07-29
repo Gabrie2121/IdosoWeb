@@ -1,6 +1,7 @@
 import React from "react";
 
 import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
 
 import Select from '@mui/material/Select';
 import MenuItem  from '@mui/material/MenuItem';
@@ -308,7 +309,7 @@ function CriacaoAnuncio2() {
                 </DivForm>
             </DivBody>
             <DivFooter>
-                <Button id="numberOneReverseButton" variant="contained" >1</Button>
+                <Button component={Link} to="/CriacaoAnuncio" id="numberOneReverseButton" variant="contained" >1</Button>
                 <Button id="numberTwoReverseButton" variant="contained" disabled>2</Button>
             </DivFooter>
         </div>

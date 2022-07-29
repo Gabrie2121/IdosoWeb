@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Instaled libs
+
+##Uppy
+
+Uppy was included in the project to filled the file upload component gap
+Official page: [https://uppy.io/docs/]
+Overview page: [https://openbase.com/js/@uppy/react-native]
