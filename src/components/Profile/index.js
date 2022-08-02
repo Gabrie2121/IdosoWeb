@@ -30,11 +30,11 @@ const DivAreaFoto = styled.div`
 
 const DivRating = styled.div`
     margin-left: 190px;
-    margin-top: -95px;
+    margin-top: -99px;
 `
 const DivButtons = styled.div`
     width: 200px;
-    margin-top: -70px;
+    margin-top: -50px;
     margin-left: 800px;
     flex-direction: column;
 `
