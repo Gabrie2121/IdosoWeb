@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import Header from "../components/Header/";
 import SearchField from "../components/SearchField/";
@@ -7,7 +8,6 @@ import Offer from "../components/Offer/";
 
 import styled from 'styled-components'
 
-import heartImg from '../assets/listaOfertas/heart.png';
 import starImgCompleta from '../assets/listaOfertas/estrelasCompletas.png';
 import starImgIncompleta from '../assets/listaOfertas/estrelasNaoCompletas.png';
 import aliceImage from '../assets/listaOfertas/ofertas/alice.png';
@@ -19,6 +19,9 @@ import eduardaImage from '../assets/listaOfertas/ofertas/eduarda.png'
 
 import polygonSelection from '../assets/listaOfertas/polygonSelection.png';
 
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const DivBody = styled.div`
     display: flex;
@@ -48,19 +51,6 @@ const SpanListaOfertas = styled.span`
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
-const HeartImage = styled.img`
-    width: 30px;
-    margin-top: 0px;
-    margin-left: 208px;
-    position: absolute;
-`
-
-const SpanFavorites = styled.span`
-    color: #878787;
-    margin-left: 42%;
-    margin-top: 30px;
-    font-size: 12pt;
 ` 
 
 const DivFilters = styled.div`
@@ -368,11 +358,11 @@ function ListaOfertas() {
                     <Items>
                         <SearchField/>
                     </Items>
-                    <Items>
-                        <HeartImage src={heartImg} />
-                        <SpanFavorites>
-                            Favoritos
-                        </SpanFavorites>
+                    <Items>   
+                        <IconButton id="iconeFavorito" disabled>
+                            <FavoriteIcon/>
+                        </IconButton> 
+                        <Button id="favoritosButton" component={Link} to="/Favoritos" variant="text">Favoritos</Button>
                     </Items>     
                 </DivSearch>
                 <DivFilters>
