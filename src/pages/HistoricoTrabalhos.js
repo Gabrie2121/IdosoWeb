@@ -12,7 +12,17 @@ import manoela from '../assets/HistoricoTrabalhos/manoela.png'
 import heartImg from '../assets/listaOfertas/heart.png';
 
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+
 import style from './../styles/Favoritos.css';
+import styleAvaliacaoModal from './../styles/modalAvaliacao.css';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+
 
 
 const DivBody = styled.div`
@@ -126,7 +136,84 @@ const SpanValor = styled.span`
     position: absolute;
 `
 
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 550,
+    height: 550,
+    bgcolor: 'background.paper',
+    p: 4,
+    borderRadius: 3, 
+  };
+
+
+  const SpanAvaliacao = styled.span`
+    margin-left: 110px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    font-size: 25pt;
+    color: #858484;
+    font-weight: 100;
+  `
+  
+  const DivIcone = styled.div`
+    margin-top: -50px;
+    margin-left: 510px;
+  `
+
+  const DivNomeAvaliado = styled.div`
+    margin-top: 20px;
+  `
+
+  const SpanNomeAvaliado = styled.span`
+    margin-left: 170px;
+    font-size: 18pt;
+    font-weight: 100;
+    color: black;
+  `
+
+  const DivRating = styled.div`
+    margin-left: 220px;
+    margin-top: 19px;
+`
+
+const DivComentario = styled.div`
+    margin-top: 40px;
+`
+
+const SpanComentario = styled.span`
+    font-size: 18pt;
+    font-weight: 100;
+    color: black;
+`
+
+const DivTextField = styled.div`
+    margin-top: 10px;
+`
+
+const SpanTexto = styled.span`
+  width: 500px;
+  margin-top: -220px;
+  margin-left: 30px;
+  font-size: 12pt;
+  font-weight: 100;
+  color: black;
+  position: absolute;
+  
+
+`
+const DivEnviarAvaliacao = styled.div`
+    margin-left: 180px; 
+    margin-top: 20px;
+`
+
 function HistoricoTrabalhos() {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <div>
@@ -174,7 +261,7 @@ function HistoricoTrabalhos() {
                         <ProfileImage src={eduarda}/>
                         <HeartImage src={heartImg} />
                         <DivButton>
-                            <Button id="avaliarButton" variant="contained">Avaliar</Button>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
                         </DivButton>
                         <SpanData>
                             05/03/2022 
@@ -213,6 +300,52 @@ function HistoricoTrabalhos() {
                         </SpanNomeIdoso>
                     </DivProfileItem>
                 </DivProfiles>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={modalStyle}>
+                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                    <SpanAvaliacao>
+                        Avaliação
+                    </SpanAvaliacao>
+                    <DivIcone>
+                        <IconButton onClick={handleClose} id="iconeFechar">
+                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
+                        </IconButton>
+                    </DivIcone>
+                    <DivNomeAvaliado>
+                        <SpanNomeAvaliado>
+                            Eduarda C. Lorenzo
+                        </SpanNomeAvaliado>
+                    </DivNomeAvaliado>
+                    <DivRating>
+                        <Stack spacing={1}>
+                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
+                        </Stack>
+                     </DivRating>
+                     <DivComentario>                          
+                        <SpanComentario>
+                            Comentário
+                        </SpanComentario>
+                     </DivComentario>
+                     <DivTextField>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={10}
+                        />  
+                     </DivTextField>
+                     <SpanTexto>
+                        Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
+                     </SpanTexto>
+                     <DivEnviarAvaliacao>
+                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
+                     </DivEnviarAvaliacao>         
+                    </Box>
+                </Modal>
             </DivBody>
           
         </div>
