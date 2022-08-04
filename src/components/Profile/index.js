@@ -46,13 +46,13 @@ function Profile() {
             <DivProfileItem>
                 <ImageProfile src={ProfileImage} />
                 <DivRating>
-                <Stack spacing={1}>
-                <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
-                </Stack>
+                    <Stack spacing={1}>
+                        <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
+                    </Stack>
                 </DivRating>
                 <DivButtons>
                 <Stack spacing={-1.5}>
-                     <Button variant="text" color="success">Abrir chat</Button>
+                    <Button variant="text" color="success">Abrir chat</Button>
                     <Button variant="text" color="success">Ver perfil</Button>
                 </Stack>         
                 </DivButtons>

@@ -1,0 +1,14 @@
+#buttonDenunciar{
+    font-size: 8pt;
+    color: #FF8080;
+    border: 1px solid #FF8080;
+}
+
+#estrelasIcon{
+    font-Size: '3rem'
+}
+
+#outlined-multiline-static {
+    width: 500px;
+    border-color: #E7E7E7;
+}
