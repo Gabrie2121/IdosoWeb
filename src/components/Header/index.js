@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import logoIdoso from '../../assets/logo.png'
 
 import styled from 'styled-components'
@@ -38,7 +39,7 @@ function Header() {
                     <OpcoesHeader>QUEM SOMOS</OpcoesHeader>
                     <OpcoesHeader>CONTATO</OpcoesHeader>
                     <OpcoesHeader>LOGIN</OpcoesHeader>
-                    <OpcoesHeader>CADASTRO</OpcoesHeader>
+                    <OpcoesHeader><Link to="/Cadastro">CADASTRO</Link ></OpcoesHeader>
                 </Opcoes>
             </NavBar>
         </header>
