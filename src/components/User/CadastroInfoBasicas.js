@@ -17,25 +17,35 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import MaskedInput from '../Usuario/MaskedInput';
 
 const Text = styled.span`
     display: flex;
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
 
 function FormCadastroInfoBasicas() {
 
     const { Usuario, setUsuario } = useAuth();
 
     const [input, setInput] = useState({
+        Email: Usuario.Email,
+        Password: Usuario.Password,
+        ConfirmPassword: Usuario.ConfirmPassword,
+        NotifyEmail: Usuario.NotifyEmail,
         Nome: Usuario.Nome,
         Sobrenome: Usuario.Sobrenome,
         CPF: Usuario.CPF,
         DataNascimento: Usuario.DataNascimento,
         TipoUsuario: Usuario.TipoUsuario,
-        Sexo: Usuario.Sexo
+        Sexo: Usuario.Sexo,
+        CEP: Usuario.CEP,
+        UF: Usuario.UF,
+        Logradouro: Usuario.Logradouro,
+        Complemento: Usuario.Complemento,
+        Apelido: Usuario.Apelido,
     });
 
 
@@ -43,48 +53,58 @@ function FormCadastroInfoBasicas() {
         const { name, value } = ev.target;
 
         if ([name] == 'nome') {
-            setInput({ ...Usuario, nome: value });
+            setInput({ ...input, Nome: value });
+        }
+        else if ([name] == 'sobrenome') {
+            setInput({ ...input, Sobrenome: value });
         }
         else if ([name] == 'cpf') {
-            setInput({ ...Usuario, cpf: value });
+            console.log("teste");
+            setInput({ ...input, CPF: value });
         }
         else if ([name] == 'tipoUsuario') {
-            setInput({ ...Usuario, TipoUsuario: value });
+            setInput({ ...input, TipoUsuario: value });
         }
         else if ([name] == 'sexo') {
-            setInput({ ...Usuario, Sexo: value });
+            setInput({ ...input, Sexo: value });
         }
         setUsuario(input);
         localStorage.setItem('Usuario', JSON.stringify(input));
     }
 
+
+
     return (
 
         <div >
-             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <Text>Informações basicas</Text>
-             </Box>
-           
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:1 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',m:1 }}>
-                    <TextField name="nome" required id="outlined-required" label="Nome" onChange={onChange} value={(input.Nome)} />
-                    <TextField name="sobrenome" required id="outlined-required" label="Sobrenome" onChange={onChange} value={(input.Sobrenome)} />
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Text>Informações basicas</Text>
+            </Box>
 
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', m: 1 }}>
+                    <TextField name="nome" required id="outlined-required" label="Nome" onChange={onChange} value={(input.Nome)} />
+                    <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={(input.CPF)} /> 
+                    {/* <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={input.CPF} InputProps={{
+                        inputComponent: MaskedInput,
+                    }}/> */}
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Data de Nascimento"
                             value={(input.DataNascimento)}
                             onChange={(newValue) => {
-                                setInput({ ...Usuario, DataNascimento: newValue });}}
+                                setInput({ ...Usuario, DataNascimento: newValue });
+                            }}
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
 
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={(input.CPF)} />
+                    <TextField name="sobrenome" required id="outlined-required" label="Sobrenome" onChange={onChange} value={(input.Sobrenome)} />
+
                     <TextField name="celular" required id="outlined-required" label="Celular" onChange={onChange} value={(input.Celular)} />
-                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:2 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 2 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Tipo Usuário</InputLabel>
                             <Select
@@ -98,7 +118,7 @@ function FormCadastroInfoBasicas() {
                                 <MenuItem value={0}>Pessoa Juridica</MenuItem>
                                 <MenuItem value={1}>Pessoa Fisica</MenuItem>
                             </Select>
-                        </FormControl>                      
+                        </FormControl>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
                             <Select

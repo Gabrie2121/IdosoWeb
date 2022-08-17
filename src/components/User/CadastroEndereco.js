@@ -20,6 +20,16 @@ function FormCadastroEndereco() {
     const { Usuario, setUsuario } = useAuth();
 
     const [input, setInput] = useState({
+        Email: Usuario.Email,
+        Password: Usuario.Password,
+        ConfirmPassword: Usuario.ConfirmPassword,
+        NotifyEmail:Usuario.NotifyEmail,
+        Nome: Usuario.Nome,
+        Sobrenome: Usuario.Sobrenome,
+        CPF: Usuario.CPF,
+        DataNascimento: Usuario.DataNascimento,
+        TipoUsuario: Usuario.TipoUsuario,
+        Sexo: Usuario.Sexo,
         CEP: Usuario.CEP,
         UF: Usuario.UF,
         Logradouro: Usuario.Logradouro,
@@ -38,26 +48,39 @@ function FormCadastroEndereco() {
         const { name, value } = ev.target;
 
         if ([name] == 'CEP') {
-            setInput({ ...Usuario, CEP: value });
+            setInput({ ...input, CEP: value });
         }
         else if ([name] == 'UF') {
-            setInput({ ...Usuario, UF: value });
+            setInput({ ...input, UF: value });
         }
         else if ([name] == 'Cidade') {
-            setInput({ ...Usuario, Cidade: value });
+            setInput({ ...input, Cidade: value });
         }
         else if ([name] == 'Logradouro') {
-            setInput({ ...Usuario, Logradouro: value });
+            setInput({ ...input, Logradouro: value });
         }
         else if ([name] == 'Complemento') {
-            setInput({ ...Usuario, Complemento: value });
+            setInput({ ...input, Complemento: value });
         }
         else if ([name] == 'Apelido') {
-            setInput({ ...Usuario, Apelido: value });
+            setInput({ ...input, Apelido: value });
         }
         setUsuario(input);
         localStorage.setItem('Usuario', JSON.stringify(input));
     }
+
+    const checkCEP =(e)=>{
+        const cep = e.target.value.replace(/\D/g,'');
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json()).then(data => {
+            console.log(data)
+            setInput({ ...input, UF: data.UF});
+            setInput({ ...input, Cidade: data.Cidade});
+            setInput({ ...input, Logradouro: data.Logradouro});
+            setInput(input);
+        })
+    }
+
     return (
 
         <div >
@@ -67,7 +90,7 @@ function FormCadastroEndereco() {
        
              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <TextField name="CEP" required id="outlined-required" label="CEP" onChange={onChange} value={(input.CEP)} />
+                    <TextField name="CEP" required id="outlined-required" label="CEP" onChange={onChange} value={(input.CEP)} onBlur={checkCEP} />
                     <TextField name="UF" required id="outlined-required" label="UF" onChange={onChange} value={(input.UF)} />
                     <TextField name="Cidade" required id="outlined-required" label="Cidade" onChange={onChange} value={(input.Cidade)} />
                 </Box>

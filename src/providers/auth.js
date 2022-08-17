@@ -5,14 +5,14 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
     const [Usuario, setUsuario] = useState({
-        Email: 'bmlfaisca',
-        Password: '123',
-        ConfirmPassword: '123',
+        Email: '',
+        Password: '',
+        ConfirmPassword: '',
         NotifyEmail: false,
-        Nome:'brendo',
-        Sobrenome:'Faisca',
+        Nome:'',
+        Sobrenome:'',
         DataNascimento:'',
-        CPF:'480.225.428-81',
+        CPF:'',
         TipoUsuario:0,
         Sexo:0,
         CEP:'',

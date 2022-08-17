@@ -33,7 +33,18 @@ function FormCadastro() {
         Email: Usuario.Email,
         Password: Usuario.Password,
         ConfirmPassword: Usuario.ConfirmPassword,
-        NotifyEmail:Usuario.NotifyEmail
+        NotifyEmail:Usuario.NotifyEmail,
+        Nome: Usuario.Nome,
+        Sobrenome: Usuario.Sobrenome,
+        CPF: Usuario.CPF,
+        DataNascimento: Usuario.DataNascimento,
+        TipoUsuario: Usuario.TipoUsuario,
+        Sexo: Usuario.Sexo,
+        CEP: Usuario.CEP,
+        UF: Usuario.UF,
+        Logradouro: Usuario.Logradouro,
+        Complemento: Usuario.Complemento,
+        Apelido: Usuario.Apelido,
     });
     
 
@@ -102,16 +113,16 @@ function FormCadastro() {
         const { name, value } = ev.target;
 
         if ([name] == 'email') {
-            setInput({ ...Usuario, email:value });       
+            setInput({ ...input, Email:value });            
         }
         else if([name]=='password'){
-            setInput({  ...Usuario, password:value });
+            setInput({  ...input, Password:value });
         }
         else if([name]=='confirmPassword'){
-            setInput({  ...Usuario,confirmPassword:value });
+            setInput({  ...input,ConfirmPassword:value });
         }
         else if([name]=='notifyEmail'){
-            setInput({ ...Usuario, notifyEmail:value });
+            setInput({ ...input, NotifyEmail:value });
         }
         setUsuario(input);
         localStorage.setItem('Usuario', JSON.stringify(input));
