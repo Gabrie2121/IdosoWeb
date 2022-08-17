@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import styled from 'styled-components'
+
 import logoIdoso from '../../assets/logo.png'
 
-import styled from 'styled-components'
+
 
 
 const NavBar = styled.nav`
@@ -17,9 +20,16 @@ const Opcoes = styled.div`
     margin-left: 50%;
 `
 
-const OpcoesHeader = styled.li`
+const OpcoesHeader = styled(Link)`
     letter-spacing: 3px;
     margin-left: 32px;
+    text-decoration: none;
+    color: #FFF;
+    &:hover { 
+        color: #F3F1F1;
+        opacity:0.8;
+        transition: right .10s linear;
+    }
 `
 
 const Logo = styled.img`
@@ -35,10 +45,10 @@ function Header() {
             <NavBar>
                 <Logo src={logoIdoso} />
                 <Opcoes>
-                    <OpcoesHeader>QUEM SOMOS</OpcoesHeader>
-                    <OpcoesHeader>CONTATO</OpcoesHeader>
-                    <OpcoesHeader>LOGIN</OpcoesHeader>
-                    <OpcoesHeader>CADASTRO</OpcoesHeader>
+                    <OpcoesHeader to="/">QUEM SOMOS</OpcoesHeader>
+                    <OpcoesHeader to="/">CONTATO</OpcoesHeader>
+                    <OpcoesHeader to="/">LOGIN</OpcoesHeader>
+                    <OpcoesHeader to="/">CADASTRO</OpcoesHeader>
                 </Opcoes>
             </NavBar>
         </header>

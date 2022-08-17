@@ -1,17 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header/";
 
 import styled from 'styled-components'
 import { IoIosArrowDown } from "react-icons/io";
+import { BsInstagram } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
+
+
 
 import logoIdoso from '../assets/fotohome.png'
 import nossaMissao from '../assets/NossaMissao.png'
 import todoCuidado from '../assets/TodoCuidado.png'
 import nossoServico from '../assets/NossoServico.png'
 import imageOne from '../assets/ImageOne.png'
+import imageTwo from '../assets/ImageTwo.png'
+import imageThree from '../assets/ImageThree.png'
+
 
 
 const DivFoto = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,33 +33,36 @@ const DivFoto = styled.div`
     margin-top: 50px;
 `
 const Logo = styled.img`
-    width: fit-content;
-    
+    height: auto; 
 `
 const DivInformacoes = styled.div`
-   width:40%;
-   height: 90px;
+   width:50%;
+   height: 100px;
    display: flex;
    flex-direction: row;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
    background-color: #5BB159;
    border-radius: 20px;
-   margin-top: 27%;
-   position: absolute;
+   position: relative;
 `
 
-const SpanInformacoes = styled.span`
+
+const SpanInformacoes = styled.div`
+    width: 100vw;
+    height: auto;
     font-size: 15px;
     overflow-wrap: break-word;
     display: flex;
-     
+    justify-content: center;
+    align-items: center;
 `
 
 const ImageInformacoes = styled.img`
     width: 60px;
-    padding-left: 50px;
-    margin-right: 10px;
+    height: auto;
+    padding: 20px;
+
 `
 
 const DivRedonda = styled.div`
@@ -55,7 +72,7 @@ const DivRedonda = styled.div`
     margin-top: 80px;
 `
 
-const SpanRedonda = styled.span`
+const SpanRedonda = styled(Link)`
     background-color: #92CB90 ;
     width: 50px;
     height: 50px;
@@ -63,62 +80,115 @@ const SpanRedonda = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: #FFF;
+    scroll-behavior: smooth;
 `
 
-const DivGrid = styled.div`
-    margin-top: 100px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 50vh 50vh 40vh;  
-    grid-gap: 50px 50px;
-    grid-template-areas: "spanOne labelOne"
-                         "labelTwo spanTwo"
-                         "spanThree labelThree"   
-    ;
-    justify-content: center;
+const DivDadOne = styled.div`
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: start;
     align-items: center;
+    justify-content: center;
+`
+const DivChildrenOne = styled.div`
+    width: 70vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 `
 
-const SpanGridOne = styled.span`
-      grid-area: spanOne;
-`
-
-const SpanGridTwo = styled.span`
-    grid-area: spanTwo;
-`
-
-const SpanGridThree = styled.span`
-    grid-area: spanThree;
-    
-`
-
-const LabelOne = styled.label`
-    font-size: larger;
-    color: black;
-    font-size: 20px;
-    grid-area: labelOne;
-`
-
-const LabelTwo = styled.label`
-    font-size: larger;
-    color: black;
-    font-size: 20px;
-    grid-area: labelTwo;
-`
-const LabelThree = styled.label`
-    font-size: larger;
-    color: black;
-    font-size: 20px;
-    grid-area: labelThree;
-`
-const LabelText = styled.label`
-    color: #000000;
-    font-size: 15px;
+const DivLittleChildren = styled.div`
+    width: 30vw;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
 `
 
 const ImageQuemSomos = styled.img`
-    padding-left: 50px;
-    margin-right: 10px;
+    
+
+`
+
+const Text = styled.label`
+    font-style: normal;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+`
+
+const TextSecond = styled.label`
+    font-style: normal;
+    color: black;
+    font-size: 15px;
+    font: 400 'Montserrat', sans-serif;
+`
+
+const DivDadTwo = styled.div`
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    justify-content: center;
+`
+
+const DivChildrenTwo = styled.div`
+    width: 70vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+`
+const TextSecondTwo = styled.label`
+    font-style: normal;
+    color: black;
+    font-size: 15px;
+    font: 400 'Montserrat', sans-serif;
+`
+
+const FooterIdoso = styled.footer`
+    width: 100%;
+    height: 15%;
+    background-color: #5BB159;
+    position: absolute;
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+const DivChildrenFooter = styled.div`
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`
+
+const DivLittleChildrenFooter = styled.div`
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+`
+
+const DivIconFooterOne = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+`
+
+const DivIconFooterTwo = styled.div`
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 `
 
 
@@ -144,51 +214,70 @@ function HomeInstitucional() {
                 </DivInformacoes>
             </DivFoto>
             <DivRedonda>
-                <SpanRedonda>
+                <SpanRedonda  to="/">
                     <IoIosArrowDown size={30} />
                 </SpanRedonda>
             </DivRedonda>
-            <DivGrid>
-                <SpanGridOne>
+
+            <DivDadOne>
+                <DivChildrenOne>
                     <ImageQuemSomos src={imageOne} />
-                </SpanGridOne>
-                <LabelOne>
-                    QUEM SOMOS?
-                    <LabelText>
-                        A IDoso é uma plataforma totalmente gratuita,
-                        que busca levar a melhor experiência para seus
-                        usuários na hora de buscar um(a) cuidador(a) para as pessoas que necessitam.
-                    </LabelText>
-                </LabelOne>
-
-                <SpanGridTwo>
-                    <ImageQuemSomos src={imageOne} />
-                </SpanGridTwo>
-
-                <LabelTwo>
-                    EM QUEM
-                    ESTAMOS FOCADOS?
-                    <LabelText>
-                        A IDoso é uma plataforma totalmente gratuita,
-                        que busca levar a melhor experiência para seus
-                        usuários na hora de buscar um(a) cuidador(a) para as pessoas que necessitam.
-                    </LabelText>
-                </LabelTwo>
+                    <DivLittleChildren>
+                        <Text>QUEM SOMOS</Text>
+                        <TextSecond>
+                            A IDoso é uma plataforma totalmente gratuita, que busca levar a melhor
+                            experiência para seus usuários na hora
+                            de buscar um(a) cuidador(a) para as pessoas que necessitam.
+                        </TextSecond>
+                    </DivLittleChildren>
+                </DivChildrenOne>
+            </DivDadOne>
 
 
-                <SpanGridThree>
-                    <ImageQuemSomos src={imageOne} />
-                </SpanGridThree>
-                <LabelThree>
-                    EM QUEM
-                    ESTAMOS FOCADOS?
-                    <LabelText>
-                        A IDoso é uma plataforma totalmente gratuita,
-                        que busca levar a melhor experiência para seus
-                        usuários na hora de buscar um(a) cuidador(a) para as pessoas que necessitam.
-                    </LabelText>
-                </LabelThree>
-            </DivGrid>
+            <DivDadTwo>
+                <DivChildrenTwo>
+                    <ImageQuemSomos src={imageTwo} />
+                    <DivLittleChildren>
+                        <Text>EM QUEM ESTAMOS FOCADOS?</Text>
+                        <TextSecondTwo>
+                            Nossas soluções estão focadas no público idoso, que precisa de cuidados com mais atenção.
+                        </TextSecondTwo>
+                    </DivLittleChildren>
+                </DivChildrenTwo>
+            </DivDadTwo>
+
+            <DivDadOne>
+                <DivChildrenOne>
+                    <ImageQuemSomos src={imageThree} />
+                    <DivLittleChildren>
+                        <Text>NOSSA MISSÃO</Text>
+                        <TextSecond>
+                            Nossas soluções estão focadas no público idoso, que precisa de cuidados com mais atenção.
+                        </TextSecond>
+                    </DivLittleChildren>
+                </DivChildrenOne>
+            </DivDadOne>
+
+            <FooterIdoso>
+                <DivChildrenFooter>
+                    <DivIconFooterOne>
+                        <MdEmail size={30} />
+                        contato@idoso.com
+                    </DivIconFooterOne>
+                    <DivIconFooterTwo>
+                        <MdLocationOn size={30} />
+                        Av. Paulista, 127
+                    </DivIconFooterTwo>
+
+
+                </DivChildrenFooter>
+
+                <DivLittleChildrenFooter>
+                    <BsInstagram size={30} />
+                    <BsFacebook size={30} />
+                    <BsLinkedin size={30} />
+                </DivLittleChildrenFooter>
+            </FooterIdoso>
         </div>
     );
 }
