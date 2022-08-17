@@ -47,6 +47,7 @@ const DivInformacoes = styled.div`
    position: relative;
 `
 
+
 const SpanInformacoes = styled.div`
     width: 100vw;
     height: auto;
