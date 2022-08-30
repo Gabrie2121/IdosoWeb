@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from "../components/Header";
-import CadastroLogin from "../components/Usuario/CadastroLogin";
-import CadastroInfoBasica from "../components/Usuario/CadastroInfoBasicas";
-import CadastroEndereco from "../components/Usuario/CadastroEndereco";
+import CadastroLogin from "../components/User/CadastroLogin";
+import CadastroInfoBasica from "../components/User/CadastroInfoBasicas";
+import CadastroEndereco from "../components/User/CadastroEndereco";
 import { useAuth } from '../providers/auth';
 
 import Button from '@mui/material/Button';

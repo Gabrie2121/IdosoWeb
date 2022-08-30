@@ -17,7 +17,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import MaskedInput from '../Usuario/MaskedInput';
+import MaskedInput from '../User/MaskedInput';
+import InputMask from "react-input-mask";
 
 const Text = styled.span`
     display: flex;
@@ -58,9 +59,9 @@ function FormCadastroInfoBasicas() {
         else if ([name] == 'sobrenome') {
             setInput({ ...input, Sobrenome: value });
         }
-        else if ([name] == 'cpf') {
-            console.log("teste");
+        else if ([name] == 'cpf') {          
             setInput({ ...input, CPF: value });
+            console.log(input.CPF + "droga");
         }
         else if ([name] == 'tipoUsuario') {
             setInput({ ...input, TipoUsuario: value });
@@ -72,8 +73,6 @@ function FormCadastroInfoBasicas() {
         localStorage.setItem('Usuario', JSON.stringify(input));
     }
 
-
-
     return (
 
         <div >
@@ -84,10 +83,9 @@ function FormCadastroInfoBasicas() {
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', m: 1 }}>
                     <TextField name="nome" required id="outlined-required" label="Nome" onChange={onChange} value={(input.Nome)} />
-                    <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={(input.CPF)} /> 
-                    {/* <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={input.CPF} InputProps={{
-                        inputComponent: MaskedInput,
-                    }}/> */}
+                    {/* <TextField name="cpf" required id="outlined-required" label="CPF" onChange={onChange} value={(input.CPF)} />  */}
+                    <MaskedInput name="cpf" onChange={onChange} value={(input.CPF)}/>
+
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Data de Nascimento"
@@ -104,8 +102,8 @@ function FormCadastroInfoBasicas() {
                     <TextField name="sobrenome" required id="outlined-required" label="Sobrenome" onChange={onChange} value={(input.Sobrenome)} />
 
                     <TextField name="celular" required id="outlined-required" label="Celular" onChange={onChange} value={(input.Celular)} />
-                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 2 }}>
-                        <FormControl fullWidth>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <FormControl fullWidth sx={{m:2}}>
                             <InputLabel id="demo-simple-select-label">Tipo Usuário</InputLabel>
                             <Select
                                 name='tipoUsuario'

@@ -1,10 +1,10 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
+import TextField from '@mui/material/TextField';
 
 const onlyNumbers = (str) => str.replace(/[^0-9]/g, '');
 
-const MaskedInput = ({ value, onChange }) => {
-    console.log("aaaaaa");
+const MaskedInput = ({ name,value, onChange }) => {
   function handleChange(event) {
     onChange({
       ...event,
@@ -13,15 +13,18 @@ const MaskedInput = ({ value, onChange }) => {
         value: onlyNumbers(event.target.value)
       }
     });
+    console.log(event.target.value, " VALUE " + value);
   }
 
   return (
     <InputMask
-      name="cpf"
-      mask="999.999.999-99"
-      value={value}
-      onChange={handleChange}
-    />
+    name={name}
+    mask="999.999.999-99"
+    value={value}
+    onChange={handleChange}
+  >
+    {() => <TextField />}
+  </InputMask>
   );
 };
 
