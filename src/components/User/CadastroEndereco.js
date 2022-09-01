@@ -7,6 +7,7 @@ import '../../styles/global.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import MaskedInput from '../User/MaskedInput';
 
 const Text = styled.span`
     display: flex;
@@ -42,7 +43,6 @@ function FormCadastroEndereco() {
             console.log(key + ' ' + value);
         }
     }
-
 
     function onChange(ev) {
         const { name, value } = ev.target;
@@ -90,12 +90,12 @@ function FormCadastroEndereco() {
        
              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <TextField name="CEP" required id="outlined-required" label="CEP" onChange={onChange} value={(input.CEP)} onBlur={checkCEP} />
+                    <MaskedInput name="CEP"  mask="99999-999" value={(input.CEP)} onChange={onChange} label="CEP" onBlur={checkCEP}/>
                     <TextField name="UF" required id="outlined-required" label="UF" onChange={onChange} value={(input.UF)} />
                     <TextField name="Cidade" required id="outlined-required" label="Cidade" onChange={onChange} value={(input.Cidade)} />
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <TextField name="logradouro" required id="outlined-required" label="Logradouro" onChange={onChange} value={(input.Logradouro)} />
+                    <TextField name="Logradouro" required id="outlined-required" label="Logradouro" onChange={onChange} value={(input.Logradouro)} />
                     <TextField name="Complemento" required id="outlined-required" label="Complemento" onChange={onChange} value={(input.Complemento)} />
                     <TextField name="Apelido" required id="outlined-required" label="Apelido" onChange={onChange} value={(input.Apelido)} />
                 </Box>
