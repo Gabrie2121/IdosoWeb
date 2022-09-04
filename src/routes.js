@@ -3,6 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 import HomeInstitucional from './pages/HomeInstitucional';
+import Profile from './pages/Profile';
+
+import ListaOfertas from './pages/ListaOfertas';
+import CriacaoAnuncio from './pages/CriacaoAnuncio';
+import CriacaoAnuncio2 from './pages/CriacaoAnuncio2';
+import Favoritos from './pages/Favoritos';
+import HistoricoContratos from './pages/HistoricoContratos';
+import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
+import Cadastro from './pages/CadastroUsuario';
+
 
 
 function Rotas() {
@@ -17,6 +27,7 @@ function Rotas() {
         <Route exact path ="/Favoritos" element={<Favoritos/>} />
         <Route exact path ="/HistoricoContratos" element={<HistoricoContratos/>} />
         <Route exact path ="/HistoricoTrabalhos" element={<HistoricoTrabalhos/>} />
+        <Route exact path="/Cadastro" element={<Cadastro/>} />
       </Routes>
     </Router>
   );
