@@ -1,18 +1,8 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 import HomeInstitucional from './pages/HomeInstitucional';
-
-import Profile from './pages/Profile';
-
-import ListaOfertas from './pages/ListaOfertas';
-import CriacaoAnuncio from './pages/CriacaoAnuncio';
-import CriacaoAnuncio2 from './pages/CriacaoAnuncio2';
-import Favoritos from './pages/Favoritos';
-import HistoricoContratos from './pages/HistoricoContratos';
-import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
 
 
 function Rotas() {
