@@ -40,7 +40,7 @@ const DivSearch = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-` 
+`
 
 const Items = styled.div`
     width: 100%;
@@ -53,7 +53,7 @@ const SpanHistorico = styled.span`
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
 
 const DivProfiles = styled.div`
     width: 75%;
@@ -145,11 +145,11 @@ const modalStyle = {
     height: 550,
     bgcolor: 'background.paper',
     p: 4,
-    borderRadius: 3, 
-  };
+    borderRadius: 3,
+};
 
 
-  const SpanAvaliacao = styled.span`
+const SpanAvaliacao = styled.span`
     margin-left: 110px;
     margin-top: 60px;
     margin-bottom: 40px;
@@ -157,24 +157,24 @@ const modalStyle = {
     color: #858484;
     font-weight: 100;
   `
-  
-  const DivIcone = styled.div`
+
+const DivIcone = styled.div`
     margin-top: -50px;
     margin-left: 510px;
   `
 
-  const DivNomeAvaliado = styled.div`
+const DivNomeAvaliado = styled.div`
     margin-top: 20px;
   `
 
-  const SpanNomeAvaliado = styled.span`
+const SpanNomeAvaliado = styled.span`
     margin-left: 170px;
     font-size: 18pt;
     font-weight: 100;
     color: black;
   `
 
-  const DivRating = styled.div`
+const DivRating = styled.div`
     margin-left: 220px;
     margin-top: 19px;
 `
@@ -217,7 +217,16 @@ function HistoricoTrabalhos() {
 
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="HISTÓRICO DE TRABALHOS"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/criacaoanuncio"
+                linkFour="/"
+            />
             <DivBody>
                 <DivSearch>
                     <Items>
@@ -226,45 +235,45 @@ function HistoricoTrabalhos() {
                         </SpanHistorico>
                     </Items>
                     <Items>
-                        <SearchField/>
-                    </Items>     
+                        <SearchField />
+                    </Items>
                 </DivSearch>
                 <DivProfiles>
-                <DivProfileItem>
-                    <Profile/>
-                    <SpanNome>
-                        David Luís Nunes
-                    </SpanNome>
-                    <ProfileImage src={david}/>
-                    <HeartImage src={heartImg} />
-                    <DivButton>
-                         <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                     </DivButton>
-                     <SpanData>
-                        03/03/2022 
-                     </SpanData>
-                     <SpanHorario>
-                        Das 09:00 às 16:00
-                     </SpanHorario>
-                     <SpanValor>
-                        R$ 320,00
-                     </SpanValor>
-                     <SpanNomeIdoso>
-                        Roberta Nunes
-                     </SpanNomeIdoso>
+                    <DivProfileItem>
+                        <Profile />
+                        <SpanNome>
+                            David Luís Nunes
+                        </SpanNome>
+                        <ProfileImage src={david} />
+                        <HeartImage src={heartImg} />
+                        <DivButton>
+                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
+                        </DivButton>
+                        <SpanData>
+                            03/03/2022
+                        </SpanData>
+                        <SpanHorario>
+                            Das 09:00 às 16:00
+                        </SpanHorario>
+                        <SpanValor>
+                            R$ 320,00
+                        </SpanValor>
+                        <SpanNomeIdoso>
+                            Roberta Nunes
+                        </SpanNomeIdoso>
                     </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
                         <SpanNome>
                             Eduarda C. Lorenzo
                         </SpanNome>
-                        <ProfileImage src={eduarda}/>
+                        <ProfileImage src={eduarda} />
                         <HeartImage src={heartImg} />
                         <DivButton>
                             <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
                         </DivButton>
                         <SpanData>
-                            05/03/2022 
+                            05/03/2022
                         </SpanData>
                         <SpanHorario>
                             Das 11:00 às 17:00
@@ -277,17 +286,17 @@ function HistoricoTrabalhos() {
                         </SpanNomeIdoso>
                     </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
                         <SpanNome>
                             Manoela de Jesus
                         </SpanNome>
-                        <ProfileImage src={manoela}/>
+                        <ProfileImage src={manoela} />
                         <HeartImage src={heartImg} />
                         <DivButton>
                             <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
                         </DivButton>
                         <SpanData>
-                            11/03/2022 
+                            11/03/2022
                         </SpanData>
                         <SpanHorario>
                             Das 13:00 às 15:00
@@ -307,47 +316,47 @@ function HistoricoTrabalhos() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={modalStyle}>
-                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                    <SpanAvaliacao>
-                        Avaliação
-                    </SpanAvaliacao>
-                    <DivIcone>
-                        <IconButton onClick={handleClose} id="iconeFechar">
-                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
-                        </IconButton>
-                    </DivIcone>
-                    <DivNomeAvaliado>
-                        <SpanNomeAvaliado>
-                            Eduarda C. Lorenzo
-                        </SpanNomeAvaliado>
-                    </DivNomeAvaliado>
-                    <DivRating>
-                        <Stack spacing={1}>
-                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
-                        </Stack>
-                     </DivRating>
-                     <DivComentario>                          
-                        <SpanComentario>
-                            Comentário
-                        </SpanComentario>
-                     </DivComentario>
-                     <DivTextField>
-                        <TextField
-                            id="outlined-multiline-static"
-                            multiline
-                            rows={10}
-                        />  
-                     </DivTextField>
-                     <SpanTexto>
-                        Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
-                     </SpanTexto>
-                     <DivEnviarAvaliacao>
-                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
-                     </DivEnviarAvaliacao>         
+                        <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                        <SpanAvaliacao>
+                            Avaliação
+                        </SpanAvaliacao>
+                        <DivIcone>
+                            <IconButton onClick={handleClose} id="iconeFechar">
+                                <HighlightOffIcon id="iconClose" fontSize="large" />
+                            </IconButton>
+                        </DivIcone>
+                        <DivNomeAvaliado>
+                            <SpanNomeAvaliado>
+                                Eduarda C. Lorenzo
+                            </SpanNomeAvaliado>
+                        </DivNomeAvaliado>
+                        <DivRating>
+                            <Stack spacing={1}>
+                                <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                            </Stack>
+                        </DivRating>
+                        <DivComentario>
+                            <SpanComentario>
+                                Comentário
+                            </SpanComentario>
+                        </DivComentario>
+                        <DivTextField>
+                            <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows={10}
+                            />
+                        </DivTextField>
+                        <SpanTexto>
+                            Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
+                        </SpanTexto>
+                        <DivEnviarAvaliacao>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
+                        </DivEnviarAvaliacao>
                     </Box>
                 </Modal>
             </DivBody>
-          
+
         </div>
     )
 }

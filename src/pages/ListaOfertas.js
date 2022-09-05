@@ -38,7 +38,7 @@ const DivSearch = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-` 
+`
 
 const Items = styled.div`
     width: 100%;
@@ -51,7 +51,7 @@ const SpanListaOfertas = styled.span`
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
 
 const DivFilters = styled.div`
     width: 70%;
@@ -60,7 +60,7 @@ const DivFilters = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-` 
+`
 
 const DivOfferFilter = styled.div`
     width: 120px;
@@ -130,14 +130,14 @@ const SpanFilterPayment = styled.span`
 const SelectImage = styled.img`
     width: 13px;
     height: 12px;
-    position; absolute;
+    position: absolute;
     margin-top: 10px;
     margin-left: -20px;
 `
 const SelectImageComponent = styled.img`
     width: 13px;
     height: 12px;
-    position; absolute;
+    position: absolute;
     margin-top: 10px;
     margin-left: -290px;
 `
@@ -149,7 +149,7 @@ const DivOffers = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-    backgroud-color: gray;
+    background-color: gray;
     margin-top: 40px;
 `
 
@@ -347,7 +347,16 @@ const SpanTimeValue2 = styled.span`
 function ListaOfertas() {
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="LISTA DE OFERTAS"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/criacaoanuncio"
+                linkFour="/"
+            />
             <DivBody>
                 <DivSearch>
                     <Items>
@@ -356,14 +365,14 @@ function ListaOfertas() {
                         </SpanListaOfertas>
                     </Items>
                     <Items>
-                        <SearchField/>
+                        <SearchField />
                     </Items>
-                    <Items>   
+                    <Items>
                         <IconButton id="iconeFavorito" disabled>
-                            <FavoriteIcon/>
-                        </IconButton> 
+                            <FavoriteIcon />
+                        </IconButton>
                         <Button id="favoritosButton" component={Link} to="/Favoritos" variant="text">Favoritos</Button>
-                    </Items>     
+                    </Items>
                 </DivSearch>
                 <DivFilters>
                     <ItemFilter>
@@ -376,7 +385,7 @@ function ListaOfertas() {
                         <SpanFilterDistance>
                             Distância
                         </SpanFilterDistance>
-                        <SelectImage src= {polygonSelection}/>
+                        <SelectImage src={polygonSelection} />
                     </ItemFilter>
                     <ItemFilter>
                         {/* <OfferFilter/> */}
@@ -385,31 +394,31 @@ function ListaOfertas() {
                                 Não
                             </SpanFilterValuePCD>
                         </DivOfferFilter>
-                        <SelectImage src= {polygonSelection}/>
+                        <SelectImage src={polygonSelection} />
                         <SpanFilterPCD style={ListaOfertas.pcd}>
                             PCD
                         </SpanFilterPCD>
                     </ItemFilter>
                     <ItemFilter>
-                        <OfferFilter/>
+                        <OfferFilter />
                         <SpanFilterGenre>
                             Gênero
                         </SpanFilterGenre>
-                        <SelectImageComponent src= {polygonSelection}/>
+                        <SelectImageComponent src={polygonSelection} />
                     </ItemFilter>
                     <ItemFilter>
-                        <OfferFilter/>
+                        <OfferFilter />
                         <SpanFilterPayment>
                             Valor a ser pago
                         </SpanFilterPayment>
-                        <SelectImageComponent src= {polygonSelection}/>
+                        <SelectImageComponent src={polygonSelection} />
                     </ItemFilter>
                 </DivFilters>
                 <DivOffers>
                     <ItemOffer>
-                        <Offer/>
+                        <Offer />
                         {/* Primeira Oferta */}
-                        <AccessButtton1/>
+                        <AccessButtton1 />
                         <ProfieImage1 src={aliceImage} />
                         <SpanName1>
                             Alice Dolores dos Santos
@@ -423,9 +432,9 @@ function ListaOfertas() {
                         </KmSpan1>
                         <SpanAccess1>
                             Acessar anúncio
-                        </SpanAccess1>                     
+                        </SpanAccess1>
                         <SpanPcd1>
-                                PCD
+                            PCD
                         </SpanPcd1>
                         <DivPcd1>
                             <SpanPcdValue1>
@@ -440,8 +449,8 @@ function ListaOfertas() {
                                 Matutino
                             </SpanTimeValue1>
                         </DivTime1>
-                       {/* Segunda Oferta */}
-                       <AccessButtton2/>
+                        {/* Segunda Oferta */}
+                        <AccessButtton2 />
                         <ProfieImage2 src={bernadoImage} />
                         <SpanName2>
                             Bernado Jones S. Silvino
@@ -455,9 +464,9 @@ function ListaOfertas() {
                         </KmSpan2>
                         <SpanAccess2>
                             Acessar anúncio
-                        </SpanAccess2>                     
+                        </SpanAccess2>
                         <SpanPcd2>
-                                PCD
+                            PCD
                         </SpanPcd2>
                         <DivPcd2>
                             <SpanPcdValue2>
@@ -472,13 +481,13 @@ function ListaOfertas() {
                                 Vespertino
                             </SpanTimeValue2>
                         </DivTime2>
-                    </ItemOffer>                   
+                    </ItemOffer>
                 </DivOffers>
                 <DivOffers>
-                <ItemOffer>
-                        <Offer/>
-                      {/* Primeira Oferta */}
-                      <AccessButtton1/>
+                    <ItemOffer>
+                        <Offer />
+                        {/* Primeira Oferta */}
+                        <AccessButtton1 />
                         <ProfieImage1 src={brunoImage} />
                         <SpanName1>
                             Bruno M. Luis de Oliveira
@@ -492,9 +501,9 @@ function ListaOfertas() {
                         </KmSpan1>
                         <SpanAccess1>
                             Acessar anúncio
-                        </SpanAccess1>                     
+                        </SpanAccess1>
                         <SpanPcd1>
-                                PCD
+                            PCD
                         </SpanPcd1>
                         <DivPcd1>
                             <SpanPcdValue1>
@@ -510,7 +519,7 @@ function ListaOfertas() {
                             </SpanTimeValue1>
                         </DivTime1>
                         {/* Segunda Oferta */}
-                        <AccessButtton2/>
+                        <AccessButtton2 />
                         <ProfieImage2 src={camilaImage} />
                         <SpanName2>
                             Camila Katharine Gomes
@@ -524,9 +533,9 @@ function ListaOfertas() {
                         </KmSpan2>
                         <SpanAccess2>
                             Acessar anúncio
-                        </SpanAccess2>                     
+                        </SpanAccess2>
                         <SpanPcd2>
-                                PCD
+                            PCD
                         </SpanPcd2>
                         <DivPcd2>
                             <SpanPcdValue2>
@@ -545,12 +554,12 @@ function ListaOfertas() {
                 </DivOffers>
                 <DivOffers>
                     <ItemOffer>
-                        <Offer/>
+                        <Offer />
                         {/* Primeira Oferta */}
-                        <AccessButtton1/>
+                        <AccessButtton1 />
                         <ProfieImage1 src={davidImage} />
                         <SpanName1>
-                            David S. Mariano Paulino 
+                            David S. Mariano Paulino
                         </SpanName1>
                         <StarImage1 src={starImgIncompleta} />
                         <SpanPayment1>
@@ -561,9 +570,9 @@ function ListaOfertas() {
                         </KmSpan1>
                         <SpanAccess1>
                             Acessar anúncio
-                        </SpanAccess1>                     
+                        </SpanAccess1>
                         <SpanPcd1>
-                                PCD
+                            PCD
                         </SpanPcd1>
                         <DivPcd1>
                             <SpanPcdValue1>
@@ -579,7 +588,7 @@ function ListaOfertas() {
                             </SpanTimeValue1>
                         </DivTime1>
                         {/* Segunda Oferta */}
-                        <AccessButtton2/>
+                        <AccessButtton2 />
                         <ProfieImage2 src={eduardaImage} />
                         <SpanName2>
                             Eduarda Beatriz C. Souza
@@ -593,9 +602,9 @@ function ListaOfertas() {
                         </KmSpan2>
                         <SpanAccess2>
                             Acessar anúncio
-                        </SpanAccess2>                     
+                        </SpanAccess2>
                         <SpanPcd2>
-                                PCD
+                            PCD
                         </SpanPcd2>
                         <DivPcd2>
                             <SpanPcdValue2>
