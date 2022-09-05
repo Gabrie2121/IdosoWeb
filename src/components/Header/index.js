@@ -5,19 +5,22 @@ import styled from 'styled-components'
 import logoIdoso from '../../assets/logo.png'
 
 
-
+const HeaderStyle = styled.header`
+    width: 100%;
+    height: auto;
+`
 
 const NavBar = styled.nav`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: #5BB159;
+    width: 100%;
     height: 8vh;
 `
 const Opcoes = styled.div`
     list-style: none;
     display: flex;
-    margin-left: 50%;
 `
 
 const OpcoesHeader = styled(Link)`
@@ -39,19 +42,19 @@ const Logo = styled.img`
 
 
 
-function Header() {
+function Header(props) {
     return (
-        <header>
+        <HeaderStyle props>
             <NavBar>
                 <Logo src={logoIdoso} />
                 <Opcoes>
-                    <OpcoesHeader to="/">QUEM SOMOS</OpcoesHeader>
-                    <OpcoesHeader to="/">CONTATO</OpcoesHeader>
-                    <OpcoesHeader to="/">LOGIN</OpcoesHeader>
-                    <OpcoesHeader to="/">CADASTRO</OpcoesHeader>
+                    <OpcoesHeader to={`${props.linkOne.toLowerCase()}`}>{props.one}</OpcoesHeader>
+                    <OpcoesHeader to={`${props.linkTwo.toLowerCase()}`}>{props.two}</OpcoesHeader>
+                    <OpcoesHeader to={`${props.linkThree.toLowerCase()}`}>{props.three}</OpcoesHeader>
+                    <OpcoesHeader to={`${props.linkFour.toLowerCase()}`}>{props.four}</OpcoesHeader>
                 </Opcoes>
             </NavBar>
-        </header>
+        </HeaderStyle>
     );
 }
 
