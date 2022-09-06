@@ -1,26 +1,24 @@
 import React from "react";
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import Header from "../components/Header/";
-import SearchField from "../components/SearchField/";
 import Profile from "../components/Profile/";
+import SearchField from "../components/SearchField/";
 
-import karina from '../assets/FavoritosAndProfile/Profiles/karina.png'
-import leonardo from '../assets/FavoritosAndProfile/Profiles/leonardo.png'
-import sergio from '../assets/FavoritosAndProfile/Profiles/sergio.png'
+import karina from '../assets/FavoritosAndProfile/Profiles/karina.png';
+import leonardo from '../assets/FavoritosAndProfile/Profiles/leonardo.png';
+import sergio from '../assets/FavoritosAndProfile/Profiles/sergio.png';
 import heartImg from '../assets/listaOfertas/heart.png';
 
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-import style from './../styles/Favoritos.css';
-import styleAvaliacaoModal from './../styles/modalAvaliacao.css';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 

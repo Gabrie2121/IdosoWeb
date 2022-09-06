@@ -3,26 +3,24 @@ import React from "react";
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
-import Select from '@mui/material/Select';
-import MenuItem  from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel  from '@mui/material/InputLabel';
-import FormLabel from '@mui/material/FormLabel';
-import FormControlLabel  from "@mui/material/FormControlLabel";
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from '@mui/material/FormLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Select from '@mui/material/Select';
 
-import style from './../styles/criacaoAnuncio.css';
 
 import Header from "../components/Header/";
 
 import aliceImage from '../assets/criacaoOfertas/alice.png';
-import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
+import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 
 const DivTitle = styled.div`
@@ -51,7 +49,7 @@ const DivDescription = styled.div`
    width: 30%;
 `
 const DivCampoFoto = styled.div`
-    width; 100%;
+    width: 100%;
     height: 35%;
 `
 
@@ -81,12 +79,12 @@ const ButttonEditarFoto = styled.button`
 `
 
 const DivCampoDescricao = styled.div`
-    width; 100%;
+    width: 100%;
     height: 60%;
 `
 
 const DivSpanDescri = styled.div`
-    width; 100%;
+    width: 100%;
     height: 5%;
 `
 
@@ -99,7 +97,7 @@ const SpanDescricao = styled.span`
 `
 
 const DivAreaDescri =  styled.div`
-    width; 100%;
+    width: 100%;
     height: 90%;
 `
 
