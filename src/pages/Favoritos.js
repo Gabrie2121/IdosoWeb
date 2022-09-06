@@ -37,7 +37,7 @@ const DivSearch = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-` 
+`
 
 const Items = styled.div`
     width: 100%;
@@ -50,7 +50,7 @@ const SpanFavoritos = styled.span`
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
 
 const DivProfiles = styled.div`
     width: 75%;
@@ -108,11 +108,11 @@ const modalStyle = {
     height: 550,
     bgcolor: 'background.paper',
     p: 4,
-    borderRadius: 3, 
-  };
+    borderRadius: 3,
+};
 
 
-  const SpanAvaliacao = styled.span`
+const SpanAvaliacao = styled.span`
     margin-left: 110px;
     margin-top: 60px;
     margin-bottom: 40px;
@@ -120,24 +120,24 @@ const modalStyle = {
     color: #858484;
     font-weight: 100;
   `
-  
-  const DivIcone = styled.div`
+
+const DivIcone = styled.div`
     margin-top: -50px;
     margin-left: 510px;
   `
 
-  const DivNomeAvaliado = styled.div`
+const DivNomeAvaliado = styled.div`
     margin-top: 20px;
   `
 
-  const SpanNomeAvaliado = styled.span`
+const SpanNomeAvaliado = styled.span`
     margin-left: 170px;
     font-size: 18pt;
     font-weight: 100;
     color: black;
   `
 
-  const DivRating = styled.div`
+const DivRating = styled.div`
     margin-left: 220px;
     margin-top: 19px;
 `
@@ -180,7 +180,16 @@ function Favoritos() {
 
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="LISTA DE OFERTAS"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/listaofertas"
+                linkFour="/"
+            />
             <DivBody>
                 <DivSearch>
                     <Items>
@@ -189,38 +198,38 @@ function Favoritos() {
                         </SpanFavoritos>
                     </Items>
                     <Items>
-                        <SearchField/>
-                    </Items>     
+                        <SearchField />
+                    </Items>
                 </DivSearch>
                 <DivProfiles>
-                <DivProfileItem>
-                    <Profile/>
-                    <SpanNome>
-                            Karina Alves
-                    </SpanNome>
-                    <ProfileImage src={karina}/>
-                    <HeartImage src={heartImg} />
-                    <DivButton>
-                         <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                     </DivButton>
-                    </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
                         <SpanNome>
-                            Leonardo Machado Junior
+                            Karina Alves
                         </SpanNome>
-                        <ProfileImage src={leonardo}/>
+                        <ProfileImage src={karina} />
                         <HeartImage src={heartImg} />
                         <DivButton>
-                            <Button onClick={handleOpen}  id="avaliarButton" variant="contained">Avaliar</Button>
+                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
                         </DivButton>
                     </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
+                        <SpanNome>
+                            Leonardo Machado Junior
+                        </SpanNome>
+                        <ProfileImage src={leonardo} />
+                        <HeartImage src={heartImg} />
+                        <DivButton>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
+                        </DivButton>
+                    </DivProfileItem>
+                    <DivProfileItem>
+                        <Profile />
                         <SpanNome>
                             Sergio Jessé Garcia
                         </SpanNome>
-                        <ProfileImage src={sergio}/>
+                        <ProfileImage src={sergio} />
                         <HeartImage src={heartImg} />
                         <DivButton>
                             <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
@@ -234,47 +243,47 @@ function Favoritos() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={modalStyle}>
-                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                    <SpanAvaliacao>
-                        Avaliação
-                    </SpanAvaliacao>
-                    <DivIcone>
-                        <IconButton onClick={handleClose} id="iconeFechar">
-                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
-                        </IconButton>
-                    </DivIcone>
-                    <DivNomeAvaliado>
-                        <SpanNomeAvaliado>
-                            Eduarda C. Lorenzo
-                        </SpanNomeAvaliado>
-                    </DivNomeAvaliado>
-                    <DivRating>
-                        <Stack spacing={1}>
-                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
-                        </Stack>
-                     </DivRating>
-                     <DivComentario>                          
-                        <SpanComentario>
-                            Comentário
-                        </SpanComentario>
-                     </DivComentario>
-                     <DivTextField>
-                        <TextField
-                            id="outlined-multiline-static"
-                            multiline
-                            rows={10}
-                        />  
-                     </DivTextField>
-                     <SpanTexto>
-                        Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
-                     </SpanTexto>
-                     <DivEnviarAvaliacao>
-                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
-                     </DivEnviarAvaliacao>         
+                        <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                        <SpanAvaliacao>
+                            Avaliação
+                        </SpanAvaliacao>
+                        <DivIcone>
+                            <IconButton onClick={handleClose} id="iconeFechar">
+                                <HighlightOffIcon id="iconClose" fontSize="large" />
+                            </IconButton>
+                        </DivIcone>
+                        <DivNomeAvaliado>
+                            <SpanNomeAvaliado>
+                                Eduarda C. Lorenzo
+                            </SpanNomeAvaliado>
+                        </DivNomeAvaliado>
+                        <DivRating>
+                            <Stack spacing={1}>
+                                <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                            </Stack>
+                        </DivRating>
+                        <DivComentario>
+                            <SpanComentario>
+                                Comentário
+                            </SpanComentario>
+                        </DivComentario>
+                        <DivTextField>
+                            <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows={10}
+                            />
+                        </DivTextField>
+                        <SpanTexto>
+                            Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
+                        </SpanTexto>
+                        <DivEnviarAvaliacao>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
+                        </DivEnviarAvaliacao>
                     </Box>
                 </Modal>
             </DivBody>
-          
+
         </div>
     )
 }

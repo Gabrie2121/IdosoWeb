@@ -4,35 +4,34 @@ import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
 
-import Select from '@mui/material/Select';
-import MenuItem  from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel  from '@mui/material/InputLabel';
-import FormLabel from '@mui/material/FormLabel';
-import FormControlLabel  from "@mui/material/FormControlLabel";
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from '@mui/material/FormLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Select from '@mui/material/Select';
 
 import style from './../styles/criacaoAnuncio.css';
 
 import Header from "../components/Header/";
 
 import aliceImage from '../assets/criacaoOfertas/alice.png';
-import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
+import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 
-import Uppy from '@uppy/core'
-import { DragDrop } from '@uppy/react'
-import '@uppy/core/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
-
-
-import '@uppy/core/dist/style.css'
-import '@uppy/dashboard/dist/style.css'
+import Uppy from '@uppy/core';
+import '@uppy/core/dist/style.css';
+import '@uppy/drag-drop/dist/style.css';
+import { DragDrop } from '@uppy/react';
 
 
-import styled from 'styled-components'
+import '@uppy/core/dist/style.css';
+import '@uppy/dashboard/dist/style.css';
+
+
+import styled from 'styled-components';
 
 
 const DivTitle = styled.div`
@@ -61,7 +60,7 @@ const DivDescription = styled.div`
    width: 30%;
 `
 const DivCampoFoto = styled.div`
-    width; 100%;
+    width: 100%;
     height: 35%;
 `
 
@@ -90,12 +89,12 @@ const ButttonEditarFoto = styled.button`
 `
 
 const DivCampoDescricao = styled.div`
-    width; 100%;
+    width: 100%;
     height: 60%;
 `
 
 const DivSpanDescri = styled.div`
-    width; 100%;
+    width: 100%;
     height: 5%;
 `
 
@@ -107,8 +106,8 @@ const SpanDescricao = styled.span`
     color: gray;
 `
 
-const DivAreaDescri =  styled.div`
-    width; 100%;
+const DivAreaDescri = styled.div`
+    width: 100%;
     height: 90%;
 `
 
@@ -214,7 +213,7 @@ const DivDragDrop = styled.div`
 
 function CriacaoAnuncio() {
 
-    const [ parentesco, setParentesco] = React.useState('');
+    const [parentesco, setParentesco] = React.useState('');
 
     const handleChange = (event) => {
         setParentesco(event.target.value);
@@ -225,15 +224,24 @@ function CriacaoAnuncio() {
         restrictions: { maxNumberOfFiles: 1 },
         autoProceed: true,
     })
-    
+
     uppy.on('complete', (result) => {
         const url = result.successful[0].uploadURL
-      })
-  
+    })
+
 
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="CRIAR OFERTA"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/criacaoanuncio"
+                linkFour="/"
+            />
             <DivTitle>
                 <SpanTitle>
                     Área de criação de anúncios
@@ -255,84 +263,84 @@ function CriacaoAnuncio() {
                             <SpanBoxDescricao>
                                 Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
                             </SpanBoxDescricao>
-                        </DivAreaDescri>                  
+                        </DivAreaDescri>
                     </DivCampoDescricao>
                 </DivDescription>
                 <DivForm>
                     <Column>
                         <DivNome>
-                            <TextField id="nomeTextField" label="Nome" variant="outlined"/>
+                            <TextField id="nomeTextField" label="Nome" variant="outlined" />
                         </DivNome>
                         <DivCpf>
-                            <TextField id="cpfTextField" label="CPF" variant="outlined"/>
+                            <TextField id="cpfTextField" label="CPF" variant="outlined" />
                         </DivCpf>
                         <DivNas>
-                            <TextField id="nasTextField" label="Data Nascimento" variant="outlined"/>
+                            <TextField id="nasTextField" label="Data Nascimento" variant="outlined" />
                         </DivNas>
                         <DivIdade>
-                            <TextField  id="idadeTextField" label="Idade" variant="outlined"/>
+                            <TextField id="idadeTextField" label="Idade" variant="outlined" />
                         </DivIdade>
                         <SpanParentesco>Grau de parêntesco</SpanParentesco>
                         <DivSelect>
-                        <FormControl fullWidth>
-                            <Select
-                                value={parentesco}
-                                label="Grau de parêntesco"
-                                style={style.idadeTextField} 
-                                id="parentescoSelect" 
-                                onChange={handleChange} 
-                            >
-                                 <MenuItem value={1}>Mãe</MenuItem>
-                                 <MenuItem value={2}>Tia</MenuItem>
-                                 <MenuItem value={3}>Avó</MenuItem>
-                                 <MenuItem value={4}>Tia avó</MenuItem>
-                                 <MenuItem value={5}>Prima</MenuItem>
-                            </Select>
+                            <FormControl fullWidth>
+                                <Select
+                                    value={parentesco}
+                                    label="Grau de parêntesco"
+                                    style={style.idadeTextField}
+                                    id="parentescoSelect"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={1}>Mãe</MenuItem>
+                                    <MenuItem value={2}>Tia</MenuItem>
+                                    <MenuItem value={3}>Avó</MenuItem>
+                                    <MenuItem value={4}>Tia avó</MenuItem>
+                                    <MenuItem value={5}>Prima</MenuItem>
+                                </Select>
                             </FormControl>
-                            </DivSelect>
-                            <DivRadios>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">PCD</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                        defaultValue="Nao"
-                                    >
-                                        <FormControlLabel id="simRadio" value="Sim" control={<Radio  color="success" />} label="Sim" />
-                                        <FormControlLabel  id="naoRadio" value="Nao"  control={<Radio  color="success" />} label="Não" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </DivRadios>
+                        </DivSelect>
+                        <DivRadios>
+                            <FormControl>
+                                <FormLabel id="demo-row-radio-buttons-group-label-doenca">PCD</FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                    defaultValue="Nao"
+                                >
+                                    <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
+                                    <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
+                                </RadioGroup>
+                            </FormControl>
+                        </DivRadios>
                     </Column>
                     <Column>
                         <DivSobrenome>
-                            <TextField  id="sobrenomeTextField" label="Sobrenome" variant="outlined"/>
+                            <TextField id="sobrenomeTextField" label="Sobrenome" variant="outlined" />
                         </DivSobrenome>
                         <DivRadiosGenero>
                             <FormControl>
                                 <FormLabel id="demo-row-radio-buttons-group-label">Gênero</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="Masculino" id="masculinoRadio" control={<Radio color="success" />} label="Masculino" />
-                                        <FormControlLabel id="femininoRadio" value="Feminino" control={<Radio color="success" />} label="Feminino" />
-                                    </RadioGroup>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    <FormControlLabel value="Masculino" id="masculinoRadio" control={<Radio color="success" />} label="Masculino" />
+                                    <FormControlLabel id="femininoRadio" value="Feminino" control={<Radio color="success" />} label="Feminino" />
+                                </RadioGroup>
                             </FormControl>
                         </DivRadiosGenero>
                         <DivRadiosDoencas>
                             <FormControl>
                                 <FormLabel id="demo-row-radio-buttons-group-label">Doença ou disturbio diagnosticado</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
-                                        <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
-                                    </RadioGroup>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
+                                    <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
+                                </RadioGroup>
                             </FormControl>
                         </DivRadiosDoencas>
                         <DivDragDrop>
@@ -342,21 +350,21 @@ function CriacaoAnuncio() {
                                 id="dragdrop"
                                 uppy={uppy}
                                 locale={{
-                                strings: {
-                                    // Text to show on the droppable area.
-                                    // `%{browse}` is replaced with a link that opens the system file selection dialog.
-                                    dropHereOr: 'Drop here or %{browse}',
-                                    // Used as the label for the link that opens the system file selection dialog.
-                                    browse: 'browse',
-                                },
+                                    strings: {
+                                        // Text to show on the droppable area.
+                                        // `%{browse}` is replaced with a link that opens the system file selection dialog.
+                                        dropHereOr: 'Drop here or %{browse}',
+                                        // Used as the label for the link that opens the system file selection dialog.
+                                        browse: 'browse',
+                                    },
                                 }}
                             />
-                        </DivDragDrop>                   
+                        </DivDragDrop>
                     </Column>
                 </DivForm>
             </DivBody>
             <DivFooter>
-                <Button  id="numberOneButton" variant="contained" disabled>1</Button>
+                <Button id="numberOneButton" variant="contained" disabled>1</Button>
                 <Button component={Link} to="/CriacaoAnuncio2" id="numberTwoButton" variant="contained">2</Button>
             </DivFooter>
         </div>

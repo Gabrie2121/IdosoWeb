@@ -22,7 +22,6 @@ import imageTwo from '../assets/ImageTwo.png'
 import imageThree from '../assets/ImageThree.png'
 
 
-
 const DivFoto = styled.div`
     width: 100%;
     height: 100%;
@@ -193,9 +192,17 @@ const DivIconFooterTwo = styled.div`
 
 
 function HomeInstitucional() {
+
     return (
         <div>
-            <Header />
+            <Header
+                one="LOGIN"
+                two="CADASTRO"
+                linkOne="/"
+                linkTwo="/"
+                linkThree="/"
+                linkFour="/"
+            />
             <DivFoto>
                 <Logo src={logoIdoso} />
                 <DivInformacoes>
@@ -214,7 +221,7 @@ function HomeInstitucional() {
                 </DivInformacoes>
             </DivFoto>
             <DivRedonda>
-                <SpanRedonda  to="/">
+                <SpanRedonda to="#quem-somos">
                     <IoIosArrowDown size={30} />
                 </SpanRedonda>
             </DivRedonda>

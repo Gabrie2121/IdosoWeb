@@ -96,7 +96,11 @@ const SpanDescricao = styled.span`
     color: gray;
 `
 
+<<<<<<< HEAD
 const DivAreaDescri =  styled.div`
+=======
+const DivAreaDescri = styled.div`
+>>>>>>> 4eaf3fd74a9ce28a09289d5de6cb7c9edbd5ffa2
     width: 100%;
     height: 90%;
 `
@@ -154,7 +158,7 @@ const DivRadios = styled.div`
     margin-left: 40px;
 `
 
-const DivLogradouro= styled.div`
+const DivLogradouro = styled.div`
     margin-top: 260px;
     margin-left: -1173px;
 `
@@ -211,7 +215,16 @@ function CriacaoAnuncio2() {
 
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="CRIAR OFERTA"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/criacaoanuncio"
+                linkFour="/"
+            />
             <DivTitle>
                 <SpanTitle>
                     Área de criação de anúncios
@@ -233,36 +246,36 @@ function CriacaoAnuncio2() {
                             <SpanBoxDescricao>
                                 Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
                             </SpanBoxDescricao>
-                        </DivAreaDescri>                  
+                        </DivAreaDescri>
                     </DivCampoDescricao>
                 </DivDescription>
                 <DivForm>
                     <Column>
                         <DivCep>
-                            <TextField id="cepTextField" label="CEP" variant="outlined"/>
+                            <TextField id="cepTextField" label="CEP" variant="outlined" />
                         </DivCep>
                         <DivEstado>
-                            <TextField id="cpfTextField" label="Estado" variant="outlined"/>
+                            <TextField id="cpfTextField" label="Estado" variant="outlined" />
                         </DivEstado>
                         <DivCidade>
-                            <TextField id="cidadeTextField" label="Cidade" variant="outlined"/>
+                            <TextField id="cidadeTextField" label="Cidade" variant="outlined" />
                         </DivCidade>
                         <DivRadios>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">Período</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel id="matutinoRadio" value="Matutino" control={<Radio  color="success" />} label="Matutino" />
-                                        <FormControlLabel id="vespertinoRadio" value="Vespertino"  control={<Radio  color="success" />} label="Vespertino" />
-                                        <FormControlLabel id="noturnoRadio" value="Noturno"  control={<Radio  color="success" />} label="Noturno" />
-                                    </RadioGroup>
-                                </FormControl>
+                            <FormControl>
+                                <FormLabel id="demo-row-radio-buttons-group-label-doenca">Período</FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    <FormControlLabel id="matutinoRadio" value="Matutino" control={<Radio color="success" />} label="Matutino" />
+                                    <FormControlLabel id="vespertinoRadio" value="Vespertino" control={<Radio color="success" />} label="Vespertino" />
+                                    <FormControlLabel id="noturnoRadio" value="Noturno" control={<Radio color="success" />} label="Noturno" />
+                                </RadioGroup>
+                            </FormControl>
                         </DivRadios>
                         <DivLogradouro>
-                            <TextField id="logradouroTextField" label="Logradouro" variant="outlined"/>
+                            <TextField id="logradouroTextField" label="Logradouro" variant="outlined" />
                         </DivLogradouro>
                         <SpanFrequecia>Frequência</SpanFrequecia>
                         <DivSelect>
@@ -271,7 +284,7 @@ function CriacaoAnuncio2() {
                                     value={frequencia}
                                     label="Frequência"
                                     id="parentescoSelect"
-                                    onChange={handleChange} 
+                                    onChange={handleChange}
                                 >
                                     <MenuItem value={1}>Dia sim e dia não</MenuItem>
                                     <MenuItem value={2}>Uma vez na semana</MenuItem>
@@ -281,28 +294,28 @@ function CriacaoAnuncio2() {
                             </FormControl>
                         </DivSelect>
                         <DivComplemento>
-                            <TextField id="complementoTextField" label="Complemento" variant="outlined"/>
+                            <TextField id="complementoTextField" label="Complemento" variant="outlined" />
                         </DivComplemento>
                         <DivApelido>
-                            <TextField id="apelidoTextField" label="Apelido" variant="outlined"/>
+                            <TextField id="apelidoTextField" label="Apelido" variant="outlined" />
                         </DivApelido>
                         <DivPagamento>
-                            <TextField id="pagamentoTextField" label="Pagamento base por dia" variant="outlined"/>
+                            <TextField id="pagamentoTextField" label="Pagamento base por dia" variant="outlined" />
                         </DivPagamento>
                         <DivRadiosMoradia>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-doenca">Moram juntos?</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel  id="simRadioOption" value="Sim" control={<Radio  color="success" />} label="Sim" />
-                                        <FormControlLabel id="naoRadioOption" value="Nao"  control={<Radio  color="success" />} label="Não" />
-                                    </RadioGroup>
-                                </FormControl>
+                            <FormControl>
+                                <FormLabel id="demo-row-radio-buttons-group-label-doenca">Moram juntos?</FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    <FormControlLabel id="simRadioOption" value="Sim" control={<Radio color="success" />} label="Sim" />
+                                    <FormControlLabel id="naoRadioOption" value="Nao" control={<Radio color="success" />} label="Não" />
+                                </RadioGroup>
+                            </FormControl>
                         </DivRadiosMoradia>
-                        <Button  id="criarAnuncioButton" variant="contained" >Criar anúncio</Button>
+                        <Button id="criarAnuncioButton" variant="contained" >Criar anúncio</Button>
                     </Column>
                 </DivForm>
             </DivBody>

@@ -19,15 +19,16 @@ function Rotas() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<HomeInstitucional/>} />
-        <Route exact path="/profile" element={<Profile/>} />
-        <Route exact path ="/listaofertas" element={<ListaOfertas/>} />
-        <Route exact path ="/CriacaoAnuncio" element={<CriacaoAnuncio/>} />
-        <Route exact path ="/CriacaoAnuncio2" element={<CriacaoAnuncio2/>} />
-        <Route exact path ="/Favoritos" element={<Favoritos/>} />
-        <Route exact path ="/HistoricoContratos" element={<HistoricoContratos/>} />
-        <Route exact path ="/HistoricoTrabalhos" element={<HistoricoTrabalhos/>} />
-        <Route exact path="/Cadastro" element={<Cadastro/>} />
+        <Route exact path="/" element={<HomeInstitucional />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/listaofertas" element={<ListaOfertas />} />
+        <Route exact path="/criacaoanuncio" element={<CriacaoAnuncio />} />
+        <Route exact path="/criacaoanucio2" element={<CriacaoAnuncio2 />} />
+        <Route exact path="/favoritos" element={<Favoritos />} />
+        <Route exact path="/historicocontratos" element={<HistoricoContratos />} />
+        <Route exact path="/historicotrabalhos" element={<HistoricoTrabalhos />} />
+        <Route exact path="/cadastro" element={<Cadastro />} />
+
       </Routes>
     </Router>
   );

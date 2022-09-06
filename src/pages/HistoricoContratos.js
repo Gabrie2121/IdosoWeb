@@ -38,7 +38,7 @@ const DivSearch = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-` 
+`
 
 const Items = styled.div`
     width: 100%;
@@ -51,7 +51,7 @@ const SpanHistorico = styled.span`
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
 
 const DivProfiles = styled.div`
     width: 75%;
@@ -142,11 +142,11 @@ const modalStyle = {
     height: 550,
     bgcolor: 'background.paper',
     p: 4,
-    borderRadius: 3, 
-  };
+    borderRadius: 3,
+};
 
 
-  const SpanAvaliacao = styled.span`
+const SpanAvaliacao = styled.span`
     margin-left: 110px;
     margin-top: 60px;
     margin-bottom: 40px;
@@ -154,24 +154,24 @@ const modalStyle = {
     color: #858484;
     font-weight: 100;
   `
-  
-  const DivIcone = styled.div`
+
+const DivIcone = styled.div`
     margin-top: -50px;
     margin-left: 510px;
   `
 
-  const DivNomeAvaliado = styled.div`
+const DivNomeAvaliado = styled.div`
     margin-top: 20px;
   `
 
-  const SpanNomeAvaliado = styled.span`
+const SpanNomeAvaliado = styled.span`
     margin-left: 140px;
     font-size: 18pt;
     font-weight: 100;
     color: black;
   `
 
-  const DivRating = styled.div`
+const DivRating = styled.div`
     margin-left: 220px;
     margin-top: 19px;
 `
@@ -214,7 +214,16 @@ function HistoricoContratos() {
 
     return (
         <div>
-            <Header/>
+            <Header
+                one="MEU PERFIL"
+                two="FAVORITOS"
+                three="HISTÓRICO DE CONTRATOS"
+                four="LOGOUT"
+                linkOne="/profile"
+                linkTwo="/favoritos"
+                linkThree="/criacaoanuncio"
+                linkFour="/"
+            />
             <DivBody>
                 <DivSearch>
                     <Items>
@@ -223,45 +232,45 @@ function HistoricoContratos() {
                         </SpanHistorico>
                     </Items>
                     <Items>
-                        <SearchField/>
-                    </Items>     
+                        <SearchField />
+                    </Items>
                 </DivSearch>
                 <DivProfiles>
-                <DivProfileItem>
-                    <Profile/>
-                    <SpanNome>
+                    <DivProfileItem>
+                        <Profile />
+                        <SpanNome>
                             Karina Alves
-                    </SpanNome>
-                    <ProfileImage src={karina}/>
-                    <HeartImage src={heartImg} />
-                    <DivButton>
-                         <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                     </DivButton>
-                     <SpanData>
-                        10/05/2022 
-                     </SpanData>
-                     <SpanHorario>
-                        Das 09:00 às 12:00
-                     </SpanHorario>
-                     <SpanValor>
-                        R$ 250,00
-                     </SpanValor>
-                     <SpanNomeIdoso>
-                        Alice Doles dos Santos
-                     </SpanNomeIdoso>
+                        </SpanNome>
+                        <ProfileImage src={karina} />
+                        <HeartImage src={heartImg} />
+                        <DivButton>
+                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
+                        </DivButton>
+                        <SpanData>
+                            10/05/2022
+                        </SpanData>
+                        <SpanHorario>
+                            Das 09:00 às 12:00
+                        </SpanHorario>
+                        <SpanValor>
+                            R$ 250,00
+                        </SpanValor>
+                        <SpanNomeIdoso>
+                            Alice Doles dos Santos
+                        </SpanNomeIdoso>
                     </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
                         <SpanNome>
                             Leonardo Machado Junior
                         </SpanNome>
-                        <ProfileImage src={leonardo}/>
+                        <ProfileImage src={leonardo} />
                         <HeartImage src={heartImg} />
                         <DivButton>
-                            <Button onClick={handleOpen}  id="avaliarButton" variant="contained">Avaliar</Button>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
                         </DivButton>
                         <SpanData>
-                            12/05/2022  
+                            12/05/2022
                         </SpanData>
                         <SpanHorario>
                             Das 08:00 às 11:30
@@ -271,17 +280,17 @@ function HistoricoContratos() {
                         </SpanValor>
                     </DivProfileItem>
                     <DivProfileItem>
-                        <Profile/>
+                        <Profile />
                         <SpanNome>
                             Sergio Jessé Garcia
                         </SpanNome>
-                        <ProfileImage src={sergio}/>
+                        <ProfileImage src={sergio} />
                         <HeartImage src={heartImg} />
                         <DivButton>
                             <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
                         </DivButton>
                         <SpanData>
-                            11/03/2022 
+                            11/03/2022
                         </SpanData>
                         <SpanHorario>
                             Das 07:00 às 12:20
@@ -298,47 +307,47 @@ function HistoricoContratos() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={modalStyle}>
-                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                    <SpanAvaliacao>
-                        Avaliação
-                    </SpanAvaliacao>
-                    <DivIcone>
-                        <IconButton onClick={handleClose} id="iconeFechar">
-                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
-                        </IconButton>
-                    </DivIcone>
-                    <DivNomeAvaliado>
-                        <SpanNomeAvaliado>
-                            Leonardo Machado Junior
-                        </SpanNomeAvaliado>
-                    </DivNomeAvaliado>
-                    <DivRating>
-                        <Stack spacing={1}>
-                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
-                        </Stack>
-                     </DivRating>
-                     <DivComentario>                          
-                        <SpanComentario>
-                            Comentário
-                        </SpanComentario>
-                     </DivComentario>
-                     <DivTextField>
-                        <TextField
-                            id="outlined-multiline-static"
-                            multiline
-                            rows={10}
-                        />  
-                     </DivTextField>
-                     <SpanTexto>
-                     A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
-                     </SpanTexto>
-                     <DivEnviarAvaliacao>
-                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
-                     </DivEnviarAvaliacao>         
+                        <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                        <SpanAvaliacao>
+                            Avaliação
+                        </SpanAvaliacao>
+                        <DivIcone>
+                            <IconButton onClick={handleClose} id="iconeFechar">
+                                <HighlightOffIcon id="iconClose" fontSize="large" />
+                            </IconButton>
+                        </DivIcone>
+                        <DivNomeAvaliado>
+                            <SpanNomeAvaliado>
+                                Leonardo Machado Junior
+                            </SpanNomeAvaliado>
+                        </DivNomeAvaliado>
+                        <DivRating>
+                            <Stack spacing={1}>
+                                <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                            </Stack>
+                        </DivRating>
+                        <DivComentario>
+                            <SpanComentario>
+                                Comentário
+                            </SpanComentario>
+                        </DivComentario>
+                        <DivTextField>
+                            <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows={10}
+                            />
+                        </DivTextField>
+                        <SpanTexto>
+                            A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
+                        </SpanTexto>
+                        <DivEnviarAvaliacao>
+                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
+                        </DivEnviarAvaliacao>
                     </Box>
                 </Modal>
             </DivBody>
-          
+
         </div>
     )
 }
