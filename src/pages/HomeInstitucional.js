@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header/";
 
 import styled from 'styled-components'
@@ -8,9 +10,6 @@ import { BsFacebook } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
-
-
-
 
 
 
@@ -47,6 +46,7 @@ const DivInformacoes = styled.div`
    position: relative;
 `
 
+
 const SpanInformacoes = styled.div`
     width: 100vw;
     height: auto;
@@ -71,7 +71,7 @@ const DivRedonda = styled.div`
     margin-top: 80px;
 `
 
-const SpanRedonda = styled.span`
+const SpanRedonda = styled(Link)`
     background-color: #92CB90 ;
     width: 50px;
     height: 50px;
@@ -79,6 +79,9 @@ const SpanRedonda = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: #FFF;
+    scroll-behavior: smooth;
 `
 
 const DivDadOne = styled.div`
@@ -189,9 +192,17 @@ const DivIconFooterTwo = styled.div`
 
 
 function HomeInstitucional() {
+
     return (
         <div>
-            <Header />
+            <Header
+                one="LOGIN"
+                two="CADASTRO"
+                linkOne="/"
+                linkTwo="/"
+                linkThree="/"
+                linkFour="/"
+            />
             <DivFoto>
                 <Logo src={logoIdoso} />
                 <DivInformacoes>
@@ -210,7 +221,7 @@ function HomeInstitucional() {
                 </DivInformacoes>
             </DivFoto>
             <DivRedonda>
-                <SpanRedonda>
+                <SpanRedonda to="#quem-somos">
                     <IoIosArrowDown size={30} />
                 </SpanRedonda>
             </DivRedonda>

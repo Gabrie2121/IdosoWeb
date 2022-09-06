@@ -1,0 +1,119 @@
+#nomeTextField {
+    width: 180px;
+    color: #686868;
+}
+
+#cpfTextField, #nasTextField {
+    width: 170px;
+    color: #686868;
+}
+
+#idadeTextField {
+    width: 90px;
+    color: #686868;
+}
+
+#demo-simple-select-label {
+    color: white;
+}
+
+#parentescoSelect {
+    width: 190px;
+    color: white;
+    background-color: #5BB159;
+}
+
+#sobrenomeTextField {
+    width: 270px;
+}
+
+#naoRadio {
+    margin-left: 20px;
+}
+
+#demo-row-radio-buttons-group-label, #demo-row-radio-buttons-group-label-doenca {
+    color: black;
+}
+
+#femininoRadio {
+    margin-left: 10px;
+}
+
+#numberOneButton {
+    width: 50px;
+    height: 60px;
+    margin-left: 850px;
+    border-radius: 80%;
+    color: white;
+    font-size: 15pt;
+    background-color: #5BB159;
+}
+
+#numberTwoButton {
+    margin-left: 30px;
+    width: 50px;
+    height: 60px;
+    border-radius: 80%;
+    color: #5BB159;
+    font-size: 15pt;
+    background-color: #92CB90;
+}
+
+#numberOneReverseButton {
+    width: 50px;
+    height: 60px;
+    margin-left: 850px;
+    border-radius: 80%;
+    color: #5BB159;
+    font-size: 15pt;
+    background-color: #92CB90;
+}
+
+#numberTwoReverseButton {
+    margin-left: 30px;
+    width: 50px;
+    height: 60px;
+    border-radius: 80%;
+    color: white;
+    font-size: 15pt;
+    background-color: #5BB159;
+}
+
+/* Pagina 2 */
+
+#cepTextField {
+    width: 130px;
+    color: #686868;
+}
+
+#cidadeTextField {
+    width: 130px;
+    color: #686868;
+}
+
+#logradouroTextField {
+    width: 410px;
+    color: #686868;
+}
+
+#complementoTextField {
+    width: 260px;
+    color: #686868;
+}
+
+#simRadioOption, #naoRadioOption, #matutinoRadio, #vespertinoRadio, #noturnoRadio, #simRadio, #naoRadio , #masculinoRadio, #femininoRadio   {
+    color: black;
+}
+
+#naoRadioOption {
+    margin-left: 30px;
+}
+
+#criarAnuncioButton {
+    width: 170px;
+    height: 50px;
+    margin-top: 500px;
+    margin-left: 340px;
+    background-color: #5BB159;
+    border: none;
+}

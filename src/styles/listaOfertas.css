@@ -1,0 +1,21 @@
+::-webkit-input-placeholder {
+    color: #A5A5A5;
+    margin-left: 10px;
+    font-size: 13pt;
+};
+
+pcd{
+    margin-left: 200px;
+}
+
+#iconeFavorito {
+    width: 30px;
+    margin-left: 400px;
+    color: red;
+}
+
+#favoritosButton {
+    margin-top: 45px;
+    margin-left: -60px;
+    color: #878787;
+}
