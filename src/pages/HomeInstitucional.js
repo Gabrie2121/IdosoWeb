@@ -22,7 +22,6 @@ import imageTwo from '../assets/ImageTwo.png'
 import imageThree from '../assets/ImageThree.png'
 
 
-
 const DivFoto = styled.div`
     width: 100%;
     height: 100%;
