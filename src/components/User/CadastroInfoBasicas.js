@@ -48,19 +48,19 @@ function FormCadastroInfoBasicas() {
     function onChange(ev) {
         const { name, value } = ev.target;
         console.log(name, " ", value);
-        if ([name] == 'nome') {
+        if ([name] === 'nome') {
             setInput({ ...input, Nome: value });
         }
-        else if ([name] == 'sobrenome') {
+        else if ([name] === 'sobrenome') {
             setInput({ ...input, Sobrenome: value });
         }
-        else if ([name] == 'cpf') {          
+        else if ([name] === 'cpf') {          
             setInput({ ...input, CPF: value });
         }
-        else if ([name] == 'tipoUsuario') {
+        else if ([name] === 'tipoUsuario') {
             setInput({ ...input, TipoUsuario: value });
         }
-        else if ([name] == 'sexo') {
+        else if ([name] === 'sexo') {
             setInput({ ...input, Sexo: value });
         }
         setUsuario(input);

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import foto from '../../assets/UserDefault.png';
 import '../../styles/global.css';
-import foto from '../../assets/UserDefault.png'
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import TextField from '@mui/material/TextField';
 import { useAuth } from '../../providers/auth';
 
 
@@ -112,16 +112,16 @@ function FormCadastro() {
     function onChange(ev) {
         const { name, value } = ev.target;
 
-        if ([name] == 'email') {
+        if ([name] === 'email') {
             setInput({ ...input, Email:value });            
         }
-        else if([name]=='password'){
+        else if([name]==='password'){
             setInput({  ...input, Password:value });
         }
-        else if([name]=='confirmPassword'){
+        else if([name]==='confirmPassword'){
             setInput({  ...input,ConfirmPassword:value });
         }
-        else if([name]=='notifyEmail'){
+        else if([name]==='notifyEmail'){
             setInput({ ...input, NotifyEmail:value });
         }
         setUsuario(input);

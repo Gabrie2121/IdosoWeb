@@ -199,7 +199,7 @@ function HomeInstitucional() {
                 one="LOGIN"
                 two="CADASTRO"
                 linkOne="/"
-                linkTwo="/"
+                linkTwo="/cadastro"
                 linkThree="/"
                 linkFour="/"
             />

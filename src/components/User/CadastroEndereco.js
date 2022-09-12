@@ -8,13 +8,20 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MaskedInput from '../User/MaskedInput';
+import Profile from '../../pages/Profile';
+import { Link } from 'react-router-dom';
 
 const Text = styled.span`
     display: flex;
     justify-content: center;
     color: #666666;
     font-size: 20pt;
-` 
+`
+
+const LinkPersonalization = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+`
 
 function FormCadastroEndereco() {
 
@@ -24,7 +31,7 @@ function FormCadastroEndereco() {
         Email: Usuario.Email,
         Password: Usuario.Password,
         ConfirmPassword: Usuario.ConfirmPassword,
-        NotifyEmail:Usuario.NotifyEmail,
+        NotifyEmail: Usuario.NotifyEmail,
         Nome: Usuario.Nome,
         Sobrenome: Usuario.Sobrenome,
         CPF: Usuario.CPF,
@@ -38,7 +45,8 @@ function FormCadastroEndereco() {
         Apelido: Usuario.Apelido,
     });
 
-    function imprimeUsuario(){
+
+    function imprimeUsuario() {
         for (var [key, value] of Object.entries(Usuario)) {
             console.log(key + ' ' + value);
         }
@@ -47,50 +55,51 @@ function FormCadastroEndereco() {
     function onChange(ev) {
         const { name, value } = ev.target;
 
-        if ([name] == 'CEP') {
+        if ([name] === 'CEP') {
             setInput({ ...input, CEP: value });
         }
-        else if ([name] == 'UF') {
+        else if ([name] === 'UF') {
             setInput({ ...input, UF: value });
         }
-        else if ([name] == 'Cidade') {
+        else if ([name] === 'Cidade') {
             setInput({ ...input, Cidade: value });
         }
-        else if ([name] == 'Logradouro') {
+        else if ([name] === 'Logradouro') {
             setInput({ ...input, Logradouro: value });
         }
-        else if ([name] == 'Complemento') {
+        else if ([name] === 'Complemento') {
             setInput({ ...input, Complemento: value });
         }
-        else if ([name] == 'Apelido') {
+        else if ([name] === 'Apelido') {
             setInput({ ...input, Apelido: value });
         }
         setUsuario(input);
         localStorage.setItem('Usuario', JSON.stringify(input));
     }
 
-    const checkCEP =(e)=>{
-        const cep = e.target.value.replace(/\D/g,'');
+    const checkCEP = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(res => res.json()).then(data => {
-            console.log(data)
-            setInput({ ...input, UF: data.UF});
-            setInput({ ...input, Cidade: data.Cidade});
-            setInput({ ...input, Logradouro: data.Logradouro});
-            setInput(input);
-        })
+            .then(res => res.json()).then(data => {
+                console.log(data)
+                setInput({ ...input, UF: data.UF });
+                setInput({ ...input, Cidade: data.Cidade });
+                setInput({ ...input, Logradouro: data.Logradouro });
+                setInput(input);
+            })
     }
+
 
     return (
 
         <div >
-             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <Text>Endereço</Text>
-             </Box>
-       
-             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:1 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Text>Endereço</Text>
+            </Box>
+
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <MaskedInput name="CEP"  mask="99999-999" value={(input.CEP)} onChange={onChange} label="CEP" onBlur={checkCEP}/>
+                    <MaskedInput name="CEP" mask="99999-999" value={(input.CEP)} onChange={onChange} label="CEP" onBlur={checkCEP} />
                     <TextField name="UF" required id="outlined-required" label="UF" onChange={onChange} value={(input.UF)} />
                     <TextField name="Cidade" required id="outlined-required" label="Cidade" onChange={onChange} value={(input.Cidade)} />
                 </Box>
@@ -99,11 +108,13 @@ function FormCadastroEndereco() {
                     <TextField name="Complemento" required id="outlined-required" label="Complemento" onChange={onChange} value={(input.Complemento)} />
                     <TextField name="Apelido" required id="outlined-required" label="Apelido" onChange={onChange} value={(input.Apelido)} />
                 </Box>
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Button name="One" variant="contained" sx={{ borderRadius: 100, borderWidth: 1, backgroundColor: "#5BB159" }} onClick={() => imprimeUsuario()}>Cadastrar</Button>
-                </Box>
-        </div>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Button name="One" variant="contained" sx={{ borderRadius: 100, borderWidth: 1, backgroundColor: "#5BB159" }} onClick={() => imprimeUsuario()}>
+                    <LinkPersonalization to={"/profile"}>Cadastrar</LinkPersonalization>
+                </Button>
+            </Box>
+        </div >
     );
 }
 export default FormCadastroEndereco;

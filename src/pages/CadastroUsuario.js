@@ -25,7 +25,12 @@ function UsuarioCadastro() {
     return (
 
         <div>
-            <Header />
+            <Header 
+               linkOne="/"
+               linkTwo="/"
+               linkThree="/"
+               linkFour="/"
+            />
             <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" component="form" sx={{ '& .MuiTextField-root': { m: 1, p: 1, width: '25ch' }, }}  >
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {formUser}
