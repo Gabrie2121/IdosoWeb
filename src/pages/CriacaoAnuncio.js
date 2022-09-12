@@ -239,7 +239,7 @@ function CriacaoAnuncio() {
                 four="LOGOUT"
                 linkOne="/profile"
                 linkTwo="/favoritos"
-                linkThree="/criacaoanuncio"
+                linkThree="/criacaoanucio2"
                 linkFour="/"
             />
             <DivTitle>

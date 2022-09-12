@@ -96,11 +96,7 @@ const SpanDescricao = styled.span`
     color: gray;
 `
 
-<<<<<<< HEAD
 const DivAreaDescri =  styled.div`
-=======
-const DivAreaDescri = styled.div`
->>>>>>> 4eaf3fd74a9ce28a09289d5de6cb7c9edbd5ffa2
     width: 100%;
     height: 90%;
 `
