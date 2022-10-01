@@ -12,6 +12,8 @@ import Favoritos from './pages/Favoritos';
 import HistoricoContratos from './pages/HistoricoContratos';
 import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
 import Cadastro from './pages/CadastroUsuario';
+import Login from './pages/Login';
+
 
 
 
@@ -28,6 +30,8 @@ function Rotas() {
         <Route exact path="/historicocontratos" element={<HistoricoContratos />} />
         <Route exact path="/historicotrabalhos" element={<HistoricoTrabalhos />} />
         <Route exact path="/cadastro" element={<Cadastro />} />
+        <Route exact path="/login" element={<Login />} />
+
 
       </Routes>
     </Router>
