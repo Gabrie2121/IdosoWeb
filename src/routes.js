@@ -5,13 +5,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeInstitucional from './pages/HomeInstitucional';
 import Profile from './pages/Profile';
 
-import ListaOfertas from './pages/ListaOfertas';
+import ProfileUserOfertasAberto from './components/ProfileUserOfertasAberto';
+import Cadastro from './pages/CadastroUsuario';
 import CriacaoAnuncio from './pages/CriacaoAnuncio';
 import CriacaoAnuncio2 from './pages/CriacaoAnuncio2';
 import Favoritos from './pages/Favoritos';
 import HistoricoContratos from './pages/HistoricoContratos';
 import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
-import Cadastro from './pages/CadastroUsuario';
+import ListaOfertas from './pages/ListaOfertas';
+import ProfileUserOfertaAtual from './components/ProfileUserOfertaAtual';
 
 
 
@@ -28,6 +30,10 @@ function Rotas() {
         <Route exact path="/historicocontratos" element={<HistoricoContratos />} />
         <Route exact path="/historicotrabalhos" element={<HistoricoTrabalhos />} />
         <Route exact path="/cadastro" element={<Cadastro />} />
+        <Route exact path="/profile-ofertas-aberto" element={<ProfileUserOfertasAberto />} />
+        <Route exact path="/profile-oferta-atual" element={<ProfileUserOfertaAtual />} />
+
+
 
       </Routes>
     </Router>
