@@ -6,14 +6,15 @@ import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 
-import { FiFilter } from "react-icons/fi";
 import ProfilePhoto from "../../assets/Profile.png";
 
 import { Link } from "react-router-dom";
-
+import CardPeople from "../Card";
+import Header from "../Header";
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { FiFilter } from "react-icons/fi";
 
 
 
@@ -244,7 +245,7 @@ const DivIcone = styled.div`
 `
 
 const DivNomeAvaliado = styled.div`
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     gap: 10px;
 `
@@ -267,7 +268,7 @@ const LinkSeleccion = styled(Link)`
 
 
 
-function ProfileUser() {
+function ProfileUserOfertasAberto() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -275,6 +276,15 @@ function ProfileUser() {
 
     return (
         <div>
+            <Header
+                two="HISTORICO DE CONTRATOS"
+                three="CRIAR OFERTA"
+                four="LOGOUT"
+                linkOne="/"
+                linkTwo="/criacaoanuncio"
+                linkThree="criacaoanuncio"
+                linkFour="/"
+            />
             <DivDad>
                 <DivDataProfile>
                     <DivDataProfileChildren>
@@ -327,8 +337,7 @@ function ProfileUser() {
                             </LinkFilter>
                         </DivLink>
 
-                        <DivTextSelectFilter>Selecione uma opção no filtro</DivTextSelectFilter>
-                        
+                        <CardPeople />
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
@@ -353,9 +362,10 @@ function ProfileUser() {
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <SpanNomeAvaliado type="checkbox" />
-                            Ofertas Atuais
-
+                            <LinkSeleccion to="/profile-oferta-atual">
+                                <SpanNomeAvaliado type="checkbox" />
+                                Oferta Atual
+                            </LinkSeleccion>
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
@@ -372,4 +382,4 @@ function ProfileUser() {
     );
 }
 
-export default ProfileUser;
+export default ProfileUserOfertasAberto;
