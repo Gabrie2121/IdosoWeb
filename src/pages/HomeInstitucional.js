@@ -198,7 +198,7 @@ function HomeInstitucional() {
             <Header
                 one="LOGIN"
                 two="CADASTRO"
-                linkOne="/"
+                linkOne="/login"
                 linkTwo="/cadastro"
                 linkThree="/"
                 linkFour="/"

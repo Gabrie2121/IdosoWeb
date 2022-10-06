@@ -41,6 +41,8 @@ function UsuarioCadastro() {
           .then(res => {
             console.log(res);
             console.log(res.data);
+            localStorage.setItem('token', res.data.token);
+            window.location.href = "/profile";    
           })
       };
 
