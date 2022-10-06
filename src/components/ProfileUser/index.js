@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../../components/Header";
 
 import { AiFillStar } from "react-icons/ai";
+import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 
-
+import { FiFilter } from "react-icons/fi";
 import ProfilePhoto from "../../assets/Profile.png";
+
+import { Link } from "react-router-dom";
+
+
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
 
 
@@ -147,7 +153,7 @@ const DivDataDescriptionTextOne = styled.div`
     width: 100%;
     height: 10%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 `
 
@@ -181,10 +187,92 @@ const DivTextDescriptionSecond = styled.text`
     font-weight: 400; 
 `
 
+const DivTextSelectFilter = styled.div`
+    width: 100%;
+    height: 80%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400; 
+`
+
+const LinkFilter = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+`
+
+const DivLink = styled.div`
+    width: 97%;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`
+
+
+const modalStyle = {
+    position: 'absolute',
+    top: '35%',
+    left: '85%',
+    transform: 'translate(-50%, -50%)',
+    width: 200,
+    height: 150,
+    bgcolor: '#76BE74',
+    p: 4,
+    borderRadius: 3,
+};
+
+
+const SpanAvaliacao = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 100;
+`
+
+const DivIcone = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 1px 0;
+`
+
+const DivNomeAvaliado = styled.div`
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+`
+
+const SpanNomeAvaliado = styled.input`
+    font-size: 10pt;
+    font-weight: 100;
+    color: black;
+    
+`
+
+const LinkSeleccion = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    gap: 10px;
+`
+
+
 
 
 
 function ProfileUser() {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <div>
             <DivDad>
@@ -202,11 +290,11 @@ function ProfileUser() {
                         </DivDataProfileLittleOne>
                         <DivValuation>
                             <DivStars>
-                                <AiFillStar size={30} fill={"#FFC700"}/>
-                                <AiFillStar size={30} fill={"#FFC700"}/>
-                                <AiFillStar size={30} fill={"#FFC700"}/>
-                                <AiFillStar size={30} fill={"#FFC700"}/>
-                                <AiFillStar size={30} fill={"#FFC700"}/>
+                                <AiFillStar size={30} fill={"#FFC700"} />
+                                <AiFillStar size={30} fill={"#FFC700"} />
+                                <AiFillStar size={30} fill={"#FFC700"} />
+                                <AiFillStar size={30} fill={"#FFC700"} />
+                                <AiFillStar size={30} fill={"#FFC700"} />
                             </DivStars>
                             <DivTextStar>(5,0 em avaliação)</DivTextStar>
                         </DivValuation>
@@ -216,15 +304,13 @@ function ProfileUser() {
                     <DivDataDescriptionChildren>
                         <DivDataDescriptionTextOne>
                             <DivTextDescription>Bio</DivTextDescription>
+                            <HiPencilAlt size={24} />
                         </DivDataDescriptionTextOne>
 
                         <DivDataDescriptionTextTwo>
+
                             <DivTextDescriptionSecond>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                Sou José tenho 29 anos, sou Neto da Dona Alice, e estamos atrás de pessoas que posso cuidar dela.
                             </DivTextDescriptionSecond>
                         </DivDataDescriptionTextTwo>
                     </DivDataDescriptionChildren>
@@ -235,8 +321,51 @@ function ProfileUser() {
                 <DivOpenOffers>
                     <DivOpenOffersChildren>
 
+                        <DivLink>
+                            <LinkFilter to onClick={handleOpen} id="escolherOpcoes">
+                                <FiFilter size={30} />
+                            </LinkFilter>
+                        </DivLink>
+
+                        <DivTextSelectFilter>Selecione uma opção no filtro</DivTextSelectFilter>
+                        
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
+
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={modalStyle}>
+
+                        <SpanAvaliacao>
+                            Escolhe uma Opção
+                        </SpanAvaliacao>
+
+
+                        <DivNomeAvaliado>
+                            <LinkSeleccion to="/profile-ofertas-aberto">
+                                <SpanNomeAvaliado type="checkbox" />
+                                Ofertas em Aberto
+                            </LinkSeleccion>
+                        </DivNomeAvaliado>
+
+                        <DivNomeAvaliado>
+                            <SpanNomeAvaliado type="checkbox" />
+                            Ofertas Atuais
+
+                        </DivNomeAvaliado>
+
+                        <DivNomeAvaliado>
+                            <SpanNomeAvaliado type="checkbox" />
+                            Candidaturas
+                        </DivNomeAvaliado>
+
+
+                    </Box>
+                </Modal>
 
             </DivDad>
         </div>
