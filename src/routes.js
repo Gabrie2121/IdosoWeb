@@ -14,8 +14,8 @@ import HistoricoContratos from './pages/HistoricoContratos';
 import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
 import ListaOfertas from './pages/ListaOfertas';
 import ProfileUserOfertaAtual from './components/ProfileUserOfertaAtual';
-
-
+import Cadastro from './pages/CadastroUsuario';
+import Login from './pages/Login';
 
 function Rotas() {
   return (
@@ -32,9 +32,7 @@ function Rotas() {
         <Route exact path="/cadastro" element={<Cadastro />} />
         <Route exact path="/profile-ofertas-aberto" element={<ProfileUserOfertasAberto />} />
         <Route exact path="/profile-oferta-atual" element={<ProfileUserOfertaAtual />} />
-
-
-
+        <Route exact path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
