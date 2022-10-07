@@ -14,7 +14,6 @@ import HistoricoContratos from './pages/HistoricoContratos';
 import HistoricoTrabalhos from './pages/HistoricoTrabalhos';
 import ListaOfertas from './pages/ListaOfertas';
 import ProfileUserOfertaAtual from './components/ProfileUserOfertaAtual';
-import Cadastro from './pages/CadastroUsuario';
 import Login from './pages/Login';
 
 function Rotas() {
