@@ -29,6 +29,8 @@ function UsuarioCadastro() {
         Password: "",
     });
 
+    const [aviso, setAviso] = useState()
+
     const handleSubmit = (event) => {
         event.preventDefault();
     
@@ -43,6 +45,11 @@ function UsuarioCadastro() {
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
             window.location.href = "/profile";    
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            console.log('Whoops! Houve um erro.', error.message || error)
+            setAviso("Usuário e Senha não encontrados!");
           })
       };
 
@@ -110,6 +117,8 @@ function UsuarioCadastro() {
                         }
                         label="Password"
                     />
+                 {aviso && <span className='err'>{aviso}</span>}
+
                 </FormControl>     
                 <Button name="One" variant="contained" onClick={handleSubmit} sx={{ borderRadius: 100, borderWidth: 1, backgroundColor: "#5BB159" }}>Login</Button>       
             </Box>

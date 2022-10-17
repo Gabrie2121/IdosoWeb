@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 const onlyNumbers = (str) => str.replace(/[^0-9]/g, '');
 
-const MaskedInput = ({ value, onChange, name, mask, label }) => {
+const MaskedInput = ({ value, onChange, name, mask, label}) => {
   function handleChange(event) {
     onChange({
       ...event,
@@ -25,7 +25,7 @@ const MaskedInput = ({ value, onChange, name, mask, label }) => {
     onChange={handleChange}
     label={label}
   >
-    {() => <TextField label={label} />}
+    {() => <TextField label={label}/>}
   </InputMask>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import foto from '../../assets/UserDefault.png';
+import editarFoto from '../../assets/Usuario/iconeEditar.png';
 import '../../styles/global.css';
 
 import Visibility from '@mui/icons-material/Visibility';
@@ -24,6 +25,35 @@ const ImageUser = styled.img`
     border-radius: 100;
     border-color: "white";
     border-width:1;
+`
+
+const DivCampoFoto = styled.div`
+    width: 100%;
+    height: 35%;
+`
+
+const ProfieImage1 = styled.img`
+    width: 150px;
+    height: 150px;
+    margin-left: 160px;
+    margin-top: 30px;
+`
+
+const EditarFoto = styled.img`
+    width: 30px;
+    height: 30px;
+    margin-left: -38px;
+    margin-top: 140px;
+    position: absolute;
+`
+
+const ButttonEditarFoto = styled.button`
+    width: 50px;
+    height: 50px;
+    margin-left: -40px;
+    border-radius: 30px;
+    background-color: #A9F0A6;
+    border: 0px solid transparent;
 `
 function FormCadastro() {
 
@@ -112,26 +142,30 @@ function FormCadastro() {
     function onChange(ev) {
         const { name, value } = ev.target;
 
-        if ([name] === 'email') {
+        if ([name] == 'email') {
             setInput({ ...input, Email: value });
         }
-        else if ([name] === 'password') {
+        else if ([name] == 'password') {
             setInput({ ...input, Password: value });
         }
-        else if ([name] === 'confirmPassword') {
+        else if ([name] == 'confirmPassword') {
             setInput({ ...input, ConfirmPassword: value });
         }
-        else if ([name] === 'notifyEmail') {
+        else if ([name] == 'notifyEmail') {
             setInput({ ...input, NotifyEmail: value });
         }
         setUsuario(input);
-        localStorage.setItem('Usuario', JSON.stringify(input));
     }
 
     return (
         <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <ImageUser src={foto} />
+                {/* <ImageUser src={foto} /> */}
+                <DivCampoFoto>
+                        <ProfieImage1 src={foto} />
+                        <ButttonEditarFoto />
+                        <EditarFoto src={editarFoto} />
+                    </DivCampoFoto>
                 <TextField name="email" required id="outlined-required" label="Alterar E-mail" onChange={onChange} value={(input.Email)} />
                 <FormGroup>
                     <FormControlLabel control={<Checkbox name="notifyEmail" defaultChecked color="success" onChange={onChange} value={(input.NotifyEmail)} />} label="Receber notificações no e-mail" />

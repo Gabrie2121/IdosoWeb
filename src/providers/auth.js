@@ -13,14 +13,20 @@ export const AuthProvider = (props) => {
         Sobrenome:'',
         DataNascimento:'',
         CPF:'',
-        TipoUsuario:0,
-        Sexo:0,
+        TipoUsuario:1,
+        Sexo:'M',
         CEP:'',
         UF:'',
         Cidade:'',
         Logradouro:'',
         Complemento:'',
-        Apelido:''
+        Apelido:'',
+        NomeEmpresa:'',
+        CNPJ:'',
+        SituacaoTributaria:'',
+        Formacao:'',
+        UFEmpresa:'',
+        InscricaoEstadual:''
     });
 
     return (
