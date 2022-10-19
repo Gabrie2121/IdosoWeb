@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
+import axios from 'axios';
+
 
 
 const DivDad = styled.div`
@@ -270,8 +272,22 @@ const LinkSeleccion = styled(Link)`
 function ProfileUser() {
 
     const [open, setOpen] = React.useState(false);
+    const [bio, setBio] = React.useState();
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+
+    const handleBio = () => {
+        let url = `http://localhost:9999`;
+        let token = localStorage.getItem("token");
+        let { data } = axios.get(url, {
+            headers: {
+                token,
+            }
+        })
+        setBio(data)
+    }
 
     return (
         <div>
@@ -328,7 +344,7 @@ function ProfileUser() {
                         </DivLink>
 
                         <DivTextSelectFilter>Selecione uma opção no filtro</DivTextSelectFilter>
-                        
+
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
