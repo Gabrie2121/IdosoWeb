@@ -337,7 +337,7 @@ function ProfileUserOfertaAtual() {
                             </LinkFilter>
                         </DivLink>
 
-                        <CardPeople />
+                        <CardPeople title="Oferta Atual"/>
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 

@@ -337,7 +337,7 @@ function ProfileUserOfertasAberto() {
                             </LinkFilter>
                         </DivLink>
 
-                        <CardPeople />
+                        <CardPeople title="Ofertas em Aberto"/>
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
