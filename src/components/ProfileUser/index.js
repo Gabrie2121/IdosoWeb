@@ -265,20 +265,26 @@ function ProfileUser() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleBio = () => {
-    let url = `http://localhost:9999/usuarios/home`;
-    let token = localStorage.getItem("token");
-    let { data } = axios.get(url, {
-      headers: {
-        token,
-      },
-    }).then(() => {
-      console.log("Deu certo!!");
+  const idIdoso = {
+    id: 1,
+  };
 
-    }) .catch(() => {
-      console.log("Deu merda!!");
-    })
-   };
+  const handleBio = () => {
+    axios
+      .get(`http://localhost:9999/idoso/home/${1}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Deu certo");
+        console.log(res.data);
+      })
+      .catch((error) => {
+        // Trate o erro aqui.
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
 
   useEffect(() => {
     handleBio();
