@@ -60,6 +60,111 @@ function FormCadastroEndereco() {
       setInput({ ...input, CEP: value });
       if (value.length > 7) {
         const cep = value.replace(/\D/g, "");
+=======
+    var token = window.localStorage.getItem('token');
+
+    const { Usuario, setUsuario } = useAuth();
+
+    const [input, setInput] = useState({
+        Email: Usuario.Email,
+        Password: Usuario.Password,
+        ConfirmPassword: Usuario.ConfirmPassword,
+        NotifyEmail: Usuario.NotifyEmail,
+        Nome: Usuario.Nome,
+        Sobrenome: Usuario.Sobrenome,
+        CPF: Usuario.CPF,
+        DataNascimento: Usuario.DataNascimento,
+        TipoUsuario: Usuario.TipoUsuario,
+        Sexo: Usuario.Sexo,
+        CEP: Usuario.CEP,
+        UF: Usuario.UF,
+        Cidade:  Usuario.Cidade,
+        Logradouro: Usuario.Logradouro,
+        Complemento: Usuario.Complemento,
+        Apelido: Usuario.Apelido,
+        SituacaoTributaria: Usuario.SituacaoTributaria,
+        Formacao: Usuario.Formacao,
+        UFEmpresa:Usuario.UFEmpresa,
+        InscricaoEstadual: Usuario.InscricaoEstadual
+    });
+
+    function onChange(ev) {
+        const { name, value } = ev.target;
+
+        if ([name] == 'CEP') {
+            setInput({ ...input, CEP: value });
+            if(value.length > 7)
+            {
+                const cep = value.replace(/\D/g, '');
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(res => res.json()).then(data => {
+                        console.log(data);
+                        setInput({ ...input, UF: data.uf });
+                        setInput({ ...input, Cidade: data.Cidade });
+                        setInput({ ...input, Logradouro: data.Logradouro });
+                    })
+            }
+        }
+        else if ([name] == 'UF') {
+            setInput({ ...input, UF: value });
+        }
+        else if ([name] == 'Cidade') {
+            setInput({ ...input, Cidade: value });
+        }
+        else if ([name] == 'Logradouro') {
+            setInput({ ...input, Logradouro: value });
+        }
+        else if ([name] == 'Complemento') {
+            setInput({ ...input, Complemento: value });
+        }
+        else if ([name] == 'Apelido') {
+            setInput({ ...input, Apelido: value });
+        }
+        setUsuario(input);
+        }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        const endereco = {
+            cep: Usuario.CEP,
+            uf: Usuario.UF,
+            cidade:  Usuario.Cidade,
+            logradouro: Usuario.Logradouro,
+            complemento: Usuario.Complemento
+        }
+        const user = {
+            username: Usuario.Email,
+            password: Usuario.Password,
+            nome: Usuario.Nome,
+            sobrenome: Usuario.Sobrenome,
+            nDoc: Usuario.CPF,
+            dataNasc: Usuario.DataNascimento,
+            tipoPessoa: Usuario.TipoUsuario,
+            genero: Usuario.Sexo,
+            endereco: endereco,
+            celular: Usuario.celular,
+            email : Usuario.email
+
+        };
+
+        console.log(user);
+
+        axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}`}})
+          .then(res => {
+            console.log(res);
+            console.log(res.data);  
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            console.log('Whoops! Houve um erro.', error.message || error)
+          })
+       
+      };
+
+    const checkCEP = (e) => {
+        console.log("teste cep");
+        const cep = e.target.value.replace(/\D/g, '');
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
           .then((res) => res.json())
           .then((data) => {
