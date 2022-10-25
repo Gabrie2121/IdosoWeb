@@ -116,7 +116,7 @@ function FormCadastroEndereco() {
 
         console.log(user);
 
-        axios.post(`http://localhost:9999/usuario/post`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}`}})
+        axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}`}})
           .then(res => {
             console.log(res);
             console.log(res.data);  

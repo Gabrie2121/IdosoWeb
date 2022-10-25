@@ -44,6 +44,7 @@ function UsuarioCadastro() {
             console.log(res);
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('idUsuario', res.data.userId);
             window.location.href = "/profile";    
           })
           .catch((error) => {
