@@ -96,7 +96,7 @@ const SpanDescricao = styled.span`
     color: gray;
 `
 
-const DivAreaDescri =  styled.div`
+const DivAreaDescri = styled.div`
     width: 100%;
     height: 90%;
 `

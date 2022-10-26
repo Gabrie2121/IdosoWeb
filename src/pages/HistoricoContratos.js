@@ -307,43 +307,43 @@ function HistoricoContratos() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={modalStyle}>
-                        <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                        <SpanAvaliacao>
-                            Avaliação
-                        </SpanAvaliacao>
-                        <DivIcone>
-                            <IconButton onClick={handleClose} id="iconeFechar">
-                                <HighlightOffIcon id="iconClose" fontSize="large" />
-                            </IconButton>
-                        </DivIcone>
-                        <DivNomeAvaliado>
-                            <SpanNomeAvaliado>
-                                Leonardo Machado Junior
-                            </SpanNomeAvaliado>
-                        </DivNomeAvaliado>
-                        <DivRating>
-                            <Stack spacing={1}>
-                                <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
-                            </Stack>
-                        </DivRating>
-                        <DivComentario>
-                            <SpanComentario>
-                                Comentário
-                            </SpanComentario>
-                        </DivComentario>
-                        <DivTextField>
-                            <TextField
-                                id="outlined-multiline-static"
-                                multiline
-                                rows={10}
-                            />
-                        </DivTextField>
-                        <SpanTexto>
-                            A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
-                        </SpanTexto>
-                        <DivEnviarAvaliacao>
-                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
-                        </DivEnviarAvaliacao>
+                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                    <SpanAvaliacao>
+                        Avaliação
+                    </SpanAvaliacao>
+                    <DivIcone>
+                        <IconButton onClick={handleClose} id="iconeFechar">
+                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
+                        </IconButton>
+                    </DivIcone>
+                    <DivNomeAvaliado>
+                        <SpanNomeAvaliado>
+                            Leonardo Machado Junior
+                        </SpanNomeAvaliado>
+                    </DivNomeAvaliado>
+                    <DivRating>
+                        <Stack spacing={1}>
+                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
+                        </Stack>
+                     </DivRating>
+                     <DivComentario>                          
+                        <SpanComentario>
+                            Comentário
+                        </SpanComentario>
+                     </DivComentario>
+                     <DivTextField>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={10}
+                        />  
+                     </DivTextField>
+                     <SpanTexto>
+                        A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
+                     </SpanTexto>
+                     <DivEnviarAvaliacao>
+                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
+                     </DivEnviarAvaliacao>         
                     </Box>
                 </Modal>
             </DivBody>
