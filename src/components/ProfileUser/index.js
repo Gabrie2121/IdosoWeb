@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+import axios from "axios";
+
 import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
@@ -13,7 +15,6 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
-import axios from "axios";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -259,15 +260,10 @@ const LinkSeleccion = styled(Link)`
 
 function ProfileUser() {
   const [open, setOpen] = React.useState(false);
-  const [bio, setBio] = React.useState();
-  const [usuarios, setUsuarios] = React.useState({});
+  const [usuario, setUsuario] = React.useState({});
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const idIdoso = {
-    id: 1,
-  };
 
   const handleBio = () => {
     axios
@@ -277,6 +273,7 @@ function ProfileUser() {
         },
       })
       .then((res) => {
+        setUsuario(res.data);
         console.log("Deu certo");
         console.log(res.data);
       })
@@ -299,10 +296,10 @@ function ProfileUser() {
               <DivPhoto>
                 <ImageProfile src={ProfilePhoto} />
               </DivPhoto>
-              <DivText>José Nascimento</DivText>
+              <DivText>{usuario.nome}</DivText>
               <DivLocation>
                 <MdOutlineLocationOn size={30} fill={"#FFF"} />
-                <TextCity>São Paulo</TextCity>
+                <TextCity>{usuario.cidade}</TextCity>
               </DivLocation>
             </DivDataProfileLittleOne>
             <DivValuation>
@@ -313,7 +310,7 @@ function ProfileUser() {
                 <AiFillStar size={30} fill={"#FFC700"} />
                 <AiFillStar size={30} fill={"#FFC700"} />
               </DivStars>
-              <DivTextStar>(5,0 em avaliação)</DivTextStar>
+              <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar>
             </DivValuation>
           </DivDataProfileChildren>
 
@@ -325,8 +322,7 @@ function ProfileUser() {
 
             <DivDataDescriptionTextTwo>
               <DivTextDescriptionSecond>
-                Sou José tenho 29 anos, sou Neto da Dona Alice, e estamos atrás
-                de pessoas que posso cuidar dela.
+                {usuario.biografia}
               </DivTextDescriptionSecond>
             </DivDataDescriptionTextTwo>
           </DivDataDescriptionChildren>
