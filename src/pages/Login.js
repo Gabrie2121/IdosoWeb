@@ -29,9 +29,31 @@ function UsuarioCadastro() {
   });
 
   const [aviso, setAviso] = useState();
-
   const handleSubmit = (event) => {
     event.preventDefault();
+=======
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        const user = {
+          email: input.Email,
+          password:  input.Password
+        };
+    
+        axios.post(`http://localhost:9999/auth`,JSON.stringify(user),{headers: { 'Content-Type': 'application/json'}})
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('idUsuario', res.data.userId);
+            window.location.href = "/profile";    
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            console.log('Whoops! Houve um erro.', error.message || error)
+            setAviso("Usuário e Senha não encontrados!");
+          })
+      };
 
     const user = {
       email: input.Email,
