@@ -182,36 +182,6 @@ function CardPeople(props) {
           <DivWhatsApp>WhatsApp</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>
-
-      <CardDiv>
-        <DivPhoto>
-          <ImageProfile src={aliceImage} />
-
-          <DivText>Alice Dolores</DivText>
-
-          <DivPrice>250,00</DivPrice>
-        </DivPhoto>
-        <DivValuation>
-          <DivStars>
-            <AiFillStar size={30} fill={"#FFC700"} />
-            <AiFillStar size={30} fill={"#FFC700"} />
-            <AiFillStar size={30} fill={"#FFC700"} />
-            <AiFillStar size={30} fill={"#FFC700"} />
-            <AiFillStar size={30} fill={"#FFC700"} />
-          </DivStars>
-
-          <DivTextStar>(5,0 em avaliação)</DivTextStar>
-          <DivTextKm>15Km</DivTextKm>
-
-          <DivFormação>
-            <DivTextFormacao>Aux. Enfermagem</DivTextFormacao>
-          </DivFormação>
-        </DivValuation>
-
-        <DivWhatsAppPai>
-          <DivWhatsApp>WhatsApp</DivWhatsApp>
-        </DivWhatsAppPai>
-      </CardDiv>
     </WrapperCard>
   );
 }
