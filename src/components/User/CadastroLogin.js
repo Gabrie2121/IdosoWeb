@@ -17,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
 import { useAuth } from '../../providers/auth';
+import Alert from '@mui/material/Alert';
 
 
 const ImageUser = styled.img`
@@ -66,7 +67,7 @@ function FormCadastro() {
         NotifyEmail: Usuario.NotifyEmail,
         Nome: Usuario.Nome,
         Sobrenome: Usuario.Sobrenome,
-        CPF: Usuario.CPF,
+        Documento: Usuario.Documento,
         DataNascimento: Usuario.DataNascimento,
         TipoUsuario: Usuario.TipoUsuario,
         Sexo: Usuario.Sexo,
@@ -118,15 +119,15 @@ function FormCadastro() {
 
             switch (name) {
                 case "password":
-                    if (Usuario.confirmPassword && value !== Usuario.confirmPassword) {
+                    if (input.Password && value !== input.ConfirmPassword) {
                         stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
                     } else {
-                        stateObj["confirmPassword"] = Usuario.confirmPassword ? "" : error.confirmPassword;
+                        stateObj["confirmPassword"] = input.ConfirmPassword ? "" : error.confirmPassword;
                     }
                     break;
 
                 case "confirmPassword":
-                    if (Usuario.password && value !== Usuario.password) {
+                    if (input.Password && value !== input.ConfirmPassword) {
                         stateObj[name] = "Password and Confirm Password does not match.";
                     }
                     break;
@@ -160,7 +161,6 @@ function FormCadastro() {
     return (
         <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* <ImageUser src={foto} /> */}
                 <DivCampoFoto>
                         <ProfieImage1 src={foto} />
                         <ButttonEditarFoto />
@@ -218,7 +218,7 @@ function FormCadastro() {
                         label="confirmPassword"
                     />
                 </FormControl>
-                {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
+                {error.confirmPassword && <Alert severity="error">{error.confirmPassword}</Alert>}
             </Box>
         </div>
     );

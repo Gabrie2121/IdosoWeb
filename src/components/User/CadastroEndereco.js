@@ -8,10 +8,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MaskedInput from '../User/MaskedInput';
-import Profile from '../../pages/Profile';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Input } from '@mui/material';
+
 
 
 const Text = styled.span`
@@ -27,8 +26,7 @@ const LinkPersonalization = styled(Link)`
 `
 
 function FormCadastroEndereco() {
-    var token = window.localStorage.getItem('token');
-
+  
     const { Usuario, setUsuario } = useAuth();
 
     const [input, setInput] = useState({
@@ -38,7 +36,7 @@ function FormCadastroEndereco() {
         NotifyEmail: Usuario.NotifyEmail,
         Nome: Usuario.Nome,
         Sobrenome: Usuario.Sobrenome,
-        CPF: Usuario.CPF,
+        Documento: Usuario.Documento,
         DataNascimento: Usuario.DataNascimento,
         TipoUsuario: Usuario.TipoUsuario,
         Sexo: Usuario.Sexo,
@@ -50,8 +48,9 @@ function FormCadastroEndereco() {
         Apelido: Usuario.Apelido,
         SituacaoTributaria: Usuario.SituacaoTributaria,
         Formacao: Usuario.Formacao,
-        UFEmpresa:Usuario.UFEmpresa,
-        InscricaoEstadual: Usuario.InscricaoEstadual
+        UFEmpresa: Usuario.UFEmpresa,
+        InscricaoEstadual: Usuario.InscricaoEstadual,
+        Celular: Usuario.Celular
     });
 
     function onChange(ev) {
@@ -97,32 +96,41 @@ function FormCadastroEndereco() {
             uf: Usuario.UF,
             cidade:  Usuario.Cidade,
             logradouro: Usuario.Logradouro,
-            complemento: Usuario.Complemento
+            complemento: Usuario.Complemento,
+            apelido : Usuario.Apelido,
+            principal : true
         }
+        debugger;
         const user = {
             username: Usuario.Email,
             password: Usuario.Password,
+            tipoPessoa: Usuario.TipoUsuario,
             nome: Usuario.Nome,
             sobrenome: Usuario.Sobrenome,
-            nDoc: Usuario.CPF,
-            dataNasc: Usuario.DataNascimento,
-            tipoPessoa: Usuario.TipoUsuario,
-            genero: Usuario.Sexo,
-            endereco: endereco,
-            celular: Usuario.celular,
-            email : Usuario.email
-
+            nDoc: Usuario.Documento,
+            dataNasc: Usuario.DataNascimento,          
+            genero: Usuario.Sexo,       
+            celular: Usuario.Celular,
+            email : Usuario.Email,
+            foto : 'asdf',
+            razaoSocial: Usuario.RazaoSocial,
+            nomeFantasia:Usuario.NomeFantasia,
+            ie:Usuario.InscricaoEstadual,
+            endereco: endereco
         };
 
         console.log(user);
 
-        axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}`}})
+        axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json'}})
           .then(res => {
             console.log(res);
             console.log(res.data);  
+            alert("Usuario cadastrado com sucesso!");
+            window.location.href = "/profile"; 
           })
           .catch((error) => {
             // Trate o erro aqui.
+            alert(error.message);
             console.log('Whoops! Houve um erro.', error.message || error)
           })
        
