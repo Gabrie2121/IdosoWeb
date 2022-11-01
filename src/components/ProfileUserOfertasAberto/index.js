@@ -259,9 +259,18 @@ const LinkSeleccion = styled(Link)`
   gap: 10px;
 `;
 
+const DivTitle = styled.h1`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+`;
+
 function ProfileUserOfertasAberto() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
+  const [anuncios, setAnuncios] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -275,8 +284,9 @@ function ProfileUserOfertasAberto() {
       })
       .then((res) => {
         setUsuario(res.data);
+        setAnuncios(res.data.anuncios);
         console.log("Deu certo");
-        console.log(res.data);
+        console.log(res.data.anuncios);
       })
       .catch((error) => {
         // Trate o erro aqui.
@@ -345,8 +355,18 @@ function ProfileUserOfertasAberto() {
                 <FiFilter size={30} />
               </LinkFilter>
             </DivLink>
-
-            <CardPeople title="Ofertas em Aberto" />
+            <DivTitle>Ofertas em Aberto</DivTitle>
+            {anuncios.map((anuncio) => {
+              console.log(anuncio);
+              return (
+                <CardPeople
+                  namePeople={anuncio.nomeIdoso}
+                  pricePeople={`${anuncio.valorHora},00`}
+                  avaliacaoPeople={`(${anuncio.avaliacao} em avaliação)`}
+                  formacaoPeople={anuncio.curso}
+                />
+              );
+            })}
           </DivOpenOffersChildren>
         </DivOpenOffers>
 

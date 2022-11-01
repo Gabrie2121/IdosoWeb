@@ -8,7 +8,6 @@ import aliceImage from "../../assets/listaOfertas/ofertas/alice.png";
 
 const WrapperCard = styled.div`
   min-width: 100%;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   display: flex;
@@ -151,15 +150,15 @@ const DivTitle = styled.h1`
 function CardPeople(props) {
   return (
     <WrapperCard>
-      <DivTitle>{props.title}</DivTitle>
+      <DivTitle>{props.titlePeople}</DivTitle>
 
       <CardDiv>
         <DivPhoto>
           <ImageProfile src={aliceImage} />
 
-          <DivText>Alice Dolores</DivText>
+          <DivText>{props.namePeople}</DivText>
 
-          <DivPrice>250,00</DivPrice>
+          <DivPrice>{props.pricePeople}</DivPrice>
         </DivPhoto>
         <DivValuation>
           <DivStars>
@@ -170,11 +169,11 @@ function CardPeople(props) {
             <AiFillStar size={30} fill={"#FFC700"} />
           </DivStars>
 
-          <DivTextStar>(5,0 em avaliação)</DivTextStar>
-          <DivTextKm>15Km</DivTextKm>
+          <DivTextStar>{props.avaliacaoPeople}</DivTextStar>
+          
 
           <DivFormação>
-            <DivTextFormacao>Enfermeira</DivTextFormacao>
+            <DivTextFormacao>{props.formacaoPeople}</DivTextFormacao>
           </DivFormação>
         </DivValuation>
 

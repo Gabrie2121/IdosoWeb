@@ -31,7 +31,7 @@ function UsuarioCadastro() {
   const [aviso, setAviso] = useState();
   const handleSubmit = (event) => {
     event.preventDefault();
-=======
+
     const handleSubmit = (event) => {
         event.preventDefault();
     
