@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
-
 const DivDad = styled.div`
   width: 100vw;
   height: 92vh;
@@ -275,7 +274,6 @@ function ProfileUser() {
       .then((res) => {
         setUsuario(res.data);
         console.log("Deu certo");
-        console.log(res.data);
       })
       .catch((error) => {
         // Trate o erro aqui.
