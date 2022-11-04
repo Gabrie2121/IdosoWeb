@@ -178,7 +178,7 @@ function CardPeople(props) {
           </DivFormação>
         </DivValuation>
 
-        <DivWhatsAppPai onClick={() => console.log(usuario.whatsapp)}>
+        <DivWhatsAppPai onClick={() => console.log("click")}>
           <DivWhatsApp>WhatsApp</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>
