@@ -142,10 +142,22 @@ const DivOpenOffers = styled.div`
 `;
 
 const DivOpenOffersChildren = styled.div`
-  width: 80%;
-  height: 95%;
+  width: 90%;
+  max-height: 95%;
   background-color: #5bb159;
   border-radius: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: #f4f4f4;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+  }
 `;
 
 const DivDataDescriptionTextOne = styled.div`
@@ -275,7 +287,7 @@ function ProfileUserOfertasAberto() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleBio = () => {
+  const handleInformation = () => {
     axios
       .get(`http://localhost:9999/idoso/home/${1}`, {
         headers: {
@@ -284,18 +296,15 @@ function ProfileUserOfertasAberto() {
       })
       .then((res) => {
         setUsuario(res.data);
-        setAnuncios(res.data.anuncios);
-        console.log("Deu certo");
-        console.log(res.data.anuncios);
+        setAnuncios(res.data.anunciosAberto);
       })
       .catch((error) => {
-        // Trate o erro aqui.
         console.log("Whoops! Houve um erro.", error.message || error);
       });
   };
 
   useEffect(() => {
-    handleBio();
+    handleInformation();
   }, []);
 
   return (
@@ -360,7 +369,7 @@ function ProfileUserOfertasAberto() {
               console.log(anuncio);
               return (
                 <CardPeople
-                  namePeople={anuncio.nomeIdoso}
+                  namePeople={anuncio.nomePrestador}
                   pricePeople={`${anuncio.valorHora},00`}
                   avaliacaoPeople={`(${anuncio.avaliacao} em avaliação)`}
                   formacaoPeople={anuncio.curso}
