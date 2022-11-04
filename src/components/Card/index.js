@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+
+import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-import aliceImage from "../../assets/listaOfertas/ofertas/alice.png";
+import aliceImage from "../../assets/Prestador.png";
 
 const WrapperCard = styled.div`
   min-width: 100%;
+  min-height: 20%;
   display: flex;
   flex-direction: column;
-  display: flex;
   justify-content: center;
   align-items: center;
 `;
@@ -170,14 +172,13 @@ function CardPeople(props) {
           </DivStars>
 
           <DivTextStar>{props.avaliacaoPeople}</DivTextStar>
-          
 
           <DivFormação>
             <DivTextFormacao>{props.formacaoPeople}</DivTextFormacao>
           </DivFormação>
         </DivValuation>
 
-        <DivWhatsAppPai>
+        <DivWhatsAppPai onClick={() => console.log(usuario.whatsapp)}>
           <DivWhatsApp>WhatsApp</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>
