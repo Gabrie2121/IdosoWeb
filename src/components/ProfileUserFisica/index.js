@@ -7,15 +7,13 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
+import { FiFilter } from "react-icons/fi";
 import ProfilePhoto from "../../assets/Profile.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
-import Header from "../Header";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { FiFilter } from "react-icons/fi";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -142,22 +140,10 @@ const DivOpenOffers = styled.div`
 `;
 
 const DivOpenOffersChildren = styled.div`
-  width: 90%;
-  max-height: 95%;
+  width: 80%;
+  height: 95%;
   background-color: #5bb159;
   border-radius: 30px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  ::-webkit-scrollbar-track {
-    background-color: #f4f4f4;
-  }
-  ::-webkit-scrollbar {
-    width: 6px;
-    background: #f4f4f4;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #dad7d7;
-  }
 `;
 
 const DivDataDescriptionTextOne = styled.div`
@@ -253,7 +239,7 @@ const DivIcone = styled.div`
 `;
 
 const DivNomeAvaliado = styled.div`
-  margin-top: 15px;
+  margin-top: 20px;
   display: flex;
   gap: 10px;
 `;
@@ -271,23 +257,14 @@ const LinkSeleccion = styled(Link)`
   gap: 10px;
 `;
 
-const DivTitle = styled.h1`
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 10px;
-`;
-
-function ProfileUserOfertasAberto() {
+function ProfileUserF() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
-  const [anuncios, setAnuncios] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleInformation = () => {
+  const handleBio = () => {
     axios
       .get(`http://localhost:9999/idoso/home/${1}`, {
         headers: {
@@ -296,28 +273,20 @@ function ProfileUserOfertasAberto() {
       })
       .then((res) => {
         setUsuario(res.data);
-        setAnuncios(res.data.anunciosAberto);
+        console.log("Deu certo");
       })
       .catch((error) => {
+        // Trate o erro aqui.
         console.log("Whoops! Houve um erro.", error.message || error);
       });
   };
 
   useEffect(() => {
-    handleInformation();
+    handleBio();
   }, []);
 
   return (
     <div>
-      <Header
-        two="HISTORICO DE CONTRATOS"
-        three="CRIAR OFERTA"
-        four="LOGOUT"
-        linkOne="/"
-        linkTwo="/criacaoanuncio"
-        linkThree="criacaoanuncio"
-        linkFour="/"
-      />
       <DivDad>
         <DivDataProfile>
           <DivDataProfileChildren>
@@ -364,18 +333,10 @@ function ProfileUserOfertasAberto() {
                 <FiFilter size={30} />
               </LinkFilter>
             </DivLink>
-            <DivTitle>Ofertas em Aberto</DivTitle>
-            {anuncios.map((anuncio) => {
-              console.log(anuncio);
-              return (
-                <CardPeople
-                  namePeople={anuncio.nomePrestador}
-                  pricePeople={`${anuncio.valorHora},00`}
-                  avaliacaoPeople={`(${anuncio.avaliacao} em avaliação)`}
-                  formacaoPeople={anuncio.curso}
-                />
-              );
-            })}
+
+            <DivTextSelectFilter>
+              Selecione uma opção no filtro
+            </DivTextSelectFilter>
           </DivOpenOffersChildren>
         </DivOpenOffers>
 
@@ -396,10 +357,8 @@ function ProfileUserOfertasAberto() {
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-oferta-atual">
-                <SpanNomeAvaliado type="checkbox" />
-                Oferta Atual
-              </LinkSeleccion>
+              <SpanNomeAvaliado type="checkbox" />
+              Ofertas Atuais
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
@@ -413,4 +372,4 @@ function ProfileUserOfertasAberto() {
   );
 }
 
-export default ProfileUserOfertasAberto;
+export default ProfileUserF;

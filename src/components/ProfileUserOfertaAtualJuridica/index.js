@@ -268,7 +268,7 @@ const LinkSeleccion = styled(Link)`
 
 
 
-function ProfileUserOfertaAtual() {
+function ProfileUserOfertaAtualJuridica() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -382,4 +382,4 @@ function ProfileUserOfertaAtual() {
     );
 }
 
-export default ProfileUserOfertaAtual;
+export default ProfileUserOfertaAtualJuridica;

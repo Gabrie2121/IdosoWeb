@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import "../../styles/global.css";
 import { useAuth } from "../../providers/auth";
 import "../../styles/global.css";
 
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import MaskedInput from "../User/MaskedInput";
-import Profile from "../../pages/Profile";
-import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
-import { Input } from "@mui/material";
+import { Link } from "react-router-dom";
+import MaskedInput from "../User/MaskedInput";
 
 const Text = styled.span`
   display: flex;
