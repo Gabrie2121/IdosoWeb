@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useAuth } from "../../providers/auth";
-import "../../styles/global.css";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useAuth } from '../../providers/auth';
+import '../../styles/global.css';
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import MaskedInput from "../User/MaskedInput";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import MaskedInput from '../User/MaskedInput';
+
+
 
 const Text = styled.span`
   display: flex;
@@ -23,7 +25,8 @@ const LinkPersonalization = styled(Link)`
 `;
 
 function FormCadastroEndereco() {
-  var token = window.localStorage.getItem("token");
+
+
 
   const { Usuario, setUsuario } = useAuth();
 
@@ -34,7 +37,7 @@ function FormCadastroEndereco() {
     NotifyEmail: Usuario.NotifyEmail,
     Nome: Usuario.Nome,
     Sobrenome: Usuario.Sobrenome,
-    CPF: Usuario.CPF,
+    Documento: Usuario.Documento,
     DataNascimento: Usuario.DataNascimento,
     TipoUsuario: Usuario.TipoUsuario,
     Sexo: Usuario.Sexo,
@@ -48,6 +51,7 @@ function FormCadastroEndereco() {
     Formacao: Usuario.Formacao,
     UFEmpresa: Usuario.UFEmpresa,
     InscricaoEstadual: Usuario.InscricaoEstadual,
+    Celular: Usuario.Celular
   });
 
   function onChange(ev) {
@@ -124,92 +128,67 @@ function FormCadastroEndereco() {
             cidade: Usuario.Cidade,
             logradouro: Usuario.Logradouro,
             complemento: Usuario.Complemento,
-          };
+            apelido: Usuario.Apelido,
+            principal: true
+          }
+          debugger;
           const user = {
             username: Usuario.Email,
             password: Usuario.Password,
+            tipoPessoa: Usuario.TipoUsuario,
             nome: Usuario.Nome,
             sobrenome: Usuario.Sobrenome,
-            nDoc: Usuario.CPF,
+            nDoc: Usuario.Documento,
             dataNasc: Usuario.DataNascimento,
-            tipoPessoa: Usuario.TipoUsuario,
             genero: Usuario.Sexo,
-            endereco: endereco,
-            celular: Usuario.celular,
-            email: Usuario.email,
+            celular: Usuario.Celular,
+            email: Usuario.Email,
+            foto: 'asdf',
+            razaoSocial: Usuario.RazaoSocial,
+            nomeFantasia: Usuario.NomeFantasia,
+            ie: Usuario.InscricaoEstadual,
+            endereco: endereco
           };
 
-          console.log(user);
+          const checkCEP = (e) => {
+            console.log("teste cep");
+            const cep = e.target.value.replace(/\D/g, "");
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                setInput({ ...input, UF: data.uf });
+                setInput({ ...input, Cidade: data.Cidade });
+                setInput({ ...input, Logradouro: data.Logradouro });
+              });
+          };
+          if ([name] == "UF") {
+            setInput({ ...input, UF: value });
+          } else if ([name] == "Cidade") {
+            setInput({ ...input, Cidade: value });
+          } else if ([name] == "Logradouro") {
+            setInput({ ...input, Logradouro: value });
+          } else if ([name] == "Complemento") {
+            setInput({ ...input, Complemento: value });
+          } else if ([name] == "Apelido") {
+            setInput({ ...input, Apelido: value });
+          }
+          setUsuario(input);
+        }
 
-          axios
-            .post(
-              `http://localhost:9999/open/cadastro/usuario`,
-              JSON.stringify(user),
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
-            .then((res) => {
-              console.log(res);
-              console.log(res.data);
-            })
-            .catch((error) => {
-              // Trate o erro aqui.
-              console.log("Whoops! Houve um erro.", error.message || error);
-            });
-        };
+        axios.post(`http://localhost:9999/open/cadastro/usuario`, JSON.stringify(user), { headers: { 'Content-Type': 'application/json' } })
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+            alert("Usuario cadastrado com sucesso!");
+            window.location.href = "/profile";
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            alert(error.message);
+            console.log('Whoops! Houve um erro.', error.message || error)
+          })
 
-        const checkCEP = (e) => {
-          console.log("teste cep");
-          const cep = e.target.value.replace(/\D/g, "");
-          fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              setInput({ ...input, UF: data.uf });
-              setInput({ ...input, Cidade: data.Cidade });
-              setInput({ ...input, Logradouro: data.Logradouro });
-            });
-        };
-      } else if ([name] == "UF") {
-        setInput({ ...input, UF: value });
-      } else if ([name] == "Cidade") {
-        setInput({ ...input, Cidade: value });
-      } else if ([name] == "Logradouro") {
-        setInput({ ...input, Logradouro: value });
-      } else if ([name] == "Complemento") {
-        setInput({ ...input, Complemento: value });
-      } else if ([name] == "Apelido") {
-        setInput({ ...input, Apelido: value });
-      }
-      setUsuario(input);
-    }
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-
-      const endereco = {
-        cep: Usuario.CEP,
-        uf: Usuario.UF,
-        cidade: Usuario.Cidade,
-        logradouro: Usuario.Logradouro,
-        complemento: Usuario.Complemento,
-      };
-      const user = {
-        username: Usuario.Email,
-        password: Usuario.Password,
-        nome: Usuario.Nome,
-        sobrenome: Usuario.Sobrenome,
-        nDoc: Usuario.CPF,
-        dataNasc: Usuario.DataNascimento,
-        tipoPessoa: Usuario.TipoUsuario,
-        genero: Usuario.Sexo,
-        endereco: endereco,
-        celular: Usuario.celular,
-        email: Usuario.email,
       };
 
       console.log(user);

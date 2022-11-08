@@ -6,9 +6,6 @@ import '../../styles/global.css';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -31,8 +28,8 @@ function FormCadastroInfoBasicasPJ() {
         Password: Usuario.Password,
         ConfirmPassword: Usuario.ConfirmPassword,
         NotifyEmail: Usuario.NotifyEmail,
-        NomeEmpresa: Usuario.NomeEmpresa,
-        CNPJ: Usuario.CNPJ,
+        NomeFantasia: Usuario.NomeFantasia,
+        Documento: Usuario.Documento,
         TipoUsuario: Usuario.TipoUsuario,
         CEP: Usuario.CEP,
         UFEmpresa: Usuario.UFEmpresa,
@@ -48,11 +45,11 @@ function FormCadastroInfoBasicasPJ() {
 
     function onChange(ev) {
         const { name, value } = ev.target;
-        if ([name] == 'nomeEmpresa') {
-            setInput({ ...input, Nome: value });
+        if ([name] == 'nomeFantasia') {
+            setInput({ ...input, NomeFantasia: value });
         }
         else if ([name] == 'cnpj') {          
-            setInput({ ...input, CPF: value });
+            setInput({ ...input, Documento: value });
         }
         else if ([name] == 'tipoUsuario') {
             setInput({ ...input, TipoUsuario: value });
@@ -77,8 +74,8 @@ function FormCadastroInfoBasicasPJ() {
         <div >
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', m: 1 }}>
-                    <TextField name="nome" required id="outlined-required" label="Nome Fantasia" onChange={onChange} value={(input.Nome)} />
-                    <MaskedInput name="cnpj"  mask="99.999.999/9999-99" value={(input.CNPJ)} onChange={onChange} label="CNPJ"/>
+                    <TextField name="nomeFantasia" required id="outlined-required" label="Nome Fantasia" onChange={onChange} value={(input.Nome)} />
+                    <MaskedInput name="cnpj"  mask="99.999.999/9999-99" value={(input.Documento)} onChange={onChange} label="CNPJ"/>
                     <TextField name="ufEmpresa" required id="outlined-required" label="UF" onChange={onChange} value={(input.UFEmpresa)} />
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m:1 }}>                  
