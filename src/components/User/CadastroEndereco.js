@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import '../../styles/global.css';
 import { useAuth } from '../../providers/auth';
 import '../../styles/global.css';
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -26,7 +27,9 @@ const LinkPersonalization = styled(Link)`
 `
 
 function FormCadastroEndereco() {
-  
+
+    const navigate = useNavigate();
+
     const { Usuario, setUsuario } = useAuth();
 
     const [input, setInput] = useState({
@@ -100,7 +103,6 @@ function FormCadastroEndereco() {
             apelido : Usuario.Apelido,
             principal : true
         }
-        debugger;
         const user = {
             username: Usuario.Email,
             password: Usuario.Password,
@@ -119,6 +121,7 @@ function FormCadastroEndereco() {
             endereco: endereco
         };
 
+        debugger;
         console.log(user);
 
         axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json'}})
@@ -126,7 +129,16 @@ function FormCadastroEndereco() {
             console.log(res);
             console.log(res.data);  
             alert("Usuario cadastrado com sucesso!");
-            window.location.href = "/profile"; 
+
+            if(user.tipoPessoa == 'FISICA')
+            {
+                navigate("/profile-fisica");
+            }
+            else
+            {
+                navigate("/profile-juridica");
+            }
+            
           })
           .catch((error) => {
             // Trate o erro aqui.
@@ -158,7 +170,7 @@ function FormCadastroEndereco() {
 
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <MaskedInput name="CEP" mask="99999-999" value={(input.CEP)} onChange={onChange} label="CEP" />
+                    <MaskedInput name="CEP" mask="99999-999" value={(input.CEP)} onChange={onChange} label="CEP" onBlur ={(checkCEP)} />
                     <TextField name="UF" required id="outlined-required" label="UF" onChange={onChange} value={(input.UF)}/>
                     <TextField name="Cidade" required id="outlined-required" label="Cidade" onChange={onChange} value={(input.Cidade)} />
                 </Box>

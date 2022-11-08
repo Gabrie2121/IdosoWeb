@@ -87,7 +87,7 @@ function FormCadastroInfoBasicasPJ() {
                                 name='situacaoTributaria'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={input.SituacaoTributaria}
+                                value={(input.SituacaoTributaria)}
                                 label="Situação Tributária(ICMS)"
                                 onChange={onChange}
                             >

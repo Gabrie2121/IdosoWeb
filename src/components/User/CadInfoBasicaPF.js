@@ -79,6 +79,7 @@ function FormCadastroInfoBasicasPF() {
                             value={(input.DataNascimento)}
                             onChange={(newValue) => {
                                 setUsuario({ ...Usuario, DataNascimento: newValue });
+                                setInput({ ...input, DataNascimento: newValue });
                             }}
                             renderInput={(params) => <TextField {...params} />}
                         />
@@ -94,7 +95,7 @@ function FormCadastroInfoBasicasPF() {
                                 name='sexo'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={input.Sexo}
+                                value={(input.Sexo)}
                                 label="Genero"
                                 onChange={onChange}
                             >

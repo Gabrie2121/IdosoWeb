@@ -55,6 +55,7 @@ function FormCadastroInfoBasicas() {
     const { name, value } = ev.target;
     if ([name] == "tipoUsuario") {
       setUsuario({ ...input, TipoUsuario: value });
+      setInput({ ...input, TipoUsuario: value });
     }
   }
 
@@ -68,7 +69,7 @@ function FormCadastroInfoBasicas() {
           name="tipoUsuario"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={input.TipoUsuario}
+          value={(input.TipoUsuario)}
           label="Tipo Usuário"
           onChange={onChange}
         >

@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components'
 import Header from "../components/Header";
 import '../styles/global.css';
+import { useNavigate } from 'react-router-dom';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -23,7 +24,9 @@ const Text = styled.span`
 `  
 
 function UsuarioCadastro() {
-  
+
+    const navigate = useNavigate()
+
     const [input, setInput] = useState({
         Email: "",
         Password: "",
@@ -45,7 +48,15 @@ function UsuarioCadastro() {
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('idUsuario', res.data.userId);
-            window.location.href = "/profile";    
+            if(res.data.tipo == 'FISICA')
+            {
+                navigate("/profile-fisica") 
+
+            }
+            else
+            {
+                navigate("/profile-juridica") 
+            }
           })
           .catch((error) => {
             // Trate o erro aqui.
