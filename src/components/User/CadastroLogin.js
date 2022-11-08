@@ -161,11 +161,18 @@ function FormCadastro() {
     return (
         <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <DivCampoFoto>
+                {/* <DivCampoFoto>
                         <ProfieImage1 src={foto} />
                         <ButttonEditarFoto />
                         <EditarFoto src={editarFoto} />
-                    </DivCampoFoto>
+                    </DivCampoFoto> */}
+            <DivCampoFoto>
+            <IconButton color="primary" aria-label="upload picture" component="label">
+            <input hidden accept="image/*" type="file" />
+            <ProfieImage1 src={foto} />
+            <EditarFoto src={editarFoto} />
+            </IconButton>
+            </DivCampoFoto>
                 <TextField name="email" required id="outlined-required" label="Alterar E-mail" onChange={onChange} value={(input.Email)} />
                 <FormGroup>
                     <FormControlLabel control={<Checkbox name="notifyEmail" defaultChecked color="success" onChange={onChange} value={(input.NotifyEmail)} />} label="Receber notificações no e-mail" />
