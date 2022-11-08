@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
-import ProfileUser from "../components/ProfileUser";
+import ProfileUserJuridica from "../components/ProfileUserJuridica";
 
 
 
 
 
 
-function Profile() {
+function ProfileUserJ() {
     return (
         <div>
             <Header
@@ -16,11 +16,11 @@ function Profile() {
                 four="LOGOUT"
                 linkOne="/"
                 linkTwo="/criacaoanuncio"
-                linkThree="criacaoanuncio"
+                linkThree="/criacaoanuncio"
                 linkFour="/"
             />
-            <ProfileUser />
+            <ProfileUserJuridica />
         </div>
     );
 }
-export default Profile;
+export default ProfileUserJ;

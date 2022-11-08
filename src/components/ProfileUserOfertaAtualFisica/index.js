@@ -268,7 +268,7 @@ const LinkSeleccion = styled(Link)`
 
 
 
-function ProfileUserOfertaAtual() {
+function ProfileUserOfertaAtualFisica() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -337,7 +337,7 @@ function ProfileUserOfertaAtual() {
                             </LinkFilter>
                         </DivLink>
 
-                        <CardPeople />
+                        <CardPeople title="Oferta Atual"/>
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
@@ -382,4 +382,4 @@ function ProfileUserOfertaAtual() {
     );
 }
 
-export default ProfileUserOfertaAtual;
+export default ProfileUserOfertaAtualFisica;
