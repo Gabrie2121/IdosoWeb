@@ -121,7 +121,6 @@ function FormCadastroEndereco() {
             endereco: endereco
         };
 
-        debugger;
         console.log(user);
 
         axios.post(`http://localhost:9999/open/cadastro/usuario`,JSON.stringify(user),{headers: {  'Content-Type': 'application/json'}})
