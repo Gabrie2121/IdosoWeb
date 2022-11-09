@@ -33,7 +33,7 @@ function FormCadastroInfoBasicasPF() {
         NotifyEmail: Usuario.NotifyEmail,
         Nome: Usuario.Nome,
         Sobrenome: Usuario.Sobrenome,
-        CPF: Usuario.CPF,
+        Documento: Usuario.Documento,
         DataNascimento: Usuario.DataNascimento,
         TipoUsuario: Usuario.TipoUsuario,
         Sexo: Usuario.Sexo,
@@ -42,12 +42,12 @@ function FormCadastroInfoBasicasPF() {
         Logradouro: Usuario.Logradouro,
         Complemento: Usuario.Complemento,
         Apelido: Usuario.Apelido,
+        Celular: Usuario.Celular
     });
 
 
     function onChange(ev) {
         const { name, value } = ev.target;
-        console.log(name, " ", value);
         if ([name] == 'nome') {
             setInput({ ...input, Nome: value });
         }
@@ -55,10 +55,13 @@ function FormCadastroInfoBasicasPF() {
             setInput({ ...input, Sobrenome: value });
         }
         else if ([name] == 'cpf') {          
-            setInput({ ...input, CPF: value });
+            setInput({ ...input, Documento: value });
         }
         else if ([name] == 'sexo') {
             setInput({ ...input, Sexo: value });
+        }
+        else if ([name] == 'celular') {
+            setInput({ ...input, Celular: value });
         }
         setUsuario(input);
     }
@@ -69,13 +72,14 @@ function FormCadastroInfoBasicasPF() {
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', m: 1 }}>
                     <TextField name="nome" required id="outlined-required" label="Nome" onChange={onChange} value={(input.Nome)} />
-                    <MaskedInput name="cpf"  mask="999.999.999-99" value={(input.CPF)} onChange={onChange} label="CPF"/>
+                    <MaskedInput name="cpf"  mask="999.999.999-99" value={(input.Documento)} onChange={onChange} label="CPF"/>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Data de Nascimento"
                             value={(input.DataNascimento)}
                             onChange={(newValue) => {
-                                setInput({ ...Usuario, DataNascimento: newValue });
+                                setUsuario({ ...Usuario, DataNascimento: newValue });
+                                setInput({ ...input, DataNascimento: newValue });
                             }}
                             renderInput={(params) => <TextField {...params} />}
                         />
@@ -91,7 +95,7 @@ function FormCadastroInfoBasicasPF() {
                                 name='sexo'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={input.Sexo}
+                                value={(input.Sexo)}
                                 label="Genero"
                                 onChange={onChange}
                             >

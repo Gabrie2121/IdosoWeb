@@ -27,7 +27,7 @@ function FormCadastroInfoBasicas() {
     NotifyEmail: Usuario.NotifyEmail,
     Nome: Usuario.Nome,
     Sobrenome: Usuario.Sobrenome,
-    CPF: Usuario.CPF,
+    DOcumento: Usuario.Documento,
     DataNascimento: Usuario.DataNascimento,
     TipoUsuario: Usuario.TipoUsuario,
     Sexo: Usuario.Sexo,
@@ -39,12 +39,13 @@ function FormCadastroInfoBasicas() {
     SituacaoTributaria: Usuario.SituacaoTributaria,
     Formacao: Usuario.Formacao,
     UFEmpresa:Usuario.UFEmpresa,
-    InscricaoEstadual: Usuario.InscricaoEstadual
+    InscricaoEstadual: Usuario.InscricaoEstadual,
+    Celular: Usuario.Celular
   });
 
   var cadastro = <CadastroPF />;
 
-  if (input.TipoUsuario === 0) {
+  if (input.TipoUsuario == 'JURIDICA') {
     cadastro = <CadastroPJ />;
   } else {
     cadastro = <CadastroPF />;
@@ -53,9 +54,9 @@ function FormCadastroInfoBasicas() {
   function onChange(ev) {
     const { name, value } = ev.target;
     if ([name] == "tipoUsuario") {
+      setUsuario({ ...input, TipoUsuario: value });
       setInput({ ...input, TipoUsuario: value });
     }
-    setUsuario(input);
   }
 
   return (
@@ -68,12 +69,12 @@ function FormCadastroInfoBasicas() {
           name="tipoUsuario"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={input.TipoUsuario}
+          value={(input.TipoUsuario)}
           label="Tipo Usuário"
           onChange={onChange}
         >
-          <MenuItem value={0}>Pessoa Juridica</MenuItem>
-          <MenuItem value={1}>Pessoa Fisica</MenuItem>
+          <MenuItem value={'JURIDICA'}>Pessoa Juridica</MenuItem>
+          <MenuItem value={'FISICA'}>Pessoa Fisica</MenuItem>
         </Select>
         {cadastro}
       </Box>

@@ -17,210 +17,205 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
 import { useAuth } from '../../providers/auth';
-
+import Alert from '@mui/material/Alert';
 
 const ImageUser = styled.img`
-    width: 25%;
-    height: 25%;
-    border-radius: 100;
-    border-color: "white";
-    border-width:1;
-`
+  width: 25%;
+  height: 25%;
+  border-radius: 100;
+  border-color: "white";
+  border-width: 1;
+`;
 
 const DivCampoFoto = styled.div`
-    width: 100%;
-    height: 35%;
-`
+  width: 100%;
+  height: 35%;
+`;
 
 const ProfieImage1 = styled.img`
-    width: 150px;
-    height: 150px;
-    margin-left: 160px;
-    margin-top: 30px;
-`
+  width: 150px;
+  height: 150px;
+  margin-left: 160px;
+  margin-top: 30px;
+`;
 
 const EditarFoto = styled.img`
-    width: 30px;
-    height: 30px;
-    margin-left: -38px;
-    margin-top: 140px;
-    position: absolute;
-`
+  width: 30px;
+  height: 30px;
+  margin-left: -38px;
+  margin-top: 140px;
+  position: absolute;
+`;
 
 const ButttonEditarFoto = styled.button`
-    width: 50px;
-    height: 50px;
-    margin-left: -40px;
-    border-radius: 30px;
-    background-color: #A9F0A6;
-    border: 0px solid transparent;
-`
+  width: 50px;
+  height: 50px;
+  margin-left: -40px;
+  border-radius: 30px;
+  background-color: #a9f0a6;
+  border: 0px solid transparent;
+`;
+
 function FormCadastro() {
 
-    const { Usuario, setUsuario } = useAuth();
+  const { Usuario, setUsuario } = useAuth();
 
-    const [input, setInput] = useState({
-        Email: Usuario.Email,
-        Password: Usuario.Password,
-        ConfirmPassword: Usuario.ConfirmPassword,
-        NotifyEmail: Usuario.NotifyEmail,
-        Nome: Usuario.Nome,
-        Sobrenome: Usuario.Sobrenome,
-        CPF: Usuario.CPF,
-        DataNascimento: Usuario.DataNascimento,
-        TipoUsuario: Usuario.TipoUsuario,
-        Sexo: Usuario.Sexo,
-        CEP: Usuario.CEP,
-        UF: Usuario.UF,
-        Logradouro: Usuario.Logradouro,
-        Complemento: Usuario.Complemento,
-        Apelido: Usuario.Apelido,
-    });
+  const [input, setInput] = useState({
+    Email: Usuario.Email,
+    Password: Usuario.Password,
+    ConfirmPassword: Usuario.ConfirmPassword,
+    NotifyEmail: Usuario.NotifyEmail,
+    Nome: Usuario.Nome,
+    Sobrenome: Usuario.Sobrenome,
+    Documento: Usuario.Documento,
+    DataNascimento: Usuario.DataNascimento,
+    TipoUsuario: Usuario.TipoUsuario,
+    Sexo: Usuario.Sexo,
+    CEP: Usuario.CEP,
+    UF: Usuario.UF,
+    Logradouro: Usuario.Logradouro,
+    Complemento: Usuario.Complemento,
+    Apelido: Usuario.Apelido,
+  });
 
+const [valuesPassword, setPassword] = useState({
+  showPassword: false,
+  showPasswordConfirm: false
+});
 
-    const [valuesPassword, setPassword] = useState({
-        showPassword: false,
-        showPasswordConfirm: false
-    });
+const [error, setError] = useState({
+  password: '',
+  confirmPassword: ''
+})
 
-    const [error, setError] = useState({
-        password: '',
-        confirmPassword: ''
-    })
+const handleClickShowPassword = () => {
+  setPassword({
+      ...valuesPassword,
+      showPassword: !valuesPassword.showPassword,
+  });
+};
 
-    const handleClickShowPassword = () => {
-        setPassword({
-            ...valuesPassword,
-            showPassword: !valuesPassword.showPassword,
-        });
-    };
+const handleMouseDownPassword = (event) => {
+  event.preventDefault();
+};
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+const handleClickShowConfirmPassword = () => {
+  setPassword({
+    ...valuesPassword,
+    showconfirmPassword: !valuesPassword.showconfirmPassword,
+  });
+};
 
-    const handleClickShowConfirmPassword = () => {
-        setPassword({
-            ...valuesPassword,
-            showconfirmPassword: !valuesPassword.showconfirmPassword,
-        });
-    };
+const handleMouseDownConfirmPassword = (event) => {
+  event.preventDefault();
+};
 
-    const handleMouseDownConfirmPassword = (event) => {
-        event.preventDefault();
-    };
+const validateprops = (e) => {
+  let { name, value } = e.target;
+  setError((prev) => {
+    const stateObj = { ...prev, [name]: "" };
 
+    switch (name) {
+      case "password":
+        if (Usuario.confirmPassword && value !== Usuario.confirmPassword) {
+          stateObj["confirmPassword"] =
+            "Password and Confirm Password does not match.";
+        } else {
+          stateObj["confirmPassword"] = Usuario.confirmPassword
+            ? ""
+            : error.confirmPassword;
+        }
+        break;
 
-    const validateprops = e => {
-        let { name, value } = e.target;
-        setError(prev => {
-            const stateObj = { ...prev, [name]: "" };
+      case "confirmPassword":
+        if (Usuario.password && value !== Usuario.password) {
+          stateObj[name] = "Password and Confirm Password does not match.";
+        }
+        break;
 
-            switch (name) {
-                case "password":
-                    if (Usuario.confirmPassword && value !== Usuario.confirmPassword) {
-                        stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
-                    } else {
-                        stateObj["confirmPassword"] = Usuario.confirmPassword ? "" : error.confirmPassword;
-                    }
-                    break;
-
-                case "confirmPassword":
-                    if (Usuario.password && value !== Usuario.password) {
-                        stateObj[name] = "Password and Confirm Password does not match.";
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-
-            return stateObj;
-        });
+      default:
+        break;
     }
 
-    function onChange(ev) {
-        const { name, value } = ev.target;
+    return stateObj;
+  });
+};
 
-        if ([name] == 'email') {
-            setInput({ ...input, Email: value });
-        }
-        else if ([name] == 'password') {
-            setInput({ ...input, Password: value });
-        }
-        else if ([name] == 'confirmPassword') {
-            setInput({ ...input, ConfirmPassword: value });
-        }
-        else if ([name] == 'notifyEmail') {
-            setInput({ ...input, NotifyEmail: value });
-        }
-        setUsuario(input);
-    }
+function onChange(ev) {
+  const { name, value } = ev.target;
+  console.log(name,value);
 
-    return (
-        <div>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* <ImageUser src={foto} /> */}
-                <DivCampoFoto>
-                        <ProfieImage1 src={foto} />
-                        <ButttonEditarFoto />
-                        <EditarFoto src={editarFoto} />
-                    </DivCampoFoto>
-                <TextField name="email" required id="outlined-required" label="Alterar E-mail" onChange={onChange} value={(input.Email)} />
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox name="notifyEmail" defaultChecked color="success" onChange={onChange} value={(input.NotifyEmail)} />} label="Receber notificações no e-mail" />
-                </FormGroup>
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
-                    <OutlinedInput
-                        name="password"
-                        id="outlined-adornment-password"
-                        type={valuesPassword.showPassword ? 'text' : 'password'}
-                        onChange={onChange}
-                        onBlur={validateprops}
-                        value={(input.Password)}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {valuesPassword.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label="Password"
-                    />
-                </FormControl>
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-Confirmpassword">Confirmar Senha</InputLabel>
-                    <OutlinedInput
-                        name="confirmPassword"
-                        id="outlined-adornment-Confirmpassword"
-                        type={valuesPassword.showconfirmPassword ? 'text' : 'password'}
-                        onChange={onChange}
-                        onBlur={validateprops}
-                        value={(input.ConfirmPassword)}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowConfirmPassword}
-                                    onMouseDown={handleMouseDownConfirmPassword}
-                                    edge="end"
-                                >
-                                    {valuesPassword.showconfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label="confirmPassword"
-                    />
-                </FormControl>
-                {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
-            </Box>
-        </div>
-    );
+  if ([name] == 'email') {
+      setInput({ ...input, Email: value });
+  }
+  else if ([name] == 'password') {
+      setInput({  ...input, Password: value });
+  }
 }
+
+return (
+  <div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <DivCampoFoto>
+        <ProfieImage1 src={foto} />
+        <ButttonEditarFoto />
+        <EditarFoto src={editarFoto} />
+      </DivCampoFoto>
+      <TextField name="email" required id="outlined-required" label="Alterar E-mail" onChange={onChange} value={(input.Email)} />
+      <FormGroup>
+        <FormControlLabel control={<Checkbox name="notifyEmail" defaultChecked color="success" onChange={onChange} value={(input.NotifyEmail)} />} label="Receber notificações no e-mail" />
+      </FormGroup>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
+        <OutlinedInput
+          name="password"
+          id="outlined-adornment-password"
+          type={valuesPassword.showPassword ? 'text' : 'password'}
+          onChange={onChange}
+          onBlur={validateprops}
+          value={(input.Password)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {valuesPassword.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+        />
+      </FormControl>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-Confirmpassword">Confirmar Senha</InputLabel>
+        <OutlinedInput
+          name="confirmPassword"
+          id="outlined-adornment-Confirmpassword"
+          type={valuesPassword.showconfirmPassword ? 'text' : 'password'}
+          onChange={onChange}
+          onBlur={validateprops}
+          value={(input.ConfirmPassword)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowConfirmPassword}
+                onMouseDown={handleMouseDownConfirmPassword}
+                edge="end"
+              >
+                {valuesPassword.showconfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="confirmPassword"
+        />
+      </FormControl>
+      {error.confirmPassword && <Alert severity="error">{error.confirmPassword}</Alert>}
+    </Box>
+  </div>
+);}
+
 export default FormCadastro;
