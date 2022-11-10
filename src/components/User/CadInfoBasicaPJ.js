@@ -38,7 +38,6 @@ function FormCadastroInfoBasicasPJ() {
         Apelido: Usuario.Apelido,
         SituacaoTributaria: Usuario.SituacaoTributaria,
         Formacao: Usuario.Formacao,
-        UFEmpresa:Usuario.UFEmpresa,
         InscricaoEstadual: Usuario.InscricaoEstadual
     });
 
@@ -74,7 +73,7 @@ function FormCadastroInfoBasicasPJ() {
         <div >
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', m: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', m: 1 }}>
-                    <TextField name="nomeFantasia" required id="outlined-required" label="Nome Fantasia" onChange={onChange} value={(input.Nome)} />
+                    <TextField name="nomeFantasia" required id="outlined-required" label="Nome Fantasia" onChange={onChange} value={(input.NomeFantasia)} />
                     <MaskedInput name="cnpj"  mask="99.999.999/9999-99" value={(input.Documento)} onChange={onChange} label="CNPJ"/>
                     <TextField name="ufEmpresa" required id="outlined-required" label="UF" onChange={onChange} value={(input.UFEmpresa)} />
                 </Box>
