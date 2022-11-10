@@ -16,6 +16,9 @@ import Header from "../Header";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FiFilter } from "react-icons/fi";
+import { Button, IconButton, Rating, Stack, TextField } from "@mui/material";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+
 
 const DivDad = styled.div`
   width: 100vw;
@@ -279,13 +282,64 @@ const DivTitle = styled.h1`
   margin: 0 10px;
 `;
 
+const DivRating = styled.div`
+    margin-left: 220px;
+    margin-top: 19px;
+`
+
+const DivComentario = styled.div`
+    margin-top: 40px;
+`
+
+const SpanComentario = styled.span`
+    font-size: 18pt;
+    font-weight: 100;
+    color: black;
+`
+
+const DivTextField = styled.div`
+    margin-top: 10px;
+`
+const SpanTexto = styled.span`
+  width: 500px;
+  margin-top: -220px;
+  margin-left: 30px;
+  font-size: 12pt;
+  font-weight: 100;
+  color: black;
+  position: absolute;
+`
+
+const DivEnviarAvaliacao = styled.div`
+    margin-left: 180px; 
+    margin-top: 20px;
+`
+
+const modalStyleCandidatura = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 550,
+  height: 550,
+  bgcolor: 'background.paper',
+  p: 4,
+  borderRadius: 3,
+};
+
 function ProfileUserOfertasAbertoFisica() {
   const [open, setOpen] = React.useState(false);
+  const [openCandidatura, setOpenCandidatura] = React.useState(false);
+
   const [usuario, setUsuario] = React.useState({});
   const [anuncios, setAnuncios] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
+  const handleOpenCandidatura = () => setOpenCandidatura(true);
+
   const handleClose = () => setOpen(false);
+  const handleCloseCandidatura = () => setOpenCandidatura(false);
+
 
   const handleInformation = () => {
     axios
@@ -389,26 +443,42 @@ function ProfileUserOfertasAbertoFisica() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-ofertas-aberto">
+              <LinkSeleccion to="/profile-fisica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-oferta-atual">
+              <LinkSeleccion to="/profile-fisica-oferta-atual">
                 <SpanNomeAvaliado type="checkbox" />
                 Oferta Atual
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <SpanNomeAvaliado type="checkbox" />
-              Candidaturas
+              <Button onClick={handleOpenCandidatura} id="avaliarButton" variant="contained">Avaliar
+                <SpanNomeAvaliado type="checkbox" />
+                Candidatos
+              </Button>
             </DivNomeAvaliado>
           </Box>
         </Modal>
       </DivDad>
+
+      <Modal
+        open={openCandidatura}
+        onClose={handleCloseCandidatura}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyleCandidatura}>
+          <SpanAvaliacao>
+            Avaliação
+          </SpanAvaliacao>
+
+        </Box>
+      </Modal>
     </div>
   );
 }

@@ -350,7 +350,7 @@ function ProfileUserF() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-ofertas-aberto">
+              <LinkSeleccion to="/profile-fisica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
@@ -363,7 +363,7 @@ function ProfileUserF() {
 
             <DivNomeAvaliado>
               <SpanNomeAvaliado type="checkbox" />
-              Candidaturas
+              Candidatos
             </DivNomeAvaliado>
           </Box>
         </Modal>
