@@ -16,12 +16,22 @@ import brunoImage from '../assets/listaOfertas/ofertas/bruno.png';
 import camilaImage from '../assets/listaOfertas/ofertas/camila.png';
 import davidImage from '../assets/listaOfertas/ofertas/david.png';
 import eduardaImage from '../assets/listaOfertas/ofertas/eduarda.png'
+import areaLaudo from '../assets/listaOfertas/areaLaudos.png';
+
 
 import polygonSelection from '../assets/listaOfertas/polygonSelection.png';
 
-import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import styleAvaliacaoModal from './../styles/modalAvaliacao.css';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const DivBody = styled.div`
     display: flex;
@@ -130,7 +140,6 @@ const SpanFilterPayment = styled.span`
 const SelectImage = styled.img`
     width: 13px;
     height: 12px;
-    position: absolute;
     margin-top: 10px;
     margin-left: -20px;
 `
@@ -139,7 +148,7 @@ const SelectImageComponent = styled.img`
     height: 12px;
     position: absolute;
     margin-top: 10px;
-    margin-left: -290px;
+    margin-left: -170px;
 `
 
 const DivOffers = styled.div`
@@ -149,7 +158,6 @@ const DivOffers = styled.div`
     flex-direction: row;
     display: flex;
     justify-content: center;
-    background-color: gray;
     margin-top: 40px;
 `
 
@@ -159,6 +167,8 @@ const ItemOffer = styled.div`
     display: flex;
     margin-top: 170px;
 `
+
+const DivButton = styled.div``
 
 const AccessButtton1 = styled.button`
     width: 100px;
@@ -174,6 +184,13 @@ const ProfieImage1 = styled.img`
     height: 90px;
     margin-left: -440px;
     margin-top: -70px;
+`
+
+const ProfieImageModal = styled.img`
+    width: 140px;
+    height: 140px;
+    margin-left: 10px;
+    margin-top: 20px;
 `
 
 const SpanName1 = styled.span`
@@ -344,7 +361,242 @@ const SpanTimeValue2 = styled.span`
     font-size: 10pt; 
 `
 
+// Modal
+
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 550,
+    height: 550,
+    bgcolor: 'background.paper',
+    p: 4,
+    borderRadius: 3, 
+  };
+
+  const DivHeaderModal = styled.div`
+    width: 100%;
+    height: 240px;
+  `
+
+  const DivProfieImageModal = styled.div`
+    width: 30%;
+    height: 100%;
+ `
+
+ const DivProfileHeader = styled.div`
+    width: 70%;
+    height: 100%;
+    margin-left: 30%;
+    margin-top: -240px;
+ `
+ const DivCloseButton = styled.div`
+    width: 100%;
+    height: 10%;
+`
+
+    const DivName = styled.div`
+        width: 100%;
+        height: 10%;
+    `
+
+    const DivHeaderBody = styled.div`
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: row;
+    `
+
+    const DivRatingFilter = styled.div`
+        width: 67%;
+        height: 100%;
+    `
+    const DivRatingModal = styled.div`
+        width: 100%;
+        height: 50%;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+    `
+    const DivFilterModal = styled.div`
+        width: 100%;
+        height: 50%;
+    `
+    const SpanPcdModal = styled.div`
+    margin-top: 10px;
+    margin-left: 15px;
+    color: #878787;
+    font-size: 8pt;
+    `
+    const DivPcdModal = styled.div`
+        width: 60px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+    `
+
+    const SpanPcdValueModal = styled.span`
+        margin-left: 16px;
+        font-size: 10pt; 
+        
+    `
+
+    const SpanTimeModal = styled.div`
+    margin-top: -13px;
+    margin-left: 92px;
+    color: #878787;
+    font-size: 8pt;
+    `
+
+    const DivTimeModal = styled.div`
+        width: 90px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+        margin-top: -47px;
+        margin-left: 70px;
+    `
+
+    const SpanTimeValueModal = styled.span`
+        margin-left: 15px;
+        font-size: 10pt;
+    `
+
+    const SpanAgeModal = styled.div`
+    margin-top: 9px;
+    margin-left: 195px;
+    color: #878787;
+    font-size: 8pt;
+    `
+
+    const DivAgeModal = styled.div`
+        width: 80px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+        margin-top: -47px;
+        margin-left: 166px;
+    `
+
+    const SpanAgeValueModal = styled.span`
+        margin-left: 17px;
+        font-size: 10pt;
+    `
+
+
+    const DivPaymentReport = styled.div`
+        width: 33%;
+        height: 100%;
+    `
+
+    const DivPaymentModal = styled.div`
+        width: 100%;
+        height: 30%;
+    `
+
+    const SpanPayment = styled.span`
+    font-size: 15pt;
+    font-weight: 100;
+    color: black;
+  `
+    const DivReportModal = styled.div`
+        width: 100%;
+        height: 70%;
+    `
+
+    const DivReportSpan = styled.div`
+        width: 100%;
+        height: 20%;
+    `
+
+    const SpanReport = styled.span`
+        font-size: 13pt;
+        color: #000000;
+        font-weight: 100;
+    `
+
+    const DivAreaReport = styled.div`
+        width: 100%;
+        heigth: 80%; 
+    `
+    const ReportImg = styled.img`
+        width: 125px;
+        height: 105px;
+    `
+
+  const DivBodyModal = styled.div`
+    width: 100%;
+    height: 260px;
+    margin-top:-20px;
+  `
+
+
+  const SpanAvaliacao = styled.span`
+    margin-left: 0px;
+    margin-top: -100px;
+    margin-bottom: 40px;
+    font-size: 17pt;
+    color: #000000;
+    font-weight: 100;
+  `
+  
+  const DivIcone = styled.div`
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 350px;
+  `
+
+  const DivNomeAvaliado = styled.div`
+    margin-top: 20px;
+  `
+
+  const SpanNomeAvaliado = styled.span`
+    margin-left: 170px;
+    font-size: 18pt;
+    font-weight: 100;
+    color: black;
+  `
+
+  const DivRating = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: absolute;
+`
+
+const DivComentario = styled.div`
+    margin-top: 40px;
+`
+
+
+const DivTextField = styled.div`
+    margin-top: 10px;
+`
+
+const SpanTexto = styled.span`
+  width: 500px;
+  margin-top: -180px;
+  margin-left: 30px;
+  font-size: 12pt;
+  font-weight: 100;
+  color: black;
+  position: absolute;
+  
+
+`
+const DivEnviarAvaliacao = styled.div`
+    margin-left: 180px; 
+    margin-top: 20px;
+`
+
 function ListaOfertas() {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <div>
             <Header
@@ -430,9 +682,9 @@ function ListaOfertas() {
                         <KmSpan1>
                             15km
                         </KmSpan1>
-                        <SpanAccess1>
-                            Acessar anúncio
-                        </SpanAccess1>
+                        <DivButton>
+                            <Button onClick={handleOpen} variant="contained" id="acessarAnuncioButton">Acessar anúncio</Button>
+                        </DivButton>                     
                         <SpanPcd1>
                             PCD
                         </SpanPcd1>
@@ -621,6 +873,110 @@ function ListaOfertas() {
                         </DivTime2>
                     </ItemOffer>
                 </DivOffers>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={modalStyle}>
+                    <DivHeaderModal>
+                        <DivProfieImageModal>
+                            <ProfieImageModal src={aliceImage} />
+                        </DivProfieImageModal>
+                        <DivProfileHeader>
+                            <DivCloseButton>
+                                <DivIcone>
+                                    <IconButton onClick={handleClose} id="iconeFechar">
+                                        <HighlightOffIcon id="iconClose" fontSize ="large"/>
+                                    </IconButton>
+                                </DivIcone>
+                            </DivCloseButton>
+                            <DivName>
+                                <SpanAvaliacao>
+                                    Alice Dolores dos Santos
+                                </SpanAvaliacao>
+                            </DivName>
+                            <DivHeaderBody>
+                                <DivRatingFilter>
+                                    <DivRatingModal>
+                                        <DivRating>
+                                            <Stack spacing={1}>
+                                                <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
+                                            </Stack>
+                                        </DivRating>
+                                    </DivRatingModal>
+                                    <DivFilterModal>
+                                        <DivPcdModal>
+                                            <SpanPcdValueModal>
+                                                Não
+                                            </SpanPcdValueModal>
+                                        </DivPcdModal>
+                                        <SpanPcdModal>
+                                            PCD
+                                        </SpanPcdModal>
+                                        <SpanTimeModal>
+                                            Período
+                                        </SpanTimeModal>
+                                        <DivTimeModal>
+                                            <SpanTimeValueModal>
+                                                Matutino
+                                            </SpanTimeValueModal>
+                                        </DivTimeModal>
+                                        <SpanAgeModal>
+                                            Idade
+                                        </SpanAgeModal>
+                                        <DivAgeModal>
+                                            <SpanAgeValueModal>
+                                                74 anos
+                                            </SpanAgeValueModal>
+                                        </DivAgeModal>
+                                    </DivFilterModal>
+                                </DivRatingFilter>
+                                <DivPaymentReport>
+                                    <DivPaymentModal>
+                                        <SpanPayment>
+                                            R$ 100,00
+                                        </SpanPayment>                 
+                                    </DivPaymentModal>
+                                    <DivReportModal>
+                                        <DivReportSpan>
+                                            <SpanReport>
+                                                Laudos
+                                            </SpanReport>
+                                        </DivReportSpan>
+                                        <DivAreaReport>
+                                            <ReportImg src={areaLaudo} />
+                                        </DivAreaReport>
+                                    </DivReportModal>
+                                </DivPaymentReport>
+                            </DivHeaderBody>
+                        </DivProfileHeader>     
+                        <DivNomeAvaliado>
+                        </DivNomeAvaliado>
+                    </DivHeaderModal>
+                    <DivBodyModal>
+                        <DivComentario>
+                        </DivComentario>
+                        <DivTextField>
+                            <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows={8}
+                                inputProps={
+                                    { readOnly: true, }
+                                }
+                            />  
+                        </DivTextField>
+                        <SpanTexto>
+                             Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
+                        </SpanTexto>
+                        <DivEnviarAvaliacao>
+                            <Button onClick={handleOpen} id="aceitarButton" variant="contained">Aceitar Oferta</Button>  
+                        </DivEnviarAvaliacao>       
+                    </DivBodyModal>  
+                    </Box>
+                </Modal>
             </DivBody>
         </div>
     )

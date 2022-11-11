@@ -19,3 +19,20 @@ pcd{
     margin-left: -60px;
     color: #878787;
 }
+
+#acessarAnuncioButton {
+    width: 120px;
+    height: 30px;
+    margin-top: 0px;
+    margin-left: 175px;
+    background-color: #5BB159;
+    border: none;
+    font-size: 6pt;
+}
+
+#aceitarButton {
+    background-color: #5BB159;
+    color: white;
+    font-size: 10pt;
+    margin-left: 20px;
+}

@@ -20,7 +20,8 @@ const Button = styled.button`
 
 const SelectImage = styled.img`
     margin-top: -3px;
-    margin-left: -20px;
+    margin-left: -120px;
+    position: none;
 `
 
 function OfferFilter() {
