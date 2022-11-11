@@ -13,11 +13,11 @@ import { Link } from "react-router-dom";
 import CardPeople from "../Card";
 import Header from "../Header";
 
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Button, IconButton, Rating, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FiFilter } from "react-icons/fi";
-import { Button, IconButton, Rating, Stack, TextField } from "@mui/material";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
 const DivDad = styled.div`
@@ -274,6 +274,13 @@ const LinkSeleccion = styled(Link)`
   gap: 10px;
 `;
 
+const ButtonCandidatos = styled.button`
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+`
+
 const DivTitle = styled.h1`
   width: 90%;
   display: flex;
@@ -326,6 +333,175 @@ const modalStyleCandidatura = {
   p: 4,
   borderRadius: 3,
 };
+
+const DivHeaderModal = styled.div`
+  width: 100%;
+  height: 240px;
+`
+
+const DivProfieImageModal = styled.div`
+  width: 30%;
+  height: 100%;
+`
+
+const ProfieImageModal = styled.img`
+    width: 140px;
+    height: 140px;
+    margin-left: 10px;
+    margin-top: 20px;
+`
+const DivProfileHeader = styled.div`
+  width: 70%;
+  height: 100%;
+  margin-left: 30%;
+  margin-top: -240px;
+`
+
+const DivCloseButton = styled.div`
+  width: 100%;
+  height: 10%;
+`
+
+const DivName = styled.div`
+        width: 100%;
+        height: 10%;
+    `
+
+const DivHeaderBody = styled.div`
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: row;
+    `
+
+const DivRatingFilter = styled.div`
+        width: 67%;
+        height: 100%;
+    `
+const DivRatingModal = styled.div`
+        width: 100%;
+        height: 50%;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+    `
+const DivFilterModal = styled.div`
+        width: 100%;
+        height: 50%;
+    `
+const SpanPcdModal = styled.div`
+    margin-top: 10px;
+    margin-left: 15px;
+    color: #878787;
+    font-size: 8pt;
+    `
+const DivPcdModal = styled.div`
+        width: 60px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+    `
+
+const SpanPcdValueModal = styled.span`
+        margin-left: 16px;
+        font-size: 10pt; 
+        
+    `
+
+const SpanTimeModal = styled.div`
+    margin-top: -13px;
+    margin-left: 92px;
+    color: #878787;
+    font-size: 8pt;
+    `
+
+const DivTimeModal = styled.div`
+        width: 90px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+        margin-top: -47px;
+        margin-left: 70px;
+    `
+
+const SpanTimeValueModal = styled.span`
+        margin-left: 15px;
+        font-size: 10pt;
+    `
+
+const SpanAgeModal = styled.div`
+    margin-top: 9px;
+    margin-left: 195px;
+    color: #878787;
+    font-size: 8pt;
+    `
+
+const DivAgeModal = styled.div`
+        width: 80px;
+        height: 25px;
+        background-color: #76BE74;
+        border-radius: 20px;
+        margin-top: -47px;
+        margin-left: 166px;
+    `
+
+const SpanAgeValueModal = styled.span`
+        margin-left: 17px;
+        font-size: 10pt;
+    `
+
+
+const DivPaymentReport = styled.div`
+        width: 33%;
+        height: 100%;
+    `
+
+const DivPaymentModal = styled.div`
+        width: 100%;
+        height: 30%;
+    `
+
+const SpanPayment = styled.span`
+    font-size: 15pt;
+    font-weight: 100;
+    color: black;
+  `
+const DivReportModal = styled.div`
+        width: 100%;
+        height: 70%;
+    `
+
+const DivReportSpan = styled.div`
+        width: 100%;
+        height: 20%;
+    `
+
+const SpanReport = styled.span`
+        font-size: 13pt;
+        color: #000000;
+        font-weight: 100;
+    `
+
+const DivAreaReport = styled.div`
+      width: 100%;
+      heigth: 80%; 
+    `
+const ReportImg = styled.img`
+        width: 125px;
+        height: 105px;
+    `
+
+const DivBodyModal = styled.div`
+    width: 100%;
+    height: 260px;
+    margin-top:-20px;
+  `
+
+
+
+
+
+
 
 function ProfileUserOfertasAbertoFisica() {
   const [open, setOpen] = React.useState(false);
@@ -457,10 +633,10 @@ function ProfileUserOfertasAbertoFisica() {
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <Button onClick={handleOpenCandidatura} id="avaliarButton" variant="contained">Avaliar
+              <LinkSeleccion onClick={handleOpenCandidatura} to>
                 <SpanNomeAvaliado type="checkbox" />
                 Candidatos
-              </Button>
+              </LinkSeleccion>
             </DivNomeAvaliado>
           </Box>
         </Modal>
@@ -473,9 +649,101 @@ function ProfileUserOfertasAbertoFisica() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyleCandidatura}>
-          <SpanAvaliacao>
-            Avaliação
-          </SpanAvaliacao>
+          <DivHeaderModal>
+            <DivProfieImageModal>
+              <ProfieImageModal src={ProfilePhoto} />
+            </DivProfieImageModal>
+            <DivProfileHeader>
+              <DivCloseButton>
+                <DivIcone>
+                  <IconButton onClick={handleCloseCandidatura} id="iconeFechar">
+                    <HighlightOffIcon id="iconClose" fontSize="large" />
+                  </IconButton>
+                </DivIcone>
+              </DivCloseButton>
+              <DivName>
+                <SpanAvaliacao>
+                  Alice Dolores dos Santos
+                </SpanAvaliacao>
+              </DivName>
+              <DivHeaderBody>
+                <DivRatingFilter>
+                  <DivRatingModal>
+                    <DivRating>
+                      <Stack spacing={1}>
+                        <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                      </Stack>
+                    </DivRating>
+                  </DivRatingModal>
+                  <DivFilterModal>
+                    <DivPcdModal>
+                      <SpanPcdValueModal>
+                        Não
+                      </SpanPcdValueModal>
+                    </DivPcdModal>
+                    <SpanPcdModal>
+                      PCD
+                    </SpanPcdModal>
+                    <SpanTimeModal>
+                      Período
+                    </SpanTimeModal>
+                    <DivTimeModal>
+                      <SpanTimeValueModal>
+                        Matutino
+                      </SpanTimeValueModal>
+                    </DivTimeModal>
+                    <SpanAgeModal>
+                      Idade
+                    </SpanAgeModal>
+                    <DivAgeModal>
+                      <SpanAgeValueModal>
+                        74 anos
+                      </SpanAgeValueModal>
+                    </DivAgeModal>
+                  </DivFilterModal>
+                </DivRatingFilter>
+                <DivPaymentReport>
+                  <DivPaymentModal>
+                    <SpanPayment>
+                      R$ 100,00
+                    </SpanPayment>
+                  </DivPaymentModal>
+                  {/* <DivReportModal>
+                    <DivReportSpan>
+                      <SpanReport>
+                        Laudos
+                      </SpanReport>
+                    </DivReportSpan>
+                    <DivAreaReport>
+                      <ReportImg src="" />
+                    </DivAreaReport>
+                  </DivReportModal> */}
+                </DivPaymentReport>
+              </DivHeaderBody>
+            </DivProfileHeader>
+            <DivNomeAvaliado>
+            </DivNomeAvaliado>
+          </DivHeaderModal>
+          <DivBodyModal>
+            <DivComentario>
+            </DivComentario>
+            <DivTextField>
+              <TextField
+                id="outlined-multiline-static"
+                multiline
+                rows={8}
+                inputProps={
+                  { readOnly: true, }
+                }
+              />
+            </DivTextField>
+            <SpanTexto>
+              Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
+            </SpanTexto>
+            <DivEnviarAvaliacao>
+              <Button onClick={handleOpenCandidatura} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
+            </DivEnviarAvaliacao>
+          </DivBodyModal>
 
         </Box>
       </Modal>
