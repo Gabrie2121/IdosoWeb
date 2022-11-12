@@ -350,7 +350,7 @@ function ProfileUserJuridica() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-ofertas-aberto">
+              <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
