@@ -465,43 +465,13 @@ const SpanPayment = styled.span`
     font-size: 15pt;
     font-weight: 100;
     color: black;
-  `
-const DivReportModal = styled.div`
-        width: 100%;
-        height: 70%;
-    `
-
-const DivReportSpan = styled.div`
-        width: 100%;
-        height: 20%;
-    `
-
-const SpanReport = styled.span`
-        font-size: 13pt;
-        color: #000000;
-        font-weight: 100;
-    `
-
-const DivAreaReport = styled.div`
-      width: 100%;
-      heigth: 80%; 
-    `
-const ReportImg = styled.img`
-        width: 125px;
-        height: 105px;
-    `
+`
 
 const DivBodyModal = styled.div`
     width: 100%;
     height: 260px;
     margin-top:-20px;
   `
-
-
-
-
-
-
 
 function ProfileUserOfertasAbertoFisica() {
   const [open, setOpen] = React.useState(false);
