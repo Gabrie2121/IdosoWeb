@@ -7,15 +7,16 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import ProfilePhoto from "../../assets/Profile.png";
+import Prestador from "../../assets/Prestador.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
+import CardPeople from "../CardFisica";
 import Header from "../Header";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FiFilter } from "react-icons/fi";
+import CardJuridica from "../CardJuridica";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -281,7 +282,7 @@ const DivTitle = styled.h1`
 
 function ProfileUserOfertasAbertoJuridica() {
   const [open, setOpen] = React.useState(false);
-  const [usuario, setUsuario] = React.useState({});
+  // const [usuario, setUsuario] = React.useState({});
   const [anuncios, setAnuncios] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
@@ -289,14 +290,15 @@ function ProfileUserOfertasAbertoJuridica() {
 
   const handleInformation = () => {
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/prestador/anunciosCriados`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        setUsuario(res.data);
-        setAnuncios(res.data.anunciosAberto);
+        // setUsuario(res.data);
+        console.log(res.data);
+        setAnuncios(res.data);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -323,12 +325,14 @@ function ProfileUserOfertasAbertoJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={Prestador} />
               </DivPhoto>
-              <DivText>{usuario.nome}</DivText>
+              {/* <DivText>{usuario.nome}</DivText>: */}
+              <DivText>Vitoria Carmo</DivText>
               <DivLocation>
                 <MdOutlineLocationOn size={30} fill={"#FFF"} />
-                <TextCity>{usuario.cidade}</TextCity>
+                {/* <TextCity>{usuario.cidade}</TextCity> */}
+                <TextCity>São Bernado do Campo</TextCity>
               </DivLocation>
             </DivDataProfileLittleOne>
             <DivValuation>
@@ -339,7 +343,8 @@ function ProfileUserOfertasAbertoJuridica() {
                 <AiFillStar size={30} fill={"#FFC700"} />
                 <AiFillStar size={30} fill={"#FFC700"} />
               </DivStars>
-              <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar>
+              {/* <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar> */}
+              <DivTextStar>(5,0 em avaliação)</DivTextStar>
             </DivValuation>
           </DivDataProfileChildren>
 
@@ -351,7 +356,7 @@ function ProfileUserOfertasAbertoJuridica() {
 
             <DivDataDescriptionTextTwo>
               <DivTextDescriptionSecond>
-                {usuario.biografia}
+                Sou Enfermeira a 6 anos, já cuidei de alguns idosos.
               </DivTextDescriptionSecond>
             </DivDataDescriptionTextTwo>
           </DivDataDescriptionChildren>
@@ -368,11 +373,12 @@ function ProfileUserOfertasAbertoJuridica() {
             {anuncios.map((anuncio) => {
               console.log(anuncio);
               return (
-                <CardPeople
-                  namePeople={anuncio.nomePrestador}
-                  pricePeople={`${anuncio.valorHora},00`}
-                  avaliacaoPeople={`(${anuncio.avaliacao} em avaliação)`}
-                  formacaoPeople={anuncio.curso}
+                <CardJuridica
+                  nameJuridica={anuncio.nomeIdoso}
+                  priceJuridica={`${anuncio.valor},00`}
+                  avaliacaoJuridica={`(${anuncio.avaliacao} em avaliação)`}
+                  pcd={anuncio.IsPcd}
+                  periodo={anuncio.periodoEnum}
                 />
               );
             })}
@@ -389,14 +395,14 @@ function ProfileUserOfertasAbertoJuridica() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-ofertas-aberto">
+              <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-oferta-atual">
+              <LinkSeleccion to="/profile-juridica-oferta-atual">
                 <SpanNomeAvaliado type="checkbox" />
                 Oferta Atual
               </LinkSeleccion>
