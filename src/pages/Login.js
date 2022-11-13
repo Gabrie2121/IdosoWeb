@@ -95,7 +95,16 @@ function UsuarioCadastro() {
 
   return (
     <div>
-      <Header linkOne="/" linkTwo="/" linkThree="/" linkFour="/" />
+       <Header
+        one="HOME"
+        two=""
+        three=""
+        four=""
+        linkOne="/"
+        linkTwo="/"
+        linkThree="/"
+        linkFour="/"
+      />
       <Box
         display="flex"
         justifyContent="center"
