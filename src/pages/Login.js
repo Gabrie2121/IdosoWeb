@@ -15,6 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 const Text = styled.span`
   display: flex;
@@ -24,6 +25,8 @@ const Text = styled.span`
 `;
 
 function UsuarioCadastro() {
+
+  localStorage.removeItem('idUsuario');
 
     const navigate = useNavigate()
 
@@ -155,7 +158,8 @@ function UsuarioCadastro() {
               }
               label="Password"
             />
-            {aviso && <span className="err">{aviso}</span>}
+            <br></br>
+            {aviso &&  <Alert severity="error">{aviso}</Alert>}         
           </FormControl>
           <Button
             name="One"
