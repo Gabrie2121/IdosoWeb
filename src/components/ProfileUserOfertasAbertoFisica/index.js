@@ -10,7 +10,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import ProfilePhoto from "../../assets/Profile.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
+import CardPeople from "../CardFisica";
 import Header from "../Header";
 
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
