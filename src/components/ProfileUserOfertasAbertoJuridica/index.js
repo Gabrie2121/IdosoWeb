@@ -282,13 +282,29 @@ const DivTitle = styled.h1`
 
 function ProfileUserOfertasAbertoJuridica() {
   const [open, setOpen] = React.useState(false);
-  // const [usuario, setUsuario] = React.useState({});
+  const [usuario, setUsuario] = React.useState({});
   const [anuncios, setAnuncios] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleInformation = () => {
+  const handleUser = () => {
+    axios
+      .get(`http://localhost:9999/prestador/home/${4}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUsuario(res.data);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
+
+  const handleOfertas = () => {
     axios
       .get(`http://localhost:9999/prestador/anunciosCriados`, {
         headers: {
@@ -306,7 +322,8 @@ function ProfileUserOfertasAbertoJuridica() {
   };
 
   useEffect(() => {
-    handleInformation();
+    handleOfertas();
+    handleUser();
   }, []);
 
   return (
@@ -327,12 +344,10 @@ function ProfileUserOfertasAbertoJuridica() {
               <DivPhoto>
                 <ImageProfile src={Prestador} />
               </DivPhoto>
-              {/* <DivText>{usuario.nome}</DivText>: */}
-              <DivText>Vitoria Carmo</DivText>
+              <DivText>{usuario.nome}</DivText>
               <DivLocation>
                 <MdOutlineLocationOn size={30} fill={"#FFF"} />
-                {/* <TextCity>{usuario.cidade}</TextCity> */}
-                <TextCity>São Bernado do Campo</TextCity>
+                <TextCity>{usuario.cidade}</TextCity>
               </DivLocation>
             </DivDataProfileLittleOne>
             <DivValuation>
@@ -343,8 +358,7 @@ function ProfileUserOfertasAbertoJuridica() {
                 <AiFillStar size={30} fill={"#FFC700"} />
                 <AiFillStar size={30} fill={"#FFC700"} />
               </DivStars>
-              {/* <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar> */}
-              <DivTextStar>(5,0 em avaliação)</DivTextStar>
+              <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar>
             </DivValuation>
           </DivDataProfileChildren>
 
@@ -356,7 +370,7 @@ function ProfileUserOfertasAbertoJuridica() {
 
             <DivDataDescriptionTextTwo>
               <DivTextDescriptionSecond>
-                Sou Enfermeira a 6 anos, já cuidei de alguns idosos.
+                {usuario.biografia}
               </DivTextDescriptionSecond>
             </DivDataDescriptionTextTwo>
           </DivDataDescriptionChildren>
