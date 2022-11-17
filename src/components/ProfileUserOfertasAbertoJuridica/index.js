@@ -321,9 +321,25 @@ function ProfileUserOfertasAbertoJuridica() {
       });
   };
 
+  const handleCandidatar = () => {
+    axios
+      .post(`http://localhost:9999//prestador/candidatar`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Post", res.data.id);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
+
   useEffect(() => {
     handleOfertas();
     handleUser();
+    handleCandidatar();
   }, []);
 
   return (
