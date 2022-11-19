@@ -150,6 +150,30 @@ const DivTitle = styled.h1`
 `;
 
 function CardJuridica(props) {
+
+    const idPrestador = localStorage.getItem("idUsuario")
+
+
+  const idsCandidatura = {
+    prestadorId: idPrestador,
+    anuncioId: 3,
+  }
+
+  const handleCandidatar = () => {
+    axios
+      .post(`http://localhost:9999/prestador/candidatar/`, JSON.stringify(idsCandidatura), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Post", res.data.anuncioId);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
+
   return (
     <WrapperCard>
       <DivTitle>{props.titleJuridica}</DivTitle>
@@ -179,7 +203,7 @@ function CardJuridica(props) {
           </DivFormação>
         </DivValuation>
 
-        <DivWhatsAppPai onClick={() => console.log("click")}>
+        <DivWhatsAppPai onClick={handleCandidatar}>
           <DivWhatsApp>Candidatar-se</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>

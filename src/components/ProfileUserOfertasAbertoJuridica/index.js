@@ -288,9 +288,9 @@ function ProfileUserOfertasAbertoJuridica() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleUser = () => {
+  const handleUser = (id) => {
     axios
-      .get(`http://localhost:9999/prestador/home/${4}`, {
+      .get(`http://localhost:9999/prestador/home/${2}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -312,24 +312,8 @@ function ProfileUserOfertasAbertoJuridica() {
         },
       })
       .then((res) => {
-        // setUsuario(res.data);
         console.log(res.data);
         setAnuncios(res.data);
-      })
-      .catch((error) => {
-        console.log("Whoops! Houve um erro.", error.message || error);
-      });
-  };
-
-  const handleCandidatar = () => {
-    axios
-      .post(`http://localhost:9999//prestador/candidatar`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log("Post", res.data.id);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -339,7 +323,6 @@ function ProfileUserOfertasAbertoJuridica() {
   useEffect(() => {
     handleOfertas();
     handleUser();
-    handleCandidatar();
   }, []);
 
   return (
