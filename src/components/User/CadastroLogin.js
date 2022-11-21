@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import styled from "styled-components";
 import foto from "../../assets/UserDefault.png";
 import editarFoto from "../../assets/Usuario/iconeEditar.png";
@@ -18,6 +18,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "../../providers/auth";
 import Alert from "@mui/material/Alert";
+import axios from "axios";
 
 const ImageUser = styled.img`
   width: 25%;
@@ -60,7 +61,7 @@ function FormCadastro() {
   const { Usuario, setUsuario } = useAuth();
 
   const [input, setInput] = useState({
-    Email: Usuario.Email,
+    Email: Usuario.email,
     Password: Usuario.Password,
     ConfirmPassword: Usuario.ConfirmPassword,
     NotifyEmail: Usuario.NotifyEmail,
@@ -75,7 +76,9 @@ function FormCadastro() {
     Logradouro: Usuario.Logradouro,
     Complemento: Usuario.Complemento,
     Apelido: Usuario.Apelido,
-  });
+    Foto: Usuario.Foto,
+    Cidade: Usuario.Cidade
+  });  
 
   const [valuesPassword, setPassword] = useState({
     showPassword: false,
@@ -153,6 +156,19 @@ function FormCadastro() {
       setInput({ ...input, NotifyEmail: value });
     }
     setUsuario(input);
+  };
+
+  const [selectedFile,setFile] = useState();
+
+  function fileSelectedHandler(ev){
+    setFile(ev.target.files[0]);  
+  }
+
+  function fileUploadHandler(){
+    const fd = new FormData();
+    fd.append('image',selectedFile);
+    setInput({ ...input, Foto: fd });
+    setUsuario(input);
   }
 
   return (
@@ -162,7 +178,9 @@ function FormCadastro() {
       >
         <DivCampoFoto>
           <ProfieImage1 src={foto} />
-          <ButttonEditarFoto />
+          {/* <input type={"file"} onChange={fileSelectedHandler}></input>
+          <button onClick={fileUploadHandler}>Upload</button> */}
+          <ButttonEditarFoto/>
           <EditarFoto src={editarFoto} />
         </DivCampoFoto>
         <TextField
@@ -245,9 +263,7 @@ function FormCadastro() {
             label="confirmPassword"
           />
         </FormControl>
-        {error.confirmPassword && (
-          <Alert severity="error">{error.confirmPassword}</Alert>
-        )}
+        {error.confirmPassword && (<Alert severity="error">{error.confirmPassword}</Alert>)}
       </Box>
     </div>
   );
