@@ -156,12 +156,11 @@ function CardJuridica(props) {
 
   const idsCandidatura = {
     prestadorId: idPrestador,
-    anuncioId: 3,
   }
 
   const handleCandidatar = () => {
     axios
-      .post(`http://localhost:9999/prestador/candidatar/`, JSON.stringify(idsCandidatura), {
+      .post(`http://localhost:9999/prestador/candidatar/${1}`, JSON.stringify(idsCandidatura), {
         headers: {
           "Content-Type": "application/json",
         },
