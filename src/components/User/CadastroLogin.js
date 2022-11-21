@@ -58,10 +58,13 @@ const ButttonEditarFoto = styled.button`
 `;
 
 function FormCadastro() {
+
+  localStorage.removeItem('idUsuario');
+
   const { Usuario, setUsuario } = useAuth();
 
   const [input, setInput] = useState({
-    Email: Usuario.email,
+    Email: Usuario.Email,
     Password: Usuario.Password,
     ConfirmPassword: Usuario.ConfirmPassword,
     NotifyEmail: Usuario.NotifyEmail,
