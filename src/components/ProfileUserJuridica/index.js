@@ -8,7 +8,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 import { FiFilter } from "react-icons/fi";
-import ProfilePhoto from "../../assets/Profile.png";
+import Prestador from "../../assets/Prestador.png";
 
 import { Link } from "react-router-dom";
 
@@ -264,25 +264,24 @@ function ProfileUserJuridica() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleBio = () => {
+  const handleUser = (id) => {
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/prestador/home/${2}`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
+        console.log(res.data);
         setUsuario(res.data);
-        console.log("Deu certo");
       })
       .catch((error) => {
-        // Trate o erro aqui.
         console.log("Whoops! Houve um erro.", error.message || error);
       });
   };
 
   useEffect(() => {
-    handleBio();
+    handleUser();
   }, []);
 
   return (
@@ -292,7 +291,7 @@ function ProfileUserJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={Prestador} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -357,13 +356,18 @@ function ProfileUserJuridica() {
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <SpanNomeAvaliado type="checkbox" />
-              Ofertas Atuais
+              <LinkSeleccion to="/profile-juridica-oferta-atual">
+                <SpanNomeAvaliado type="checkbox" />
+                Ofertas Atuais
+              </LinkSeleccion>
+
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <SpanNomeAvaliado type="checkbox" />
-              Candidaturas
+              <LinkSeleccion to="/profile-juridica-candidaturas">
+                <SpanNomeAvaliado type="checkbox" />
+                Candidaturas
+              </LinkSeleccion>
             </DivNomeAvaliado>
           </Box>
         </Modal>

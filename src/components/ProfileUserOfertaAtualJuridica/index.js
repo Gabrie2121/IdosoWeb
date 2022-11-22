@@ -342,14 +342,14 @@ function ProfileUserOfertaAtualJuridica() {
 
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-ofertas-aberto">
+                            <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Ofertas em Aberto
                             </LinkSeleccion>
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-oferta-atual">
+                            <LinkSeleccion to="/profile-juridica-oferta-atual">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Oferta Atual
                             </LinkSeleccion>

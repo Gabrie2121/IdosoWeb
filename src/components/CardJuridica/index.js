@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 
-import { Link } from "react-router-dom";
-import aliceImage from "../../assets/Prestador.png";
+import TodoCuidado from "../../assets/TodoCuidado.png";
 
 const WrapperCard = styled.div`
   min-width: 100%;
@@ -39,7 +38,7 @@ const DivPhoto = styled.div`
 
 const ImageProfile = styled.img`
   image-resolution: initial;
-  width: 30%;
+  width: 25%;
   margin: 0 10px;
 `;
 
@@ -179,7 +178,7 @@ function CardJuridica(props) {
 
       <CardDiv>
         <DivPhoto>
-          <ImageProfile src={aliceImage} />
+          <ImageProfile src={TodoCuidado} />
 
           <DivText>{props.nameJuridica}</DivText>
 
