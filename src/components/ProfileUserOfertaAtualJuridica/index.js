@@ -9,7 +9,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import ProfilePhoto from "../../assets/Profile.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
+import CardPeople from "../CardJuridica";
 import Header from "../Header";
 
 import Box from '@mui/material/Box';
@@ -188,19 +188,6 @@ const DivTextDescriptionSecond = styled.text`
     font-weight: 400; 
 `
 
-const DivTextSelectFilter = styled.div`
-    width: 100%;
-    height: 80%;
-    display: flex;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400; 
-`
-
 const LinkFilter = styled(Link)`
     text-decoration: none;
     color: #fff;
@@ -355,14 +342,14 @@ function ProfileUserOfertaAtualJuridica() {
 
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-ofertas-aberto">
+                            <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Ofertas em Aberto
                             </LinkSeleccion>
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-oferta-atual">
+                            <LinkSeleccion to="/profile-juridica-oferta-atual">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Oferta Atual
                             </LinkSeleccion>

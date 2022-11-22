@@ -9,7 +9,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 
 import Prestador from "../../assets/Prestador.png";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardPeople from "../CardFisica";
 import Header from "../Header";
 
@@ -280,15 +280,34 @@ const DivTitle = styled.h1`
   margin: 0 10px;
 `;
 
-function ProfileUserOfertasAbertoJuridica() {
+function ProfileUserCandidaturasJuridica(props) {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
-  const [anuncios, setAnuncios] = React.useState([]);
+  const [candidaturas, setCandidaturas] = React.useState([]);
+  const [usuarioPf, setUsuarioPF] = React.useState();
+
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleUser = (id) => {
+  const handleUserPf = () => {
+    axios
+      .get(`http://localhost:9999/idoso/home/${1}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Id Usuario", res.data.id);
+        setUsuarioPF(res.data.id)
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  }
+
+  const handleUser = () => {
     const idPrestador = localStorage.getItem("idUsuario")
     axios
       .get(`http://localhost:9999/prestador/home/${idPrestador}`, {
@@ -305,16 +324,16 @@ function ProfileUserOfertasAbertoJuridica() {
       });
   };
 
-  const handleOfertas = () => {
+  const handleCandidaturas = () => {
     axios
-      .get(`http://localhost:9999/prestador/anunciosCriados`, {
+      .get(`http://localhost:9999/idoso/home/candidaturas/${1}`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
         console.log(res.data);
-        setAnuncios(res.data);
+        setCandidaturas(res.data);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -322,8 +341,9 @@ function ProfileUserOfertasAbertoJuridica() {
   };
 
   useEffect(() => {
-    handleOfertas();
+    handleCandidaturas();
     handleUser();
+    handleUserPf();
   }, []);
 
   return (
@@ -383,16 +403,15 @@ function ProfileUserOfertasAbertoJuridica() {
                 <FiFilter size={30} />
               </LinkFilter>
             </DivLink>
-            <DivTitle>Ofertas em Aberto</DivTitle>
-            {anuncios.map((anuncio) => {
-              console.log(anuncio);
+            <DivTitle>Candidaturas</DivTitle>
+            {candidaturas.map((candidatura) => {
+              console.log(candidatura);
               return (
                 <CardJuridica
-                  nameJuridica={anuncio.nomeIdoso}
-                  priceJuridica={`${anuncio.valor},00`}
-                  avaliacaoJuridica={`(${anuncio.avaliacao} em avaliação)`}
-                  pcd={anuncio.IsPcd}
-                  periodo={anuncio.periodoEnum}
+                  nameJuridica={candidatura.nomeIdoso}
+                  priceJuridica={`${candidatura.valorHora},00`}
+                  avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
+                // periodo={candidatura.periodoEnum}
                 />
               );
             })}
@@ -423,10 +442,8 @@ function ProfileUserOfertasAbertoJuridica() {
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-juridica-candidaturas">
-                <SpanNomeAvaliado type="checkbox" />
-                Candidaturas
-              </LinkSeleccion >
+              <SpanNomeAvaliado type="checkbox" />
+              Candidaturas
             </DivNomeAvaliado>
           </Box>
         </Modal>
@@ -435,4 +452,4 @@ function ProfileUserOfertasAbertoJuridica() {
   );
 }
 
-export default ProfileUserOfertasAbertoJuridica;
+export default ProfileUserCandidaturasJuridica;
