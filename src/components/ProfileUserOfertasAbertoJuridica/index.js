@@ -297,7 +297,6 @@ function ProfileUserOfertasAbertoJuridica() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUsuario(res.data);
       })
       .catch((error) => {
@@ -313,7 +312,6 @@ function ProfileUserOfertasAbertoJuridica() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setAnuncios(res.data);
       })
       .catch((error) => {
@@ -385,7 +383,6 @@ function ProfileUserOfertasAbertoJuridica() {
             </DivLink>
             <DivTitle>Ofertas em Aberto</DivTitle>
             {anuncios.map((anuncio) => {
-              console.log(anuncio);
               return (
                 <CardJuridica
                   nameJuridica={anuncio.nomeIdoso}
