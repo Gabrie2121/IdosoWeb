@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import axios from "axios";
@@ -149,28 +149,51 @@ const DivTitle = styled.h1`
 `;
 
 function CardJuridica(props) {
+  const [anuncioIds, setAnuncioIds] = React.useState([]);
 
-    const idPrestador = localStorage.getItem("idUsuario")
+  const idPrestador = localStorage.getItem("idUsuario")
 
 
   const idsCandidatura = {
     prestadorId: idPrestador,
   }
 
-  const handleCandidatar = () => {
-    axios
-      .post(`http://localhost:9999/prestador/candidatar/${1}`, JSON.stringify(idsCandidatura), {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log("Post", res.data.anuncioId);
-      })
+  const idsAnuncios = () => {
+    axios.get(`http://localhost:9999/prestador/anuncioIds`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      console.log("Responde dataID:", res.data);
+      setAnuncioIds(res.data);
+    })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
-      });
-  };
+      })
+  }
+
+  const handleCandidatar = () => {
+    anuncioIds.map(anuncioId => {
+      console.log("id:", anuncioId.id)
+      axios
+        .post(`http://localhost:9999/prestador/candidatar/${anuncioId.id}`, JSON.stringify(idsCandidatura), {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log("Post", res.data.anuncioId);
+        })
+        .catch((error) => {
+          console.log("Whoops! Houve um erro.", error.message || error);
+        });
+    })
+  }
+
+  useEffect(() => {
+    idsAnuncios();
+
+  }, []);
 
   return (
     <WrapperCard>
