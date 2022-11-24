@@ -280,7 +280,7 @@ const DivTitle = styled.h1`
   margin: 0 10px;
 `;
 
-function ProfileUserCandidaturasJuridica(props) {
+function ProfileUserCandidaturasJuridica() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
   const [candidaturas, setCandidaturas] = React.useState([]);
@@ -349,7 +349,7 @@ function ProfileUserCandidaturasJuridica(props) {
 
   useEffect(() => {
     handleUserPf();
-  }, [handleCandidaturas])
+  }, [candidaturas])
 
   return (
     <div>
