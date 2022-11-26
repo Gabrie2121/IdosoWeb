@@ -8,7 +8,7 @@ import { AiFillStar } from "react-icons/ai";
 import TodoCuidado from "../../assets/TodoCuidado.png";
 import aliceImage from '../../assets/Prestador.png';
 
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, Rating, Stack, TextField } from "@mui/material";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
 
@@ -470,7 +470,6 @@ function CardCandidatar(props) {
         </CardDiv>
 
       </WrapperCard>
-
       <Modal
         open={open}
         onClose={handleClose}
@@ -480,7 +479,7 @@ function CardCandidatar(props) {
         <Box sx={modalStyle}>
           <DivHeaderModal>
             <DivProfieImageModal>
-              <ProfieImageModal src={aliceImage} />
+              <ProfieImageModal src={TodoCuidado} />
             </DivProfieImageModal>
             <DivProfileHeader>
               <DivCloseButton>
@@ -498,11 +497,15 @@ function CardCandidatar(props) {
               <DivHeaderBody>
                 <DivRatingFilter>
                   <DivRatingModal>
-
+                    <DivRating>
+                      <Stack spacing={1}>
+                        <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                      </Stack>
+                    </DivRating>
                   </DivRatingModal>
                   <DivFilterModal>
                     <DivPcdModal>
-                      <SpanPcdValueModal al>
+                      <SpanPcdValueModal>
                         Não
                       </SpanPcdValueModal>
                     </DivPcdModal>
@@ -533,16 +536,16 @@ function CardCandidatar(props) {
                       R$ 100,00
                     </SpanPayment>
                   </DivPaymentModal>
-                  <DivReportModal>
+                  {/* <DivReportModal>
                     <DivReportSpan>
                       <SpanReport>
                         Laudos
                       </SpanReport>
                     </DivReportSpan>
                     <DivAreaReport>
-
+                      <ReportImg src="" />
                     </DivAreaReport>
-                  </DivReportModal>
+                  </DivReportModal> */}
                 </DivPaymentReport>
               </DivHeaderBody>
             </DivProfileHeader>
@@ -566,9 +569,10 @@ function CardCandidatar(props) {
               Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
             </SpanTexto>
             <DivEnviarAvaliacao>
-              <Button onClick={() => console.log("click")} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
+              <Button onClick={handleOpen} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
             </DivEnviarAvaliacao>
           </DivBodyModal>
+
         </Box>
       </Modal>
     </div>
