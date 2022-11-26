@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import Prestador from "../../assets/Prestador.png";
+import TodoCuidado from "../../assets/TodoCuidado.png";
 
 import { Link, useParams } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -367,7 +367,7 @@ function ProfileUserCandidaturasJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={Prestador} />
+                <ImageProfile src={TodoCuidado} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -410,13 +410,11 @@ function ProfileUserCandidaturasJuridica() {
             </DivLink>
             <DivTitle>Candidaturas</DivTitle>
             {candidaturas.map((candidatura) => {
-              // console.log(candidatura);
               return (
                 <CardJuridica
                   nameJuridica={candidatura.nomeIdoso}
                   priceJuridica={`${candidatura.valorHora},00`}
                   avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
-                // periodo={candidatura.periodoEnum}
                 />
               );
             })}
