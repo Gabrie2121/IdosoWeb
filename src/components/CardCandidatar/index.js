@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 
 import axios from "axios";
@@ -393,43 +393,43 @@ function CardCandidatar(props) {
 
   const idPrestador = localStorage.getItem("idUsuario")
 
-
-  const idsCandidatura = {
-    prestadorId: idPrestador,
+  const idsAnuncios = () => {
+    axios.get(`http://localhost:9999/prestador/anuncioIds`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      setAnuncioIds(res.data);
+    })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      })
   }
 
-  // const idsAnuncios = () => {
-  //   axios.get(`http://localhost:9999/prestador/anuncioIds`, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   }).then((res) => {
-  //     setAnuncioIds(res.data);
-  //   })
-  //     .catch((error) => {
-  //       console.log("Whoops! Houve um erro.", error.message || error);
-  //     })
-  // }
+  const handleAceitarCandidatar = () => {
+    anuncioIds.findIndex((anuncioId) => {
+      axios
+        .patch(`http://localhost:9999/idoso/candidaturas/aceitar/${anuncioId.id}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log("Post", res.data);
+        })
+        .catch((error) => {
+          console.log("Whoops! Houve um erro.", error.message || error);
+        });
+    })
 
-  // const handleCandidatar = () => {
+  }
 
-  //   axios
-  //     .post(`http://localhost:9999/prestador/candidatar/${1}`, JSON.stringify(idsCandidatura), {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log("Post", res.data.anuncioId);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Whoops! Houve um erro.", error.message || error);
-  //     });
+  const idAnunciosCallback = () => {
+    idsAnuncios()
+  }
 
-  // }
-
-  // useEffect(() => {
-  //   idsAnuncios();
+  // useMemo(() => {
+  //   idAnunciosCallback()
   // }, []);
 
   return (
@@ -569,7 +569,7 @@ function CardCandidatar(props) {
               Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
             </SpanTexto>
             <DivEnviarAvaliacao>
-              <Button onClick={handleOpen} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
+              <Button onClick={handleAceitarCandidatar} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
             </DivEnviarAvaliacao>
           </DivBodyModal>
 
