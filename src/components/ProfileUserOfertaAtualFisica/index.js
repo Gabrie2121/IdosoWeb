@@ -387,7 +387,6 @@ function ProfileUserOfertaAtualFisica() {
 
                 <DivOpenOffers>
                     <DivOpenOffersChildren>
-
                         <DivLink>
                             <LinkFilter to onClick={handleOpen} id="escolherOpcoes">
                                 <FiFilter size={30} />
