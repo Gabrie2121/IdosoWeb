@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import ProfilePhoto from "../../assets/Profile.png";
+import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -247,13 +247,7 @@ const SpanAvaliacao = styled.span`
   font-weight: 100;
 `;
 
-const DivIcone = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  margin: 1px 0;
-`;
+
 
 const DivNomeAvaliado = styled.div`
   margin-top: 15px;
@@ -488,8 +482,9 @@ function ProfileUserOfertasAbertoFisica() {
 
 
   const handleInformation = () => {
+    const idPf = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/idoso/home/${idPf}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -523,7 +518,7 @@ function ProfileUserOfertasAbertoFisica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={NossaMissao} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -603,7 +598,7 @@ function ProfileUserOfertasAbertoFisica() {
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion onClick={handleOpenCandidatura} to>
+              <LinkSeleccion to="/profile-fisica-candidatos">
                 <SpanNomeAvaliado type="checkbox" />
                 Candidatos
               </LinkSeleccion>
@@ -611,112 +606,6 @@ function ProfileUserOfertasAbertoFisica() {
           </Box>
         </Modal>
       </DivDad>
-
-      <Modal
-        open={openCandidatura}
-        onClose={handleCloseCandidatura}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={modalStyleCandidatura}>
-          <DivHeaderModal>
-            <DivProfieImageModal>
-              <ProfieImageModal src={ProfilePhoto} />
-            </DivProfieImageModal>
-            <DivProfileHeader>
-              <DivCloseButton>
-                <DivIcone>
-                  <IconButton onClick={handleCloseCandidatura} id="iconeFechar">
-                    <HighlightOffIcon id="iconClose" fontSize="large" />
-                  </IconButton>
-                </DivIcone>
-              </DivCloseButton>
-              <DivName>
-                <SpanAvaliacao>
-                  Alice Dolores dos Santos
-                </SpanAvaliacao>
-              </DivName>
-              <DivHeaderBody>
-                <DivRatingFilter>
-                  <DivRatingModal>
-                    <DivRating>
-                      <Stack spacing={1}>
-                        <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
-                      </Stack>
-                    </DivRating>
-                  </DivRatingModal>
-                  <DivFilterModal>
-                    <DivPcdModal>
-                      <SpanPcdValueModal>
-                        Não
-                      </SpanPcdValueModal>
-                    </DivPcdModal>
-                    <SpanPcdModal>
-                      PCD
-                    </SpanPcdModal>
-                    <SpanTimeModal>
-                      Período
-                    </SpanTimeModal>
-                    <DivTimeModal>
-                      <SpanTimeValueModal>
-                        Matutino
-                      </SpanTimeValueModal>
-                    </DivTimeModal>
-                    <SpanAgeModal>
-                      Idade
-                    </SpanAgeModal>
-                    <DivAgeModal>
-                      <SpanAgeValueModal>
-                        74 anos
-                      </SpanAgeValueModal>
-                    </DivAgeModal>
-                  </DivFilterModal>
-                </DivRatingFilter>
-                <DivPaymentReport>
-                  <DivPaymentModal>
-                    <SpanPayment>
-                      R$ 100,00
-                    </SpanPayment>
-                  </DivPaymentModal>
-                  {/* <DivReportModal>
-                    <DivReportSpan>
-                      <SpanReport>
-                        Laudos
-                      </SpanReport>
-                    </DivReportSpan>
-                    <DivAreaReport>
-                      <ReportImg src="" />
-                    </DivAreaReport>
-                  </DivReportModal> */}
-                </DivPaymentReport>
-              </DivHeaderBody>
-            </DivProfileHeader>
-            <DivNomeAvaliado>
-            </DivNomeAvaliado>
-          </DivHeaderModal>
-          <DivBodyModal>
-            <DivComentario>
-            </DivComentario>
-            <DivTextField>
-              <TextField
-                id="outlined-multiline-static"
-                multiline
-                rows={8}
-                inputProps={
-                  { readOnly: true, }
-                }
-              />
-            </DivTextField>
-            <SpanTexto>
-              Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
-            </SpanTexto>
-            <DivEnviarAvaliacao>
-              <Button onClick={handleOpenCandidatura} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
-            </DivEnviarAvaliacao>
-          </DivBodyModal>
-
-        </Box>
-      </Modal>
     </div>
   );
 }
