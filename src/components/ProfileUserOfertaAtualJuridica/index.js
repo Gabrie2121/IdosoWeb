@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+
+import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 
-import ProfilePhoto from "../../assets/Profile.png";
+import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
 import CardPeople from "../CardJuridica";
@@ -15,6 +17,7 @@ import Header from "../Header";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { FiFilter } from "react-icons/fi";
+import CardJuridica from "../CardJuridica";
 
 
 
@@ -251,11 +254,60 @@ const LinkSeleccion = styled(Link)`
     gap: 10px;
 `
 
-
+const DivTitle = styled.h1`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+`;
 
 
 
 function ProfileUserOfertaAtualJuridica() {
+
+    const [usuario, setUsuario] = React.useState({});
+    const [ofertaAtual, setOfertaAtual] = React.useState([]);
+
+
+    const handleUser = () => {
+        const idPrestador = localStorage.getItem("idUsuario")
+        axios
+            .get(`http://localhost:9999/prestador/home/${idPrestador}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                setUsuario(res.data);
+            })
+            .catch((error) => {
+                console.log("Whoops! Houve um erro.", error.message || error);
+            });
+    };
+
+
+    const handleAnuncioAtual = () => {
+        const idPf = localStorage.getItem("idUsuario")
+        axios
+            .get(`http://localhost:9999/prestador/getAceitas/${idPf}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                setOfertaAtual(res.data);
+                console.log("Deu certo", res.data);
+            })
+            .catch((error) => {
+                console.log("Whoops! Houve um erro.", error.message || error);
+            });
+    };
+
+    useEffect(() => {
+        handleUser();
+        handleAnuncioAtual();
+    }, []);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -277,12 +329,12 @@ function ProfileUserOfertaAtualJuridica() {
                     <DivDataProfileChildren>
                         <DivDataProfileLittleOne>
                             <DivPhoto>
-                                <ImageProfile src={ProfilePhoto} />
+                                <ImageProfile src={NossaMissao} />
                             </DivPhoto>
-                            <DivText>José Nascimento</DivText>
+                            <DivText>{usuario.nome}</DivText>
                             <DivLocation>
                                 <MdOutlineLocationOn size={30} fill={"#FFF"} />
-                                <TextCity>São Paulo</TextCity>
+                                <TextCity>{usuario.cidade}</TextCity>
                             </DivLocation>
                         </DivDataProfileLittleOne>
                         <DivValuation>
@@ -293,7 +345,7 @@ function ProfileUserOfertaAtualJuridica() {
                                 <AiFillStar size={30} fill={"#FFC700"} />
                                 <AiFillStar size={30} fill={"#FFC700"} />
                             </DivStars>
-                            <DivTextStar>(5,0 em avaliação)</DivTextStar>
+                            <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar>
                         </DivValuation>
 
                     </DivDataProfileChildren>
@@ -307,7 +359,7 @@ function ProfileUserOfertaAtualJuridica() {
                         <DivDataDescriptionTextTwo>
 
                             <DivTextDescriptionSecond>
-                                Sou José tenho 29 anos, sou Neto da Dona Alice, e estamos atrás de pessoas que posso cuidar dela.
+                                {usuario.biografia}
                             </DivTextDescriptionSecond>
                         </DivDataDescriptionTextTwo>
                     </DivDataDescriptionChildren>
@@ -323,8 +375,17 @@ function ProfileUserOfertaAtualJuridica() {
                                 <FiFilter size={30} />
                             </LinkFilter>
                         </DivLink>
-
-                        <CardPeople title="Oferta Atual"/>
+                        <DivTitle>Oferta Atual</DivTitle>
+                        {ofertaAtual.map((oferta) => {
+                            console.log(oferta);
+                            return (
+                                <CardJuridica
+                                    nameJuridica={oferta.nomeIdoso}
+                                    priceJuridica={`${oferta.valorHora},00`}
+                                    avaliacaoPeople={`(${oferta.avaliacao} em avaliação)`}
+                                />
+                            );
+                        })}
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
@@ -356,8 +417,10 @@ function ProfileUserOfertaAtualJuridica() {
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <SpanNomeAvaliado type="checkbox" />
-                            Candidaturas
+                            <LinkSeleccion to="/profile-juridica-candidaturas">
+                                <SpanNomeAvaliado type="checkbox" />
+                                Candidaturas
+                            </LinkSeleccion>
                         </DivNomeAvaliado>
 
 
