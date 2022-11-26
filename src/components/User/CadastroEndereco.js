@@ -24,6 +24,16 @@ const LinkPersonalization = styled(Link)`
 `;
 
 function FormCadastroEndereco() {
+  var idUsuario = localStorage.getItem("idUsuario");
+
+  var textButton = "";
+
+  if (idUsuario > 0) {
+    textButton = "Alterar";
+  } else {
+    textButton = "Cadastrar";
+  }
+
   const navigate = useNavigate();
 
   const { Usuario, setUsuario } = useAuth();
@@ -75,6 +85,7 @@ function FormCadastroEndereco() {
     event.preventDefault();
 
     const endereco = {
+      id: 1,
       cep: Usuario.CEP,
       uf: Usuario.UF,
       cidade: Usuario.Cidade,
@@ -90,6 +101,7 @@ function FormCadastroEndereco() {
       const profileEntities = [{ nome: "IDOSO" }];
 
       const userFisica = {
+        id: idUsuario,
         username: Usuario.Email,
         password: Usuario.Password,
         tipoPessoa: Usuario.TipoUsuario,
@@ -103,15 +115,17 @@ function FormCadastroEndereco() {
         foto: "asdf",
         endereco: endereco,
         profileEntities: profileEntities,
+        biografia : "Sobre mim..."
       };
 
       user = userFisica;
     } else {
       const profileEntities = [{ nome: "PRESTADOR" }];
 
-      const certificados = ["asd","asd"];
+      const certificados = ["asd", "asd"];
 
       const userJuridica = {
+        id: idUsuario,
         username: Usuario.Email,
         password: Usuario.Password,
         tipoPessoa: Usuario.TipoUsuario,
@@ -125,35 +139,66 @@ function FormCadastroEndereco() {
         endereco: endereco,
         profileEntities: profileEntities,
         certificados: certificados,
+        biografia : "Sobre mim..."
       };
 
       user = userJuridica;
     }
 
-    console.log(user);
+    console.log("user", user);
 
-    axios
-      .post(
-        `http://localhost:9999/open/cadastro/usuario`,
-        JSON.stringify(user),
-        { headers: { "Content-Type": "application/json" } }
-      )
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        alert("Usuario cadastrado com sucesso!");
+    try {
+      if (idUsuario > 0) {
+        axios
+          .put(
+            "http://localhost:9999/open/atualizar/usuario",
+            JSON.stringify(user),
+            { headers: { "Content-Type": "application/json"} }
+          )
+          .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            alert("Cadastro atualizado com sucesso!");
 
-        if (user.tipoPessoa == "FISICA") {
-          navigate("/profile-fisica");
-        } else {
-          navigate("/profile-juridica");
-        }
-      })
-      .catch((error) => {
-        // Trate o erro aqui.
-        alert(error.message);
-        console.log("Whoops! Houve um erro.", error.message || error);
-      });
+            if (user.tipoPessoa == "FISICA") {
+              navigate("/profile-fisica");
+            } else {
+              navigate("/profile-juridica");
+            }
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            alert(error.message);
+            console.log("Whoops! Houve um erro.", error.message || error);
+          });
+      } else {
+        axios
+          .post(
+            "http://localhost:9999/open/cadastro/usuario",
+            JSON.stringify(user),
+            { headers: { "Content-Type": "application/json" } }
+          )
+          .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            localStorage.setItem("idUsuario", res.data.id);
+            alert("Usuario cadastrado com sucesso!");
+
+            if (user.tipoPessoa == "FISICA") {
+              navigate("/profile-fisica");
+            } else {
+              navigate("/profile-juridica");
+            }
+          })
+          .catch((error) => {
+            // Trate o erro aqui.
+            alert(error.message);
+            console.log("Whoops! Houve um erro.", error.message || error);
+          });
+      }
+    } catch (err) {
+      console.log('ERRO ',err);
+    }
   };
 
   const checkCEP = (e) => {
@@ -253,9 +298,6 @@ function FormCadastroEndereco() {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        {/* <Button name="One" variant="contained" sx={{ borderRadius: 100, borderWidth: 1, backgroundColor: "#5BB159" }} onClick={() => imprimeUsuario()}>
-                    <LinkPersonalization to={"/profile"}>Cadastrar</LinkPersonalization>
-                </Button> */}
         <Button
           name="One"
           variant="contained"
@@ -266,7 +308,7 @@ function FormCadastroEndereco() {
             backgroundColor: "#5BB159",
           }}
         >
-          Cadastrar
+          {textButton}
         </Button>
       </Box>
     </div>

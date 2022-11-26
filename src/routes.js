@@ -19,6 +19,7 @@ import ProfileUserCandidaturasJuridica from './components/ProfileUserCandidatura
 import ProfileUserOfertaAtualFisica from './components/ProfileUserOfertaAtualFisica';
 import ProfileUserOfertasAbertoFisica from './components/ProfileUserOfertasAbertoFisica';
 import ProfileUserCandidatosFisica from './components/ProfileUserCandidatosFisica';
+import UpdateCadastro from './pages/UpdateCadastroUsuario';
 
 
 function Rotas() {
@@ -43,6 +44,8 @@ function Rotas() {
         <Route exact path="/profile-fisica-candidatos" element={<ProfileUserCandidatosFisica />} />
 
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/updateCadastro" element={<UpdateCadastro />} />
+
       </Routes>
     </Router>
   );

@@ -28,7 +28,7 @@ function UsuarioCadastro() {
 
   localStorage.removeItem('idUsuario');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [input, setInput] = useState({
         Email: "",
@@ -50,15 +50,14 @@ function UsuarioCadastro() {
             console.log(res);
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('idUsuario', res.data.userId);
+            localStorage.setItem('idUsuario', res.data.userId);       
             if(res.data.tipo == 'FISICA')
             {
-                navigate("/profile-fisica") 
-
+                navigate("/profile-fisica");                             
             }
             else
             {
-                navigate("/profile-juridica") 
+                navigate("/profile-juridica"); 
             }
           })
           .catch((error) => {
@@ -87,8 +86,7 @@ function UsuarioCadastro() {
 
   function onChange(ev) {
     const { name, value } = ev.target;
-    console.log(name, value);
-
+    
     if ([name] == "email") {
       setInput({ ...input, Email: value });
     } else if ([name] == "password") {
@@ -128,7 +126,7 @@ function UsuarioCadastro() {
             name="email"
             required
             id="outlined-required"
-            label="Alterar E-mail"
+            label="E-mail"
             onChange={onChange}
             value={input.Email}
           />
