@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import Prestador from "../../assets/Prestador.png";
+import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -340,7 +340,7 @@ function ProfileUserOfertasAbertoJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={Prestador} />
+                <ImageProfile src={NossaMissao} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
