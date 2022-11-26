@@ -8,7 +8,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 import { FiFilter } from "react-icons/fi";
-import Prestador from "../../assets/Prestador.png";
+import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
 
@@ -291,7 +291,7 @@ function ProfileUserJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={Prestador} />
+                <ImageProfile src={NossaMissao} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
