@@ -158,25 +158,23 @@ function CardJuridica(props) {
     prestadorId: idPrestador,
   }
 
-  const idsAnuncios = () => {
-    axios.get(`http://localhost:9999/prestador/anuncioIds`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      console.log("Responde dataID:", res.data);
-      setAnuncioIds(res.data);
-    })
-      .catch((error) => {
-        console.log("Whoops! Houve um erro.", error.message || error);
-      })
-  }
+  // const idsAnuncios = () => {
+  //   axios.get(`http://localhost:9999/prestador/anuncioIds`, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((res) => {
+  //     setAnuncioIds(res.data);
+  //   })
+  //     .catch((error) => {
+  //       console.log("Whoops! Houve um erro.", error.message || error);
+  //     })
+  // }
 
   const handleCandidatar = () => {
-    anuncioIds.map(anuncioId => {
-      console.log("id:", anuncioId.id)
+   
       axios
-        .post(`http://localhost:9999/prestador/candidatar/${anuncioId.id}`, JSON.stringify(idsCandidatura), {
+        .post(`http://localhost:9999/prestador/candidatar/${1}`, JSON.stringify(idsCandidatura), {
           headers: {
             "Content-Type": "application/json",
           },
@@ -187,13 +185,12 @@ function CardJuridica(props) {
         .catch((error) => {
           console.log("Whoops! Houve um erro.", error.message || error);
         });
-    })
+    
   }
 
-  useEffect(() => {
-    idsAnuncios();
-
-  }, []);
+  // useEffect(() => {
+  //   idsAnuncios();
+  // }, []);
 
   return (
     <WrapperCard>
