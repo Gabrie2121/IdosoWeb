@@ -404,8 +404,10 @@ function ProfileUserOfertaAtualFisica() {
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <SpanNomeAvaliado type="checkbox" />
-                            Candidatos
+                            <LinkSeleccion to="/profile-fisica-candidatos">
+                                <SpanNomeAvaliado type="checkbox" />
+                                Candidatos
+                            </LinkSeleccion>
                         </DivNomeAvaliado>
 
 
