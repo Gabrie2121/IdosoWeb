@@ -126,7 +126,7 @@ function UsuarioCadastro() {
             name="email"
             required
             id="outlined-required"
-            label="Alterar E-mail"
+            label="E-mail"
             onChange={onChange}
             value={input.Email}
           />

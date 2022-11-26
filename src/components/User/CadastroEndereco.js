@@ -115,6 +115,7 @@ function FormCadastroEndereco() {
         foto: "asdf",
         endereco: endereco,
         profileEntities: profileEntities,
+        biografia : "Sobre mim..."
       };
 
       user = userFisica;
@@ -138,6 +139,7 @@ function FormCadastroEndereco() {
         endereco: endereco,
         profileEntities: profileEntities,
         certificados: certificados,
+        biografia : "Sobre mim..."
       };
 
       user = userJuridica;
