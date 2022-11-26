@@ -8,7 +8,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 
-import ProfilePhoto from "../../assets/Profile.png";
+import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -281,6 +281,8 @@ const DivTitle = styled.h1`
 function ProfileUserOfertaAtualFisica() {
     const [open, setOpen] = React.useState(false);
     const [usuario, setUsuario] = React.useState({});
+    const [ofertaAtual, setOfertaAtual] = React.useState([]);
+
 
 
     const handleOpen = () => setOpen(true);
@@ -288,8 +290,9 @@ function ProfileUserOfertaAtualFisica() {
 
 
     const handleBio = () => {
+        const idPf = localStorage.getItem("idUsuario")
         axios
-            .get(`http://localhost:9999/idoso/home/${1}`, {
+            .get(`http://localhost:9999/idoso/home/${idPf}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -299,13 +302,32 @@ function ProfileUserOfertaAtualFisica() {
                 console.log("Deu certo");
             })
             .catch((error) => {
-                // Trate o erro aqui.
                 console.log("Whoops! Houve um erro.", error.message || error);
             });
     };
 
+
+    const handleAnuncioAtual = () => {
+        const idPf = localStorage.getItem("idUsuario")
+        axios
+            .get(`http://localhost:9999/idoso/getAceitas/${idPf}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                setOfertaAtual(res.data);
+                console.log("Deu certo", res.data);
+            })
+            .catch((error) => {
+                console.log("Whoops! Houve um erro.", error.message || error);
+            });
+    };
+
+
     useEffect(() => {
         handleBio();
+        handleAnuncioAtual();
     }, []);
 
 
@@ -325,7 +347,7 @@ function ProfileUserOfertaAtualFisica() {
                     <DivDataProfileChildren>
                         <DivDataProfileLittleOne>
                             <DivPhoto>
-                                <ImageProfile src={ProfilePhoto} />
+                                <ImageProfile src={NossaMissao} />
                             </DivPhoto>
                             <DivText>{usuario.nome}</DivText>
                             <DivLocation>
@@ -365,14 +387,23 @@ function ProfileUserOfertaAtualFisica() {
 
                 <DivOpenOffers>
                     <DivOpenOffersChildren>
-
                         <DivLink>
                             <LinkFilter to onClick={handleOpen} id="escolherOpcoes">
                                 <FiFilter size={30} />
                             </LinkFilter>
                         </DivLink>
                         <DivTitle>Oferta Atual</DivTitle>
-                        <CardPeople />
+                        {ofertaAtual.map((oferta) => {
+                            console.log(oferta);
+                            return (
+                                <CardPeople
+                                    namePeople={oferta.nome}
+                                    pricePeople={`${oferta.valorHora},00`}
+                                    avaliacaoPeople={`(${oferta.avaliacao} em avaliação)`}
+                                    formacaoPeople={oferta.curso}
+                                />
+                            );
+                        })}
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
@@ -404,8 +435,10 @@ function ProfileUserOfertaAtualFisica() {
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <SpanNomeAvaliado type="checkbox" />
-                            Candidatos
+                            <LinkSeleccion to="/profile-fisica-candidatos">
+                                <SpanNomeAvaliado type="checkbox" />
+                                Candidatos
+                            </LinkSeleccion>
                         </DivNomeAvaliado>
 
 

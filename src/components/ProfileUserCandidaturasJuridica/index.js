@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import Prestador from "../../assets/Prestador.png";
+import TodoCuidado from "../../assets/TodoCuidado.png";
 
 import { Link, useParams } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -280,31 +280,49 @@ const DivTitle = styled.h1`
   margin: 0 10px;
 `;
 
-function ProfileUserCandidaturasJuridica(props) {
+function ProfileUserCandidaturasJuridica() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
   const [candidaturas, setCandidaturas] = React.useState([]);
-  const [usuarioPf, setUsuarioPF] = React.useState();
+  const [usuarioPf, setUsuarioPF] = React.useState({});
 
 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleUserPf = () => {
+
+  const handleCandidaturas = () => {
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/idoso/home/candidaturas/`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        console.log("Id Usuario", res.data.id);
-        setUsuarioPF(res.data.id)
+        console.log(`Aqui handleCandidaturas`, res.data)
+        setCandidaturas(res.data);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
       });
+  };
+
+  const handleUserPf = () => {
+    candidaturas.map((candidatura) => {
+      axios
+        .get(`http://localhost:9999/idoso/home/${candidatura.idUsuario}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setUsuarioPF(res.data)
+        })
+        .catch((error) => {
+          console.log("Whoops! Houve um erro.", error.message || error);
+        });
+    })
   }
 
   const handleUser = () => {
@@ -316,7 +334,6 @@ function ProfileUserCandidaturasJuridica(props) {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUsuario(res.data);
       })
       .catch((error) => {
@@ -324,27 +341,15 @@ function ProfileUserCandidaturasJuridica(props) {
       });
   };
 
-  const handleCandidaturas = () => {
-    axios
-      .get(`http://localhost:9999/idoso/home/candidaturas/${1}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setCandidaturas(res.data);
-      })
-      .catch((error) => {
-        console.log("Whoops! Houve um erro.", error.message || error);
-      });
-  };
 
   useEffect(() => {
     handleCandidaturas();
     handleUser();
-    handleUserPf();
   }, []);
+
+  useEffect(() => {
+    handleUserPf();
+  }, [candidaturas])
 
   return (
     <div>
@@ -362,7 +367,7 @@ function ProfileUserCandidaturasJuridica(props) {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={Prestador} />
+                <ImageProfile src={TodoCuidado} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -405,13 +410,11 @@ function ProfileUserCandidaturasJuridica(props) {
             </DivLink>
             <DivTitle>Candidaturas</DivTitle>
             {candidaturas.map((candidatura) => {
-              console.log(candidatura);
               return (
                 <CardJuridica
                   nameJuridica={candidatura.nomeIdoso}
                   priceJuridica={`${candidatura.valorHora},00`}
                   avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
-                // periodo={candidatura.periodoEnum}
                 />
               );
             })}

@@ -10,13 +10,13 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import NossaMissao from "../../assets/NossaMissao.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../CardFisica";
 import Header from "../Header";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FiFilter } from "react-icons/fi";
 import CardJuridica from "../CardJuridica";
+import CardCandidatar from "../CardCandidatar";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -280,18 +280,22 @@ const DivTitle = styled.h1`
   margin: 0 10px;
 `;
 
-function ProfileUserOfertasAbertoJuridica() {
+function ProfileUserCandidatosFisica() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
-  const [anuncios, setAnuncios] = React.useState([]);
+  const [candidaturas, setCandidaturas] = React.useState([]);
+
+
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleUser = (id) => {
-    const idPrestador = localStorage.getItem("idUsuario")
+
+  const handleInformation = () => {
+    const idPf = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/prestador/home/${idPrestador}`, {
+      .get(`http://localhost:9999/idoso/home/${idPf}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -304,15 +308,17 @@ function ProfileUserOfertasAbertoJuridica() {
       });
   };
 
-  const handleOfertas = () => {
+  const handleCandidaturas = () => {
+    const idPf = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/prestador/anunciosCriados`, {
+      .get(`http://localhost:9999/idoso/getCandidatos/${idPf}`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        setAnuncios(res.data);
+        console.log(`Data:`, res.data)
+        setCandidaturas(res.data);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -320,8 +326,8 @@ function ProfileUserOfertasAbertoJuridica() {
   };
 
   useEffect(() => {
-    handleOfertas();
-    handleUser();
+    handleCandidaturas();
+    handleInformation();
   }, []);
 
   return (
@@ -381,15 +387,13 @@ function ProfileUserOfertasAbertoJuridica() {
                 <FiFilter size={30} />
               </LinkFilter>
             </DivLink>
-            <DivTitle>Ofertas em Aberto</DivTitle>
-            {anuncios.map((anuncio) => {
+            <DivTitle>Candidaturas</DivTitle>
+            {candidaturas.map((candidatura) => {
               return (
-                <CardJuridica
-                  nameJuridica={anuncio.nomeIdoso}
-                  priceJuridica={`${anuncio.valor},00`}
-                  avaliacaoJuridica={`(${anuncio.avaliacao} em avaliação)`}
-                  pcd={anuncio.IsPcd}
-                  periodo={anuncio.periodoEnum}
+                <CardCandidatar
+                  nameJuridica={candidatura.nome}
+                  priceJuridica={`${candidatura.valorHora},00`}
+                  avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
                 />
               );
             })}
@@ -406,30 +410,31 @@ function ProfileUserOfertasAbertoJuridica() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-juridica-ofertas-aberto">
+              <LinkSeleccion to="/profile-fisica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-juridica-oferta-atual">
+              <LinkSeleccion to="/profile-fisica-oferta-atual">
                 <SpanNomeAvaliado type="checkbox" />
                 Oferta Atual
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-juridica-candidaturas">
+              <LinkSeleccion to="/profile-fisica-candidatos">
                 <SpanNomeAvaliado type="checkbox" />
                 Candidaturas
-              </LinkSeleccion >
+              </LinkSeleccion>
             </DivNomeAvaliado>
+
           </Box>
         </Modal>
       </DivDad>
-    </div>
+    </div >
   );
 }
 
-export default ProfileUserOfertasAbertoJuridica;
+export default ProfileUserCandidatosFisica;

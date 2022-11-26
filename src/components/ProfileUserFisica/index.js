@@ -8,7 +8,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
 import { FiFilter } from "react-icons/fi";
-import ProfilePhoto from "../../assets/Profile.png";
+import TodoCuidado from "../../assets/TodoCuidado.png";
 
 import { Link } from "react-router-dom";
 
@@ -265,8 +265,9 @@ function ProfileUserF() {
   const handleClose = () => setOpen(false);
 
   const handleBio = () => {
+    const idPf = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/idoso/home/${idPf}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -292,7 +293,7 @@ function ProfileUserF() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={TodoCuidado} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>

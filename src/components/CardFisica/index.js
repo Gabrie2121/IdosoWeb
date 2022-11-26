@@ -6,7 +6,8 @@ import axios from "axios";
 import { AiFillStar } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-import aliceImage from "../../assets/Prestador.png";
+import NossaMissao from "../../assets/NossaMissao.png";
+
 
 const WrapperCard = styled.div`
   min-width: 100%;
@@ -156,7 +157,7 @@ function CardPeople(props) {
 
       <CardDiv>
         <DivPhoto>
-          <ImageProfile src={aliceImage} />
+          <ImageProfile src={NossaMissao} />
 
           <DivText>{props.namePeople}</DivText>
 
