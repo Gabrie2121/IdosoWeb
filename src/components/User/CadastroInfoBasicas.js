@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import "../../styles/global.css";
 import { useAuth } from "../../providers/auth";
-import "../../styles/global.css";
 import CadastroPF from "./CadInfoBasicaPF";
 import CadastroPJ from "./CadInfoBasicaPJ";
 
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 const Text = styled.span`
   display: flex;
   justify-content: center;
   color: #666666;
   font-size: 20pt;
+`;
+
+const TextInput = styled.span`
+  color: #666666;
 `;
 
 function FormCadastroInfoBasicas() {
@@ -38,14 +43,14 @@ function FormCadastroInfoBasicas() {
     Apelido: Usuario.Apelido,
     SituacaoTributaria: Usuario.SituacaoTributaria,
     Formacao: Usuario.Formacao,
-    UFEmpresa:Usuario.UFEmpresa,
+    UFEmpresa: Usuario.UFEmpresa,
     InscricaoEstadual: Usuario.InscricaoEstadual,
     Celular: Usuario.Celular
   });
 
   var cadastro = <CadastroPF />;
 
-  if (input.TipoUsuario == 'JURIDICA') {
+  if (input.TipoUsuario == "JURIDICA") {
     cadastro = <CadastroPJ />;
   } else {
     cadastro = <CadastroPF />;
@@ -65,17 +70,23 @@ function FormCadastroInfoBasicas() {
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <Text>Informações basicas</Text>
-        <Select
-          name="tipoUsuario"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={(input.TipoUsuario)}
-          label="Tipo Usuário"
-          onChange={onChange}
-        >
-          <MenuItem value={'JURIDICA'}>Pessoa Juridica</MenuItem>
-          <MenuItem value={'FISICA'}>Pessoa Fisica</MenuItem>
-        </Select>
+        <br></br>
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">
+            <TextInput>Tipo Pessoa</TextInput>
+          </InputLabel>
+          <Select
+            name="tipoUsuario"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={input.TipoUsuario}
+            label="Tipo Usuário"
+            onChange={onChange}
+          >
+            <MenuItem value={"JURIDICA"}>Pessoa Juridica</MenuItem>
+            <MenuItem value={"FISICA"}>Pessoa Fisica</MenuItem>
+          </Select>
+        </FormControl>
         {cadastro}
       </Box>
     </div>

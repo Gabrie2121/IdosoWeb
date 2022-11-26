@@ -15,6 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 const Text = styled.span`
   display: flex;
@@ -25,7 +26,9 @@ const Text = styled.span`
 
 function UsuarioCadastro() {
 
-    const navigate = useNavigate()
+  localStorage.removeItem('idUsuario');
+
+    const navigate = useNavigate();
 
     const [input, setInput] = useState({
         Email: "",
@@ -47,15 +50,14 @@ function UsuarioCadastro() {
             console.log(res);
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('idUsuario', res.data.userId);
+            localStorage.setItem('idUsuario', res.data.userId);       
             if(res.data.tipo == 'FISICA')
             {
-                navigate("/profile-fisica") 
-
+                navigate("/profile-fisica");                             
             }
             else
             {
-                navigate("/profile-juridica") 
+                navigate("/profile-juridica"); 
             }
           })
           .catch((error) => {
@@ -84,8 +86,7 @@ function UsuarioCadastro() {
 
   function onChange(ev) {
     const { name, value } = ev.target;
-    console.log(name, value);
-
+    
     if ([name] == "email") {
       setInput({ ...input, Email: value });
     } else if ([name] == "password") {
@@ -95,7 +96,16 @@ function UsuarioCadastro() {
 
   return (
     <div>
-      <Header linkOne="/" linkTwo="/" linkThree="/" linkFour="/" />
+       <Header
+        one="HOME"
+        two=""
+        three=""
+        four=""
+        linkOne="/"
+        linkTwo="/"
+        linkThree="/"
+        linkFour="/"
+      />
       <Box
         display="flex"
         justifyContent="center"
@@ -146,7 +156,8 @@ function UsuarioCadastro() {
               }
               label="Password"
             />
-            {aviso && <span className="err">{aviso}</span>}
+            <br></br>
+            {aviso &&  <Alert severity="error">{aviso}</Alert>}         
           </FormControl>
           <Button
             name="One"

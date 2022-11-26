@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+
+import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
@@ -9,7 +11,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import ProfilePhoto from "../../assets/Profile.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
+import CardPeople from "../CardFisica";
 import Header from "../Header";
 
 import Box from '@mui/material/Box';
@@ -264,15 +266,48 @@ const LinkSeleccion = styled(Link)`
     gap: 10px;
 `
 
+const DivTitle = styled.h1`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+`;
+
 
 
 
 
 function ProfileUserOfertaAtualFisica() {
-
     const [open, setOpen] = React.useState(false);
+    const [usuario, setUsuario] = React.useState({});
+
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+
+    const handleBio = () => {
+        axios
+            .get(`http://localhost:9999/idoso/home/${1}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                setUsuario(res.data);
+                console.log("Deu certo");
+            })
+            .catch((error) => {
+                // Trate o erro aqui.
+                console.log("Whoops! Houve um erro.", error.message || error);
+            });
+    };
+
+    useEffect(() => {
+        handleBio();
+    }, []);
+
 
     return (
         <div>
@@ -292,10 +327,10 @@ function ProfileUserOfertaAtualFisica() {
                             <DivPhoto>
                                 <ImageProfile src={ProfilePhoto} />
                             </DivPhoto>
-                            <DivText>José Nascimento</DivText>
+                            <DivText>{usuario.nome}</DivText>
                             <DivLocation>
                                 <MdOutlineLocationOn size={30} fill={"#FFF"} />
-                                <TextCity>São Paulo</TextCity>
+                                <TextCity>{usuario.cidade}</TextCity>
                             </DivLocation>
                         </DivDataProfileLittleOne>
                         <DivValuation>
@@ -306,7 +341,7 @@ function ProfileUserOfertaAtualFisica() {
                                 <AiFillStar size={30} fill={"#FFC700"} />
                                 <AiFillStar size={30} fill={"#FFC700"} />
                             </DivStars>
-                            <DivTextStar>(5,0 em avaliação)</DivTextStar>
+                            <DivTextStar>{`(${usuario.avaliacao} em avaliação)`}</DivTextStar>
                         </DivValuation>
 
                     </DivDataProfileChildren>
@@ -320,7 +355,7 @@ function ProfileUserOfertaAtualFisica() {
                         <DivDataDescriptionTextTwo>
 
                             <DivTextDescriptionSecond>
-                                Sou José tenho 29 anos, sou Neto da Dona Alice, e estamos atrás de pessoas que posso cuidar dela.
+                                {usuario.biografia}
                             </DivTextDescriptionSecond>
                         </DivDataDescriptionTextTwo>
                     </DivDataDescriptionChildren>
@@ -336,8 +371,8 @@ function ProfileUserOfertaAtualFisica() {
                                 <FiFilter size={30} />
                             </LinkFilter>
                         </DivLink>
-
-                        <CardPeople title="Oferta Atual"/>
+                        <DivTitle>Oferta Atual</DivTitle>
+                        <CardPeople />
                     </DivOpenOffersChildren>
                 </DivOpenOffers>
 
@@ -355,14 +390,14 @@ function ProfileUserOfertaAtualFisica() {
 
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-ofertas-aberto">
+                            <LinkSeleccion to="/profile-fisica-ofertas-aberto">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Ofertas em Aberto
                             </LinkSeleccion>
                         </DivNomeAvaliado>
 
                         <DivNomeAvaliado>
-                            <LinkSeleccion to="/profile-oferta-atual">
+                            <LinkSeleccion to="/profile-fisica-oferta-atual">
                                 <SpanNomeAvaliado type="checkbox" />
                                 Oferta Atual
                             </LinkSeleccion>
@@ -370,7 +405,7 @@ function ProfileUserOfertaAtualFisica() {
 
                         <DivNomeAvaliado>
                             <SpanNomeAvaliado type="checkbox" />
-                            Candidaturas
+                            Candidatos
                         </DivNomeAvaliado>
 
 

@@ -16,10 +16,8 @@ import Select from '@mui/material/Select';
 import MaskedInput from '../User/MaskedInput';
 
 const Text = styled.span`
-    display: flex;
-    justify-content: center;
     color: #666666;
-    font-size: 20pt;
+
 `
 
 function FormCadastroInfoBasicasPF() {
@@ -90,7 +88,7 @@ function FormCadastroInfoBasicasPF() {
                     <TextField name="sobrenome" required id="outlined-required" label="Sobrenome" onChange={onChange} value={(input.Sobrenome)} />
                     <MaskedInput name="celular"  mask="(99)99999-9999" value={(input.Celular)} onChange={onChange} label="Celular"/>
                         <FormControl fullWidth sx={{m:2}}>
-                            <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
+                            <InputLabel id="demo-simple-select-label"><Text>Sexo</Text></InputLabel>
                             <Select
                                 name='sexo'
                                 labelId="demo-simple-select-label"
@@ -98,6 +96,7 @@ function FormCadastroInfoBasicasPF() {
                                 value={(input.Sexo)}
                                 label="Genero"
                                 onChange={onChange}
+                                
                             >
                                 <MenuItem value={'M'}>Masculino</MenuItem>
                                 <MenuItem value={'F'}>Feminino</MenuItem>

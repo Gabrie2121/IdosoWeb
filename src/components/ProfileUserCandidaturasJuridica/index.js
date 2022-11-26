@@ -7,13 +7,16 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import { FiFilter } from "react-icons/fi";
-import ProfilePhoto from "../../assets/Profile.png";
+import Prestador from "../../assets/Prestador.png";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import CardPeople from "../CardFisica";
+import Header from "../Header";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { FiFilter } from "react-icons/fi";
+import CardJuridica from "../CardJuridica";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -140,10 +143,22 @@ const DivOpenOffers = styled.div`
 `;
 
 const DivOpenOffersChildren = styled.div`
-  width: 80%;
-  height: 95%;
+  width: 90%;
+  max-height: 95%;
   background-color: #5bb159;
   border-radius: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: #f4f4f4;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+  }
 `;
 
 const DivDataDescriptionTextOne = styled.div`
@@ -239,7 +254,7 @@ const DivIcone = styled.div`
 `;
 
 const DivNomeAvaliado = styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   gap: 10px;
 `;
@@ -257,14 +272,26 @@ const LinkSeleccion = styled(Link)`
   gap: 10px;
 `;
 
-function ProfileUserF() {
+const DivTitle = styled.h1`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+`;
+
+function ProfileUserCandidaturasJuridica(props) {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
+  const [candidaturas, setCandidaturas] = React.useState([]);
+  const [usuarioPf, setUsuarioPF] = React.useState();
+
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleBio = () => {
+  const handleUserPf = () => {
     axios
       .get(`http://localhost:9999/idoso/home/${1}`, {
         headers: {
@@ -272,27 +299,70 @@ function ProfileUserF() {
         },
       })
       .then((res) => {
-        setUsuario(res.data);
-        console.log("Deu certo");
+        console.log("Id Usuario", res.data.id);
+        setUsuarioPF(res.data.id)
       })
       .catch((error) => {
-        // Trate o erro aqui.
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  }
+
+  const handleUser = () => {
+    const idPrestador = localStorage.getItem("idUsuario")
+    axios
+      .get(`http://localhost:9999/prestador/home/${idPrestador}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUsuario(res.data);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
+
+  const handleCandidaturas = () => {
+    axios
+      .get(`http://localhost:9999/idoso/home/candidaturas/${1}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setCandidaturas(res.data);
+      })
+      .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
       });
   };
 
   useEffect(() => {
-    handleBio();
+    handleCandidaturas();
+    handleUser();
+    handleUserPf();
   }, []);
 
   return (
     <div>
+      <Header
+        two="HISTORICO DE CONTRATOS"
+        three="CRIAR OFERTA"
+        four="LOGOUT"
+        linkOne="/"
+        linkTwo="/criacaoanuncio"
+        linkThree="criacaoanuncio"
+        linkFour="/"
+      />
       <DivDad>
         <DivDataProfile>
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={Prestador} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -333,10 +403,18 @@ function ProfileUserF() {
                 <FiFilter size={30} />
               </LinkFilter>
             </DivLink>
-
-            <DivTextSelectFilter>
-              Selecione uma opção no filtro
-            </DivTextSelectFilter>
+            <DivTitle>Candidaturas</DivTitle>
+            {candidaturas.map((candidatura) => {
+              console.log(candidatura);
+              return (
+                <CardJuridica
+                  nameJuridica={candidatura.nomeIdoso}
+                  priceJuridica={`${candidatura.valorHora},00`}
+                  avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
+                // periodo={candidatura.periodoEnum}
+                />
+              );
+            })}
           </DivOpenOffersChildren>
         </DivOpenOffers>
 
@@ -350,20 +428,22 @@ function ProfileUserF() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-fisica-ofertas-aberto">
+              <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <SpanNomeAvaliado type="checkbox" />
-              Ofertas Atuais
+              <LinkSeleccion to="/profile-juridica-oferta-atual">
+                <SpanNomeAvaliado type="checkbox" />
+                Oferta Atual
+              </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
               <SpanNomeAvaliado type="checkbox" />
-              Candidatos
+              Candidaturas
             </DivNomeAvaliado>
           </Box>
         </Modal>
@@ -372,4 +452,4 @@ function ProfileUserF() {
   );
 }
 
-export default ProfileUserF;
+export default ProfileUserCandidaturasJuridica;

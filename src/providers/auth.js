@@ -27,7 +27,9 @@ export const AuthProvider = (props) => {
         UFEmpresa:'',
         InscricaoEstadual:'',
         NomeFantasia:'',
-        Celular:''
+        Celular:'',
+        Foto:'',
+        EnderecoId:''
     });
 
     return (

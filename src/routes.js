@@ -15,9 +15,11 @@ import ListaOfertas from './pages/ListaOfertas';
 import Login from './pages/Login';
 import ProfileUserOfertaAtualJuridica from './components/ProfileUserOfertaAtualJuridica';
 import ProfileUserOfertasAbertoJuridica from './components/ProfileUserOfertasAbertoJuridica';
-
+import ProfileUserCandidaturasJuridica from './components/ProfileUserCandidaturasJuridica';
 import ProfileUserOfertaAtualFisica from './components/ProfileUserOfertaAtualFisica';
 import ProfileUserOfertasAbertoFisica from './components/ProfileUserOfertasAbertoFisica';
+import UpdateCadastro from './pages/UpdateCadastroUsuario';
+
 
 
 function Rotas() {
@@ -38,7 +40,10 @@ function Rotas() {
         <Route exact path="/profile-fisica-oferta-atual" element={<ProfileUserOfertaAtualFisica />} />
         <Route exact path="/profile-juridica-ofertas-aberto" element={<ProfileUserOfertasAbertoJuridica />} />
         <Route exact path="/profile-juridica-oferta-atual" element={<ProfileUserOfertaAtualJuridica />} />
+        <Route exact path="/profile-juridica-candidaturas" element={<ProfileUserCandidaturasJuridica />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/updateCadastro" element={<UpdateCadastro />} />
+
       </Routes>
     </Router>
   );

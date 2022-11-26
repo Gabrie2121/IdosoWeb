@@ -7,15 +7,16 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import ProfilePhoto from "../../assets/Profile.png";
+import Prestador from "../../assets/Prestador.png";
 
 import { Link } from "react-router-dom";
-import CardPeople from "../Card";
+import CardPeople from "../CardFisica";
 import Header from "../Header";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FiFilter } from "react-icons/fi";
+import CardJuridica from "../CardJuridica";
 
 const DivDad = styled.div`
   width: 100vw;
@@ -287,16 +288,33 @@ function ProfileUserOfertasAbertoJuridica() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleInformation = () => {
+  const handleUser = (id) => {
+    const idPrestador = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/idoso/home/${1}`, {
+      .get(`http://localhost:9999/prestador/home/${idPrestador}`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
+        console.log(res.data);
         setUsuario(res.data);
-        setAnuncios(res.data.anunciosAberto);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  };
+
+  const handleOfertas = () => {
+    axios
+      .get(`http://localhost:9999/prestador/anunciosCriados`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setAnuncios(res.data);
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -304,7 +322,8 @@ function ProfileUserOfertasAbertoJuridica() {
   };
 
   useEffect(() => {
-    handleInformation();
+    handleOfertas();
+    handleUser();
   }, []);
 
   return (
@@ -323,7 +342,7 @@ function ProfileUserOfertasAbertoJuridica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={ProfilePhoto} />
+                <ImageProfile src={Prestador} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
@@ -368,11 +387,12 @@ function ProfileUserOfertasAbertoJuridica() {
             {anuncios.map((anuncio) => {
               console.log(anuncio);
               return (
-                <CardPeople
-                  namePeople={anuncio.nomePrestador}
-                  pricePeople={`${anuncio.valorHora},00`}
-                  avaliacaoPeople={`(${anuncio.avaliacao} em avaliação)`}
-                  formacaoPeople={anuncio.curso}
+                <CardJuridica
+                  nameJuridica={anuncio.nomeIdoso}
+                  priceJuridica={`${anuncio.valor},00`}
+                  avaliacaoJuridica={`(${anuncio.avaliacao} em avaliação)`}
+                  pcd={anuncio.IsPcd}
+                  periodo={anuncio.periodoEnum}
                 />
               );
             })}
@@ -389,22 +409,24 @@ function ProfileUserOfertasAbertoJuridica() {
             <SpanAvaliacao>Escolhe uma Opção</SpanAvaliacao>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-ofertas-aberto">
+              <LinkSeleccion to="/profile-juridica-ofertas-aberto">
                 <SpanNomeAvaliado type="checkbox" />
                 Ofertas em Aberto
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <LinkSeleccion to="/profile-oferta-atual">
+              <LinkSeleccion to="/profile-juridica-oferta-atual">
                 <SpanNomeAvaliado type="checkbox" />
                 Oferta Atual
               </LinkSeleccion>
             </DivNomeAvaliado>
 
             <DivNomeAvaliado>
-              <SpanNomeAvaliado type="checkbox" />
-              Candidaturas
+              <LinkSeleccion to="/profile-juridica-candidaturas">
+                <SpanNomeAvaliado type="checkbox" />
+                Candidaturas
+              </LinkSeleccion >
             </DivNomeAvaliado>
           </Box>
         </Modal>
