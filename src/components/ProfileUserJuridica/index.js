@@ -265,8 +265,9 @@ function ProfileUserJuridica() {
   const handleClose = () => setOpen(false);
 
   const handleUser = (id) => {
+    const idPJ = localStorage.getItem("idUsuario")
     axios
-      .get(`http://localhost:9999/prestador/home/${2}`, {
+      .get(`http://localhost:9999/prestador/home/${idPJ}`, {
         headers: {
           "Content-Type": "application/json",
         },
