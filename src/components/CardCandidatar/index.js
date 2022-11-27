@@ -384,53 +384,27 @@ const ProfieImageModal = styled.img`
 
 
 function CardCandidatar(props) {
-  const [anuncioIds, setAnuncioIds] = React.useState([]);
-
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const idPrestador = localStorage.getItem("idUsuario")
-
-  const idsAnuncios = () => {
-    axios.get(`http://localhost:9999/prestador/anuncioIds`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      setAnuncioIds(res.data);
-    })
-      .catch((error) => {
-        console.log("Whoops! Houve um erro.", error.message || error);
-      })
-  }
 
   const handleAceitarCandidatar = () => {
-    anuncioIds.findIndex((anuncioId) => {
-      axios
-        .patch(`http://localhost:9999/idoso/candidaturas/aceitar/${anuncioId.id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log("Post", res.data);
-        })
-        .catch((error) => {
-          console.log("Whoops! Houve um erro.", error.message || error);
-        });
-    })
-
+    const idPrestador = localStorage.getItem("idUsuario")
+    axios
+      .patch(`http://localhost:9999/idoso/candidaturas/aceitar/${idPrestador}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Post", res.data);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
   }
-
-  const idAnunciosCallback = () => {
-    idsAnuncios()
-  }
-
-  // useMemo(() => {
-  //   idAnunciosCallback()
-  // }, []);
 
   return (
     <div>

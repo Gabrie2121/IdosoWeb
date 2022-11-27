@@ -415,6 +415,7 @@ function ProfileUserCandidaturasJuridica() {
                   nameJuridica={candidatura.nomeIdoso}
                   priceJuridica={`${candidatura.valorHora},00`}
                   avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
+                  anuncioId={candidatura.anuncioId}
                 />
               );
             })}
