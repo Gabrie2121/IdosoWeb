@@ -18,13 +18,13 @@ import style from './../styles/criacaoAnuncio.css';
 
 import Header from "../components/Header/";
 
-import aliceImage from '../assets/criacaoOfertas/alice.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
 import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import MaskedInput from '../../src/components/User/MaskedInput';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import TodoCuidado from "../assets/TodoCuidado.png";
 
 
 import Uppy from '@uppy/core';
@@ -68,6 +68,7 @@ const DivDescription = styled.div`
 const DivCampoFoto = styled.div`
     width: 100%;
     height: 35%;
+    margin-left: 270px;
 `
 
 const ProfieImage1 = styled.img`
@@ -97,6 +98,7 @@ const ButttonEditarFoto = styled.button`
 const DivCampoDescricao = styled.div`
     width: 100%;
     height: 60%;
+    margin-left: 280px;
 `
 
 const DivSpanDescri = styled.div`
@@ -205,7 +207,7 @@ const DivFooter = styled.div`
     width: 100%;
     height: 50px;
     display: flex;
-    margin-left: 0%;
+    margin-left: 10%;
     align-items: center;
 `
 
@@ -311,9 +313,9 @@ function CriacaoAnuncio() {
             <DivBody>
                 <DivDescription>
                     <DivCampoFoto>
-                        <ProfieImage1 src={aliceImage} />
-                        <ButttonEditarFoto />
-                        <EditarFoto src={editarFoto} />
+                        <ProfieImage1 src={TodoCuidado} />
+                        {/* <ButttonEditarFoto />
+                        <EditarFoto src={editarFoto} /> */}
                     </DivCampoFoto>
                     <DivCampoDescricao>
                         <DivSpanDescri>
@@ -428,7 +430,7 @@ function CriacaoAnuncio() {
                                 </RadioGroup>
                             </FormControl>
                         </DivRadiosDoencas>
-                        <DivDragDrop>
+                        {/* <DivDragDrop>
                             <DragDrop
                                 width="200px"
                                 height="200px"
@@ -444,7 +446,7 @@ function CriacaoAnuncio() {
                                     },
                                 }}
                             />
-                        </DivDragDrop>
+                        </DivDragDrop> */}
                     </Column>
                 </DivForm>
             </DivBody>

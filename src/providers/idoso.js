@@ -25,6 +25,8 @@ export const IdosoProvider = (props) => {
         Periodo: '',
         Pagamento: '',
         Repetir: '',
+        DataInicial: '',
+        DataFinal: '',
         HoraInicial: '',
         HoraFinal: '',
     });

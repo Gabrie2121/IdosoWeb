@@ -17,10 +17,13 @@ import Select from '@mui/material/Select';
 
 import Header from "../components/Header/";
 
-import aliceImage from '../assets/criacaoOfertas/alice.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
 import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import MaskedInput from '../../src/components/User/MaskedInput';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import TodoCuidado from "../assets/TodoCuidado.png";
 
 
 import styled from 'styled-components';
@@ -55,6 +58,7 @@ const DivDescription = styled.div`
 const DivCampoFoto = styled.div`
     width: 100%;
     height: 35%;
+    margin-left: 210px;
 `
 
 
@@ -85,6 +89,7 @@ const ButttonEditarFoto = styled.button`
 const DivCampoDescricao = styled.div`
     width: 100%;
     height: 60%;
+    margin-left: 200px;
 `
 
 const DivSpanDescri = styled.div`
@@ -195,19 +200,37 @@ const DivFooterOptions = styled.div`
 `
 
 const DivRadiosMoradia = styled.div`
+    width: 400px;
     
 `
-const DivRepetirAnuncio = styled.div`
+const DivDataAnuncio = styled.div`
+    width: 550px;
+    flex-direction: row;
     margin-left: 20px;
+    display: flex;
 `
 
 const DivHorarios = styled.div`
     position: absolute;
     width: 350px;
-    margin-left: 460px;
+    margin-left: 550px;
     display: flex;
     flex-direction: row;
 `
+const DivDataInicial = styled.div`
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+`
+
+const DivDataFinal = styled.div`
+    position: absolute;
+    width: 160px;
+    margin-left: 175px;
+    display: flex;
+    flex-direction: row;
+`
+
 const DivHorarioInicial = styled.div`
     width: 175px;
     display: flex;
@@ -263,7 +286,7 @@ const DivFooter = styled.div`
     width: 100%;
     height: 50px;
     display: flex;
-    margin-left: 0%;
+    margin-left: 10%;
     align-items: center;
 `
 
@@ -295,6 +318,8 @@ function CriacaoAnuncio2() {
         Periodo: Idoso.Periodo,
         Pagamento: Idoso.Pagamento,
         Repetir: Idoso.Repetir,
+        DataInicial: Idoso.DataInicial,
+        DataFinal: Idoso.DataFinal,
         HoraInicial: Idoso.HoraInicial,
         HoraFinal: Idoso.HoraFinal,
 
@@ -337,6 +362,12 @@ function CriacaoAnuncio2() {
         }
         else if ([name] == 'repetir') {
             setInput({ ...input, Repetir: value });
+        }  
+        else if ([name] == 'datainicial') {
+            setInput({ ...input, DataInicial: value });
+        }
+        else if ([name] == 'datafinal') {
+            setInput({ ...input, DataFinal: value });
         }
         else if ([name] == 'horainicial') {
             setInput({ ...input, HoraInicial: value });
@@ -374,7 +405,9 @@ function CriacaoAnuncio2() {
                 "principal": true         }     },     
                 "periodo": Idoso.Periodo,     
                 "frequencia": Idoso.Frequencia,
-                "pagamentoBase": Idoso.Pagamento,     
+                "pagamentoBase": Idoso.Pagamento, 
+                "dInicio": Idoso.DataInicial,
+                "dFim": Idoso.DataFinal,    
                 "horaInicio": Idoso.HoraInicial,     
                 "horaFim": Idoso.HoraFinal,   
                 "moraJunto": Idoso.MoramJuntos,     
@@ -419,9 +452,9 @@ function CriacaoAnuncio2() {
             <DivBody>
                 <DivDescription>
                     <DivCampoFoto>
-                        <ProfieImage1 src={aliceImage} />
-                        <ButttonEditarFoto />
-                        <EditarFoto src={editarFoto} />
+                        <ProfieImage1 src={TodoCuidado} />
+                        {/* <ButttonEditarFoto />
+                        <EditarFoto src={editarFoto} /> */}
                     </DivCampoFoto>
                     <DivCampoDescricao>
                         <DivSpanDescri>
@@ -535,22 +568,40 @@ function CriacaoAnuncio2() {
                                     </RadioGroup>
                                 </FormControl>
                             </DivRadiosMoradia>
-                            <DivRepetirAnuncio>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-moradia">Repetir anúncio anterior?</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        id="row-radio-buttons-group"
-                                        defaultValue="Nao"
-                                        name="repetir"
-                                        onChange={onChange} value={(input.Repetir)}
-                                    >
-                                        <FormControlLabel id="simRadioOption" value="true" control={<Radio color="success" />} label="Sim" />
-                                        <FormControlLabel id="naoRadioOption" value="false" control={<Radio color="success" />} label="Não" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </DivRepetirAnuncio>
+                            <DivDataAnuncio>
+                                <DivDataInicial>
+                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        <DatePicker
+                                            mask="__-__-____"
+                                            id="pagamentoTextField"
+                                            label="Data inicial" 
+                                            name="datainicial"
+                                            value={(input.DataInicial)}
+                                            onChange={(newValue) => {
+                                                setIdoso({ ...Idoso, DataInicial: newValue });
+                                                setInput({ ...input, DataInicial: newValue });
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
+                                </DivDataInicial>
+                                <DivDataFinal>
+                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        <DatePicker
+                                            mask="__-__-____"
+                                            id="pagamentoTextField"
+                                            label="Data final" 
+                                            name="datafinal"
+                                            value={(input.DataFinal)}
+                                            onChange={(newValue) => {
+                                                setIdoso({ ...Idoso, DataFinal: newValue });
+                                                setInput({ ...input, DataFinal: newValue });
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
+                                </DivDataFinal>
+                            </DivDataAnuncio>
                             <DivHorarios>
                                 <DivHorarioInicial>
                                     <DivSpanDas>
@@ -579,8 +630,7 @@ function CriacaoAnuncio2() {
                                             onChange={onChange} value={(input.HoraFinal)}
                                         />
                                     </DivTextFinal>
-                                </DivHorarioFinal>
-                               
+                                </DivHorarioFinal>                             
                             </DivHorarios>
                         </DivFooterOptions>
                         <Button 
