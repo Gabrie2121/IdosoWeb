@@ -31,9 +31,10 @@
     margin-left: 20px;
 }
 
-#demo-row-radio-buttons-group-label, #demo-row-radio-buttons-group-label-doenca {
+#demo-row-radio-buttons-group-label, #demo-row-radio-buttons-group-label-doenca #demo-row-radio-buttons-group-label-moradia{
     color: black;
 }
+
 
 #femininoRadio {
     margin-left: 10px;
