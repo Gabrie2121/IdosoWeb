@@ -5,6 +5,7 @@ export const IdosoContext = createContext({});
 export const IdosoProvider = (props) => {
     const [Idoso, setIdoso] = useState({
         Nome: '',
+        Descricao: '',
         Sobrenome: '',
         CPF: '',
         Genero: '',

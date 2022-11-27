@@ -118,3 +118,9 @@
     background-color: #5BB159;
     border: none;
 }
+
+#descricaoField {
+    width: 290px;
+    border-color: #E7E7E7;
+    font-size: 17pt;
+}

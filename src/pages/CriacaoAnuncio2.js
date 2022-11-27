@@ -61,7 +61,7 @@ const DivCampoFoto = styled.div`
 const ProfieImage1 = styled.img`
     width: 150px;
     height: 150px;
-    margin-left: 160px;
+    margin-left: 90px;
     margin-top: 30px;
 `
 
@@ -88,8 +88,9 @@ const DivCampoDescricao = styled.div`
 `
 
 const DivSpanDescri = styled.div`
-    width: 100%;
+    width: 20%;
     height: 5%;
+    margin-left: -30px;
 `
 
 const SpanDescricao = styled.span`
@@ -101,15 +102,10 @@ const SpanDescricao = styled.span`
 `
 
 const DivAreaDescri = styled.div`
-    width: 100%;
+    width: 80%;
     height: 90%;
-`
-
-const ImgCampoDescricao = styled.img`
-    width: 400px;
-    height: 270px;
-    margin-left: 30px;
-    margin-top: 20px;
+    margin-left: 380px;
+    margin-top: -30px;
 `
 const SpanBoxDescricao = styled.span`
     width: 360px;
@@ -279,6 +275,7 @@ function CriacaoAnuncio2() {
 
     const [input, setInput] = useState({
         Nome: Idoso.Nome,
+        Descricao: Idoso.Descricao,
         Sobrenome: Idoso.Sobrenome,
         CPF: Idoso.CPF,
         Genero: Idoso.Genero,
@@ -308,6 +305,9 @@ function CriacaoAnuncio2() {
         if ([name] == "cep") {
             setInput({ ...input, CEP: value });
           }
+        else if ([name] == 'descricao') {
+            setInput({ ...input, Descricao: value });
+        }
         else if ([name] == 'estado') {
             setInput({ ...input, Estado: value });
         }
@@ -378,7 +378,7 @@ function CriacaoAnuncio2() {
                 "horaInicio": Idoso.HoraInicial,     
                 "horaFim": Idoso.HoraFinal,   
                 "moraJunto": Idoso.MoramJuntos,     
-                "descricao": "Minha mãe é uma senhora muito legal e bla bla bla",     
+                "descricao": Idoso.Descricao,     
                 "foto": "YWJjZGVm",     
                 "laudos": ["YWJjZGVm", "YWJjZGVm"] 
         };
@@ -428,9 +428,14 @@ function CriacaoAnuncio2() {
                             <SpanDescricao> Descrição</SpanDescricao>
                         </DivSpanDescri>
                         <DivAreaDescri>
-                            <ImgCampoDescricao src={campoDescricao} />
                             <SpanBoxDescricao>
-                                Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
+                                <TextField  
+                                        id="descricaoField" 
+                                        name="descricao" 
+                                        onChange={onchange} 
+                                        multiline
+                                        rows={10}
+                                />
                             </SpanBoxDescricao>
                         </DivAreaDescri>
                     </DivCampoDescricao>
