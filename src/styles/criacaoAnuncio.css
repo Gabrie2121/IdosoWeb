@@ -121,6 +121,7 @@
 
 #descricaoField {
     width: 290px;
+    height: 230px !important;
     border-color: #E7E7E7;
     font-size: 17pt;
 }

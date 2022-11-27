@@ -156,7 +156,7 @@ const DivRadios = styled.div`
 
 const DivLogradouro = styled.div`
     margin-top: 260px;
-    margin-left: -1173px;
+    margin-left: -1253px;
 `
 
 const DivSelect = styled.div`
@@ -434,7 +434,7 @@ function CriacaoAnuncio2() {
                                         name="descricao" 
                                         onChange={onchange} 
                                         multiline
-                                        rows={10}
+                                        row={10}
                                 />
                             </SpanBoxDescricao>
                         </DivAreaDescri>

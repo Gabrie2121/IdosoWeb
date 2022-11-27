@@ -175,7 +175,7 @@ const SpanParentesco = styled.span`
 
 const DivSelect = styled.div`
     margin-top: 460px;
-    margin-left: -345px;
+    margin-left: -365px;
 
 `
 
@@ -326,6 +326,7 @@ function CriacaoAnuncio() {
                                     name="descricao" 
                                     onChange={onchange} 
                                     multiline
+                                    row={10}
                                 />
                             </SpanBoxDescricao>
                         </DivAreaDescri>
