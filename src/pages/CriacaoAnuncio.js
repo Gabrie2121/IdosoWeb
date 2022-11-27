@@ -1,4 +1,5 @@
-import React from "react";
+import React,  { useState } from "react";
+import { useIdoso } from '../providers/idoso';
 
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
@@ -20,6 +21,11 @@ import Header from "../components/Header/";
 import aliceImage from '../assets/criacaoOfertas/alice.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
 import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
+import MaskedInput from '../../src/components/User/MaskedInput';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+
 
 import Uppy from '@uppy/core';
 import '@uppy/core/dist/style.css';
@@ -67,7 +73,7 @@ const DivCampoFoto = styled.div`
 const ProfieImage1 = styled.img`
     width: 150px;
     height: 150px;
-    margin-left: 160px;
+    margin-left: 90px;
     margin-top: 30px;
 `
 
@@ -94,8 +100,9 @@ const DivCampoDescricao = styled.div`
 `
 
 const DivSpanDescri = styled.div`
-    width: 100%;
+    width: 20%;
     height: 5%;
+    margin-left: -30px;
 `
 
 const SpanDescricao = styled.span`
@@ -107,16 +114,12 @@ const SpanDescricao = styled.span`
 `
 
 const DivAreaDescri = styled.div`
-    width: 100%;
+    width: 80%;
     height: 90%;
+    margin-left: 380px;
+    margin-top: -30px;
 `
 
-const ImgCampoDescricao = styled.img`
-    width: 400px;
-    height: 270px;
-    margin-left: 30px;
-    margin-top: 20px;
-`
 const SpanBoxDescricao = styled.span`
     width: 360px;
     height: 200px;
@@ -172,7 +175,7 @@ const SpanParentesco = styled.span`
 
 const DivSelect = styled.div`
     margin-top: 460px;
-    margin-left: -345px;
+    margin-left: -365px;
 
 `
 
@@ -213,12 +216,6 @@ const DivDragDrop = styled.div`
 
 function CriacaoAnuncio() {
 
-    const [parentesco, setParentesco] = React.useState('');
-
-    const handleChange = (event) => {
-        setParentesco(event.target.value);
-    }
-
     const uppy = new Uppy({
         meta: { type: 'avatar' },
         restrictions: { maxNumberOfFiles: 1 },
@@ -229,18 +226,82 @@ function CriacaoAnuncio() {
         const url = result.successful[0].uploadURL
     })
 
+    //Connection
+
+    const { Idoso, setIdoso } = useIdoso();
+    
+    const [input, setInput] = useState({
+        Nome: Idoso.Nome,
+        Descricao: Idoso.Descricao,
+        Sobrenome: Idoso.Sobrenome,
+        CPF: Idoso.CPF,
+        Genero: Idoso.Genero,
+        DataNascimento: Idoso.DataNascimento,
+        Idade: Idoso.Idade, 
+        DoencaDisturbioConfirmacao: Idoso.DoencaDisturbioConfirmacao,
+        Parentesco: Idoso.Parentesco,
+        Frequencia: Idoso.Frequencia,
+        PCD: Idoso.PCD,
+        CEP: Idoso.CEP,
+        Estado: Idoso.Estado,
+        Cidade: Idoso.Cidade,
+        Logradouro: Idoso.Logradouro,
+        Complemento: Idoso.Complemento,
+        Apelido: Idoso.Apelido,
+        MoramJuntos: Idoso.MoramJuntos,
+        Periodo: Idoso.Periodo,
+        Pagamento: Idoso.Pagamento,
+        Repetir: Idoso.Repetir,
+        HoraInicial: Idoso.HoraInicial,
+        HoraFinal: Idoso.HoraFinal,
+    });
+
+        function onChange(ev) {
+            const { name, value } = ev.target;
+            if ([name] == 'nome') {
+                setInput({ ...input, Nome: value });
+            }
+            else if ([name] == 'descricao') {
+                setInput({ ...input, Descricao: value });
+            }
+            else if ([name] == 'sobrenome') {
+                setInput({ ...input, Sobrenome: value });
+            }
+            else if ([name] == 'cpf') {          
+                setInput({ ...input, CPF: value });
+            }
+            else if ([name] == 'datanascimento') {          
+                setInput({ ...input, DataNascimento: value });
+            }
+            else if ([name] == 'idade') {
+                setInput({ ...input, Idade: value });
+            }
+            else if ([name] == 'parentesco') {
+                setInput({ ...input, Parentesco: value });
+            }
+            else if ([name] == 'pcd') {
+                setInput({ ...input, PCD: value });
+            }
+            else if ([name] == 'genero') {
+                setInput({ ...input, Genero: value });
+            }
+            else if ([name] == 'doencadisturbio') {
+                setInput({ ...input, DoencaDisturbioConfirmacao: value });
+            }
+            setIdoso(input);
+        }
 
     return (
         <div>
-            <Header
+           <Header
                 one="MEU PERFIL"
                 two="FAVORITOS"
-                three="CRIAR OFERTA"
-                four="LOGOUT"
-                linkOne="/profile"
-                linkTwo="/favoritos"
-                linkThree="/criacaoanucio2"
-                linkFour="/"
+                three="LOGOUT"
+                four=""
+                linkOne=""
+                linkTwo=""
+                linkThree=""
+                linkFour=""
             />
             <DivTitle>
                 <SpanTitle>
@@ -259,9 +320,14 @@ function CriacaoAnuncio() {
                             <SpanDescricao> Descrição</SpanDescricao>
                         </DivSpanDescri>
                         <DivAreaDescri>
-                            <ImgCampoDescricao src={campoDescricao} />
                             <SpanBoxDescricao>
-                                Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
+                               <TextField  
+                                    id="descricaoField" 
+                                    name="descricao" 
+                                    onChange={onchange} 
+                                    multiline
+                                    row={10}
+                                />
                             </SpanBoxDescricao>
                         </DivAreaDescri>
                     </DivCampoDescricao>
@@ -269,32 +335,44 @@ function CriacaoAnuncio() {
                 <DivForm>
                     <Column>
                         <DivNome>
-                            <TextField id="nomeTextField" label="Nome" variant="outlined" />
+                            <TextField id="nomeTextField" label="Nome" variant="outlined" name="nome" onChange={onChange} value={(input.Nome)}/>
                         </DivNome>
                         <DivCpf>
-                            <TextField id="cpfTextField" label="CPF" variant="outlined" />
+                            <MaskedInput id="cpfTextField" label="CPF" mask="999.999.999-99"  name="cpf" onChange={onChange} value={(input.CPF)}/>
                         </DivCpf>
                         <DivNas>
-                            <TextField id="nasTextField" label="Data Nascimento" variant="outlined" />
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    mask="____-__-__"
+                                    label="Data de Nascimento"
+                                    value={(input.DataNascimento)}
+                                    onChange={(newValue) => {
+                                        setIdoso({ ...Idoso, DataNascimento: newValue });
+                                        setInput({ ...input, DataNascimento: newValue });
+                                    }}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                            </LocalizationProvider>
                         </DivNas>
                         <DivIdade>
-                            <TextField id="idadeTextField" label="Idade" variant="outlined" />
+                            <TextField id="idadeTextField" label="Idade" variant="outlined" name="idade"  onChange={onChange} value={(input.Idade)}/>
                         </DivIdade>
                         <SpanParentesco>Grau de parêntesco</SpanParentesco>
                         <DivSelect>
                             <FormControl fullWidth>
                                 <Select
-                                    value={parentesco}
                                     label="Grau de parêntesco"
                                     style={style.idadeTextField}
                                     id="parentescoSelect"
-                                    onChange={handleChange}
+                                    name="parentesco"
+                                    onChange={onChange} value={(input.Parentesco)}
                                 >
-                                    <MenuItem value={1}>Mãe</MenuItem>
-                                    <MenuItem value={2}>Tia</MenuItem>
-                                    <MenuItem value={3}>Avó</MenuItem>
-                                    <MenuItem value={4}>Tia avó</MenuItem>
-                                    <MenuItem value={5}>Prima</MenuItem>
+                                    {/* Consertar opcoes passadas aqui e o que o back aceita*/}
+                                    <MenuItem value="MAE" selected>Mãe</MenuItem>
+                                    <MenuItem value="TIA">Tia</MenuItem>
+                                    <MenuItem value="AVO">Avó</MenuItem>
+                                    <MenuItem value="TIAAVO">Tia avó</MenuItem>
+                                    <MenuItem value="PRIMA">Prima</MenuItem>
                                 </Select>
                             </FormControl>
                         </DivSelect>
@@ -304,18 +382,20 @@ function CriacaoAnuncio() {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    id="row-radio-buttons-group"
                                     defaultValue="Nao"
+                                    name="pcd"
+                                    onChange={onChange} value={(input.PCD)}
                                 >
-                                    <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
-                                    <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
+                                    <FormControlLabel id="simRadio" value="true" control={<Radio color="success" />} label="Sim" />
+                                    <FormControlLabel id="naoRadio" value="false" control={<Radio color="success" />} label="Não" />
                                 </RadioGroup>
                             </FormControl>
                         </DivRadios>
                     </Column>
                     <Column>
                         <DivSobrenome>
-                            <TextField id="sobrenomeTextField" label="Sobrenome" variant="outlined" />
+                            <TextField id="sobrenomeTextField" label="Sobrenome" variant="outlined" name="sobrenome" onChange={onChange} value={(input.Sobrenome)}/>
                         </DivSobrenome>
                         <DivRadiosGenero>
                             <FormControl>
@@ -323,10 +403,12 @@ function CriacaoAnuncio() {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    id="row-radio-buttons-group"
+                                    name="genero"
+                                    onChange={onChange} value={(input.Genero)}
                                 >
-                                    <FormControlLabel value="Masculino" id="masculinoRadio" control={<Radio color="success" />} label="Masculino" />
-                                    <FormControlLabel id="femininoRadio" value="Feminino" control={<Radio color="success" />} label="Feminino" />
+                                    <FormControlLabel value="M" id="masculinoRadio" control={<Radio color="success" />} label="Masculino" />
+                                    <FormControlLabel id="femininoRadio" value="F" control={<Radio color="success" />} label="Feminino" />
                                 </RadioGroup>
                             </FormControl>
                         </DivRadiosGenero>
@@ -336,10 +418,13 @@ function CriacaoAnuncio() {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    id="row-radio-buttons-group"
+                                    defaultValue="Nao"
+                                    name="doencadisturbio"
+                                    onChange={onChange} value={(input.DoencaDisturbioConfirmacao)}
                                 >
-                                    <FormControlLabel id="simRadio" value="Sim" control={<Radio color="success" />} label="Sim" />
-                                    <FormControlLabel id="naoRadio" value="Nao" control={<Radio color="success" />} label="Não" />
+                                    <FormControlLabel id="simRadio" value="true" control={<Radio color="success" />} label="Sim" />
+                                    <FormControlLabel id="naoRadio" value="false" control={<Radio color="success" />} label="Não" />
                                 </RadioGroup>
                             </FormControl>
                         </DivRadiosDoencas>
@@ -365,7 +450,7 @@ function CriacaoAnuncio() {
             </DivBody>
             <DivFooter>
                 <Button id="numberOneButton" variant="contained" disabled>1</Button>
-                <Button component={Link} to="/CriacaoAnuncio2" id="numberTwoButton" variant="contained">2</Button>
+                <Button component={Link} to="/criacaoanucio2" id="numberTwoButton" variant="contained">2</Button>
             </DivFooter>
         </div>
     )
