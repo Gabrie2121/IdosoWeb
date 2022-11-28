@@ -147,7 +147,7 @@ const DivTitle = styled.h1`
 `;
 
 const DivRating = styled.div`
-    margin-left: 220px;
+    margin-left: 20px;
     margin-top: 19px;
 `
 
@@ -164,19 +164,29 @@ const SpanComentario = styled.span`
 const DivTextField = styled.div`
     margin-top: 10px;
 `
+
+const  DivTexto = styled.div`
+  position: absolute;
+  margin-top: -190px;
+  margin-left: 50px;
+`
+
 const SpanTexto = styled.span`
   width: 500px;
-  margin-top: -220px;
-  margin-left: 30px;
   font-size: 12pt;
   font-weight: 100;
   color: black;
-  position: absolute;
 `
 
 const DivEnviarAvaliacao = styled.div`
     margin-left: 180px; 
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+`
+
+const DivAceitar = styled.div`
+  margin-top: 20px;
 `
 
 const modalStyle = {
@@ -186,7 +196,7 @@ const modalStyle = {
   transform: 'translate(-50%, -50%)',
   width: 550,
   height: 550,
-  bgcolor: 'background.paper',
+  bgcolor: 'white',
   p: 4,
   borderRadius: 3,
 };
@@ -231,7 +241,6 @@ const DivRatingFilter = styled.div`
 const DivRatingModal = styled.div`
       width: 100%;
       height: 50%;
-      background-color: white;
       display: flex;
       flex-direction: row;
   `
@@ -241,12 +250,12 @@ const DivFilterModal = styled.div`
   `
 const SpanPcdModal = styled.div`
   margin-top: 10px;
-  margin-left: 15px;
+  margin-left: 35px;
   color: #878787;
   font-size: 8pt;
   `
 const DivPcdModal = styled.div`
-      width: 60px;
+      width: 50%;
       height: 25px;
       background-color: #76BE74;
       border-radius: 20px;
@@ -257,65 +266,7 @@ const SpanPcdValueModal = styled.span`
       font-size: 10pt; 
       
   `
-
-const SpanTimeModal = styled.div`
-  margin-top: -13px;
-  margin-left: 92px;
-  color: #878787;
-  font-size: 8pt;
-  `
-
-const DivTimeModal = styled.div`
-      width: 90px;
-      height: 25px;
-      background-color: #76BE74;
-      border-radius: 20px;
-      margin-top: -47px;
-      margin-left: 70px;
-  `
-
-const SpanTimeValueModal = styled.span`
-      margin-left: 15px;
-      font-size: 10pt;
-  `
-
-const SpanAgeModal = styled.div`
-  margin-top: 9px;
-  margin-left: 195px;
-  color: #878787;
-  font-size: 8pt;
-  `
-
-const DivAgeModal = styled.div`
-      width: 80px;
-      height: 25px;
-      background-color: #76BE74;
-      border-radius: 20px;
-      margin-top: -47px;
-      margin-left: 166px;
-  `
-
-const SpanAgeValueModal = styled.span`
-      margin-left: 17px;
-      font-size: 10pt;
-  `
-
-
-const DivPaymentReport = styled.div`
-      width: 33%;
-      height: 100%;
-  `
-
-const DivPaymentModal = styled.div`
-      width: 100%;
-      height: 30%;
-  `
-
-const SpanPayment = styled.span`
-  font-size: 15pt;
-  font-weight: 100;
-  color: black;
-`
+  
 const DivReportModal = styled.div`
       width: 100%;
       height: 70%;
@@ -335,10 +286,6 @@ const SpanReport = styled.span`
 const DivAreaReport = styled.div`
       width: 100%;
       heigth: 80%; 
-  `
-const ReportImg = styled.img`
-      width: 125px;
-      height: 105px;
   `
 
 const DivBodyModal = styled.div`
@@ -388,6 +335,9 @@ function CardCandidatar(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [usuario, setUsuario] = React.useState({});
+  const [candidaturas, setCandidaturas] = React.useState([]);
+
 
 
   const handleAceitarCandidatar = () => {
@@ -400,6 +350,8 @@ function CardCandidatar(props) {
       })
       .then((res) => {
         console.log("Post", res.data);
+        alert("Oferta aceita com sucesso!");
+        handleClose();
       })
       .catch((error) => {
         console.log("Whoops! Houve um erro.", error.message || error);
@@ -465,7 +417,7 @@ function CardCandidatar(props) {
               </DivCloseButton>
               <DivName>
                 <SpanAvaliacao>
-                  Alice Dolores dos Santos
+                  {props.nameJuridica}
                 </SpanAvaliacao>
               </DivName>
               <DivHeaderBody>
@@ -480,36 +432,14 @@ function CardCandidatar(props) {
                   <DivFilterModal>
                     <DivPcdModal>
                       <SpanPcdValueModal>
-                        Não
+                      {props.formacao}
                       </SpanPcdValueModal>
                     </DivPcdModal>
                     <SpanPcdModal>
-                      PCD
+                      Formação
                     </SpanPcdModal>
-                    <SpanTimeModal>
-                      Período
-                    </SpanTimeModal>
-                    <DivTimeModal>
-                      <SpanTimeValueModal>
-                        Matutino
-                      </SpanTimeValueModal>
-                    </DivTimeModal>
-                    <SpanAgeModal>
-                      Idade
-                    </SpanAgeModal>
-                    <DivAgeModal>
-                      <SpanAgeValueModal>
-                        74 anos
-                      </SpanAgeValueModal>
-                    </DivAgeModal>
                   </DivFilterModal>
                 </DivRatingFilter>
-                <DivPaymentReport>
-                  <DivPaymentModal>
-                    <SpanPayment>
-                      R$ 100,00
-                    </SpanPayment>
-                  </DivPaymentModal>
                   {/* <DivReportModal>
                     <DivReportSpan>
                       <SpanReport>
@@ -520,7 +450,6 @@ function CardCandidatar(props) {
                       <ReportImg src="" />
                     </DivAreaReport>
                   </DivReportModal> */}
-                </DivPaymentReport>
               </DivHeaderBody>
             </DivProfileHeader>
             <DivNomeAvaliado>
@@ -539,11 +468,15 @@ function CardCandidatar(props) {
                 }
               />
             </DivTextField>
-            <SpanTexto>
-              Minha mãe, é uma senhora muito doce e  paciente.  Preciso que alguém faça companhia para ela nos períodos da tarde, ela perdeu meu pai recentemente. Precisa de atenção redobrada, por conta dos remédios.
-            </SpanTexto>
+            <DivTexto>
+              <SpanTexto>
+                {props.biografia}
+              </SpanTexto>
+            </DivTexto>
             <DivEnviarAvaliacao>
-              <Button onClick={handleAceitarCandidatar} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
+              <DivAceitar>
+                <Button onClick={handleAceitarCandidatar} id="aceitarButton" variant="contained">Aceitar Oferta</Button>
+              </DivAceitar>
             </DivEnviarAvaliacao>
           </DivBodyModal>
 

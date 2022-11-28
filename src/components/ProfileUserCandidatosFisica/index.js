@@ -325,6 +325,17 @@ function ProfileUserCandidatosFisica() {
       });
   };
 
+  const isAtivo = (ativo) => {
+    if (candidaturas.status === "ACEITA" ) {
+      ativo = true;
+    } else {
+      ativo = false;
+    }
+    console.log(ativo);
+    return ativo;
+  };
+
+
   useEffect(() => {
     handleCandidaturas();
     handleInformation();
@@ -389,9 +400,16 @@ function ProfileUserCandidatosFisica() {
             </DivLink>
             <DivTitle>Candidaturas</DivTitle>
             {candidaturas.map((candidatura) => {
+                // if (isAtivo===false) {
+                  
+                // }
               return (
+              
                 <CardCandidatar
+                  isAtivo={false}
                   nameJuridica={candidatura.nome}
+                  formacao={candidatura.curso}
+                  biografia={candidatura.biografia}
                   priceJuridica={`${candidatura.valorHora},00`}
                   avaliacaoJuridica={`(${candidatura.avaliacao} em avaliação)`}
                 />
