@@ -124,7 +124,7 @@ function FormCadastro() {
         case "password":
           if (input.Password && value !== input.ConfirmPassword) {
             stateObj["confirmPassword"] =
-              "Password and Confirm Password does not match.";
+              "Senhas não coincidem";
           } else {
             stateObj["confirmPassword"] = Usuario.confirmPassword
               ? ""
@@ -134,7 +134,7 @@ function FormCadastro() {
 
         case "confirmPassword":
           if (input.Password && value !== input.ConfirmPassword) {
-            stateObj[name] = "Password and Confirm Password does not match.";
+            stateObj[name] = "Senhas não coincidem.";
           }
           break;
 
