@@ -422,7 +422,7 @@ function CriacaoAnuncio2() {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            alert("Usuario cadastrado com sucesso!");
+            alert("Anúncio cadastrado com sucesso!");
         })
         .catch((error) => {
             // Trate o erro aqui.
