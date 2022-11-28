@@ -116,6 +116,7 @@ function FormCadastroInfoBasicasPJ() {
             label="UF"
             onChange={onChange}
             value={input.UFEmpresa}
+            inputProps={{ maxLength: 2 }}
           />
         </Box>
         <Box

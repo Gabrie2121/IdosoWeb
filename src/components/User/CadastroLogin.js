@@ -31,13 +31,12 @@ const ImageUser = styled.img`
 const DivCampoFoto = styled.div`
   width: 100%;
   height: 35%;
+  position: flex;
 `;
 
 const ProfieImage1 = styled.img`
   width: 150px;
   height: 150px;
-  margin-left: 160px;
-  margin-top: 30px;
 `;
 
 const EditarFoto = styled.img`
@@ -180,13 +179,9 @@ function FormCadastro() {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <DivCampoFoto>
           <ProfieImage1 src={foto} />
           {/* <input type={"file"} onChange={fileSelectedHandler}></input>
           <button onClick={fileUploadHandler}>Upload</button> */}
-          <ButttonEditarFoto/>
-          <EditarFoto src={editarFoto} />
-        </DivCampoFoto>
         <TextField
           name="email"
           required

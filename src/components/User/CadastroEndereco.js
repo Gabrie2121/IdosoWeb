@@ -253,6 +253,7 @@ function FormCadastroEndereco() {
             label="UF"
             onChange={onChange}
             value={input.UF}
+            inputProps={{ maxLength: 2 }}
           />
           <TextField
             name="Cidade"

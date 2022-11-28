@@ -109,6 +109,7 @@ function FormCadastroInfoBasicasPF() {
             value={input.Documento}
             onChange={onChange}
             label="CPF"
+            required
           />
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
