@@ -60,6 +60,7 @@ function FormCadastroEndereco() {
     UFEmpresa: Usuario.UFEmpresa,
     InscricaoEstadual: Usuario.InscricaoEstadual,
     Celular: Usuario.Celular,
+    Biografia: Usuario.Biografia
   });
 
   function onChange(ev) {
@@ -115,7 +116,7 @@ function FormCadastroEndereco() {
         foto: "asdf",
         endereco: endereco,
         profileEntities: profileEntities,
-        biografia : "Sobre mim..."
+        biografia : Usuario.Biografia
       };
 
       user = userFisica;
@@ -139,7 +140,7 @@ function FormCadastroEndereco() {
         endereco: endereco,
         profileEntities: profileEntities,
         certificados: certificados,
-        biografia : "Sobre mim..."
+        biografia : Usuario.Biografia
       };
 
       user = userJuridica;

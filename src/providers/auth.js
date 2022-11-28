@@ -29,7 +29,8 @@ export const AuthProvider = (props) => {
         NomeFantasia:'',
         Celular:'',
         Foto:'',
-        EnderecoId:''
+        EnderecoId:'',
+        Biografia:''
     });
 
     return (

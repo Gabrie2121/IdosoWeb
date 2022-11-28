@@ -15,6 +15,23 @@ const Text = styled.span`
   color: #666666;
 `;
 
+const DivAreaDescri = styled.div`
+  width: 80%;
+  height: 90%;
+  margin-left: 380px;
+  margin-top: -30px;
+`;
+
+const SpanBoxDescricao = styled.span`
+  width: 360px;
+  height: 200px;
+  position: flex;
+  margin-top: 60px;
+  margin-left: -380px;
+  font-weight: 500;
+  color: gray;
+`;
+
 function FormCadastroInfoBasicasPJ() {
   const { Usuario, setUsuario } = useAuth();
 
@@ -34,6 +51,7 @@ function FormCadastroInfoBasicasPJ() {
     SituacaoTributaria: Usuario.SituacaoTributaria,
     Formacao: Usuario.Formacao,
     InscricaoEstadual: Usuario.InscricaoEstadual,
+    Biografia: Usuario.Biografia
   });
 
   function onChange(ev) {
@@ -52,6 +70,8 @@ function FormCadastroInfoBasicasPJ() {
       setInput({ ...input, InscricaoEstadual: value });
     } else if ([name] == "formacao") {
       setInput({ ...input, Formacao: value });
+    } else if ([name] == "biografia") {
+      setInput({ ...input, Biografia: value });
     }
     setUsuario(input);
   }
@@ -138,6 +158,18 @@ function FormCadastroInfoBasicasPJ() {
             value={input.Formacao}
           />
         </Box>
+        <DivAreaDescri>
+        <SpanBoxDescricao>
+          <TextField
+            id="descricaoField"
+            name="biografia"
+            label="Biografia"
+            onChange={onChange}
+            multiline
+            value={input.Biografia}
+          />
+        </SpanBoxDescricao>
+      </DivAreaDescri>
       </Box>
     </div>
   );
