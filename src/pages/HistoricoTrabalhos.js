@@ -257,12 +257,12 @@ function HistoricoTrabalhos() {
                     </Items>
                 </DivSearch>
                 {hist.length == 0? <><h1 style={{color:"black"}}>SEM HISTORICO</h1></> : hist.map((value)=>{
-                        return <>
+                        return <React.Fragment key={value.id}>
                         <DivProfiles>
                     <DivProfileItem>
                         <Profile />
                         <SpanNome>
-                            Karina Alves
+                            {value.nomeParente}
                         </SpanNome>
                         <ProfileImage src={david} />
                         <HeartImage src={heartImg} />
@@ -270,16 +270,16 @@ function HistoricoTrabalhos() {
                             <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
                         </DivButton>
                         <SpanData>
-                            10/05/2022
+                            {value.dataFim}
                         </SpanData>
                         <SpanHorario>
-                            Das 09:00 às 12:00
+                            Das {value.horaInicio} às {value.horaFim}
                         </SpanHorario>
                         <SpanValor>
-                            R$ 250,00
+                            R$ {value.valorHora}
                         </SpanValor>
                         <SpanNomeIdoso>
-                            Alice Doles dos Santos
+                            {value.nomeIdoso}
                         </SpanNomeIdoso>
                     </DivProfileItem>
                 </DivProfiles>
@@ -329,7 +329,7 @@ function HistoricoTrabalhos() {
                      </DivEnviarAvaliacao>         
                     </Box>
                 </Modal>
-                </>
+                </React.Fragment>
                     })
                     
                     
