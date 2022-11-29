@@ -210,29 +210,30 @@ const DivEnviarAvaliacao = styled.div`
 
 
 function HistoricoContratos() {
-    const receiveHistorico = () =>{
+    const receiveHistorico = () => {
         const idPf = localStorage.getItem("idUsuario");
-        axios.get(`http://localhost:9999/prestador/historico/${idPf}`, {
+        axios.get(`http://localhost:9999/idoso/historico/${idPf}`, {
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
-          })
-          .then((res) => {
-            console.log(res.data);
-            setHist(res.data)
-          })
-          .catch((error) => {
-            console.log("Whoops! Houve um erro.", error.message || error);
-          });
+        })
+            .then((res) => {
+                console.log(res.data);
+                setHist(res.data)
+            })
+            .catch((error) => {
+                console.log("Whoops! Houve um erro.", error.message || error);
+            });
+
     }
     const [open, setOpen] = React.useState(false);
+    const [teste, setTeste] = React.useState(0);
     const [hist, setHist] = React.useState([]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
     useEffect(() => {
         receiveHistorico();
-      }, []);
+    }, []);
     return (
         <div>
             <Header
@@ -245,8 +246,8 @@ function HistoricoContratos() {
                 linkThree="/"
                 linkFour="/"
             />
-            
-                <DivBody>
+
+            <DivBody>
                 <DivSearch>
                     <Items>
                         <SpanHistorico>
@@ -257,86 +258,88 @@ function HistoricoContratos() {
                         <SearchField />
                     </Items>
                 </DivSearch>
-                {hist.length == 0? <><h1 style={{color:"black"}}>SEM HISTORICO</h1></> : hist.map((value)=>{
-                        return <>
+                {hist.length == 0 ? <><h1 style={{ color: "black" }}>SEM HISTORICO</h1></> : hist.map((value) => {
+                    setTeste(teste++)
+                    return <div key={value.nomeIdoso}>
                         <DivProfiles>
-                    <DivProfileItem>
-                        <Profile />
-                        <SpanNome>
-                            Karina Alves
-                        </SpanNome>
-                        <ProfileImage src={karina} />
-                        <HeartImage src={heartImg} />
-                        <DivButton>
-                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                        </DivButton>
-                        <SpanData>
-                            10/05/2022
-                        </SpanData>
-                        <SpanHorario>
-                            Das 09:00 às 12:00
-                        </SpanHorario>
-                        <SpanValor>
-                            R$ 250,00
-                        </SpanValor>
-                        <SpanNomeIdoso>
-                            Alice Doles dos Santos
-                        </SpanNomeIdoso>
-                    </DivProfileItem>
-                </DivProfiles>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={modalStyle}>
-                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                    <SpanAvaliacao>
-                        Avaliação
-                    </SpanAvaliacao>
-                    <DivIcone>
-                        <IconButton onClick={handleClose} id="iconeFechar">
-                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
-                        </IconButton>
-                    </DivIcone>
-                    <DivNomeAvaliado>
-                        <SpanNomeAvaliado>
-                            Leonardo Machado Junior
-                        </SpanNomeAvaliado>
-                    </DivNomeAvaliado>
-                    <DivRating>
-                        <Stack spacing={1}>
-                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
-                        </Stack>
-                     </DivRating>
-                     <DivComentario>                          
-                        <SpanComentario>
-                            Comentário
-                        </SpanComentario>
-                     </DivComentario>
-                     <DivTextField>
-                        <TextField
-                            id="outlined-multiline-static"
-                            multiline
-                            rows={10}
-                        />  
-                     </DivTextField>
-                     <SpanTexto>
-                        A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
-                     </SpanTexto>
-                     <DivEnviarAvaliacao>
-                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
-                     </DivEnviarAvaliacao>         
-                    </Box>
-                </Modal>
-                </>
-                    })
-                    
-                    
+                            <DivProfileItem>
+                                <Profile />
+                                <SpanNome >
+                                    {value.nomeIdoso}
+                                </SpanNome>
+                                <ProfileImage src={karina} />
+                                <HeartImage src={heartImg} />
+                                <DivButton>
+                                    <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
+                                </DivButton>
+                                <SpanData>
+                                    10/05/2022
+                                </SpanData>
+                                <SpanHorario>
+                                    Das 09:00 às 12:00
+                                </SpanHorario>
+                                <SpanValor>
+                                    R$ 250,00
+                                </SpanValor>
+                                <SpanNomeIdoso>
+                                    Alice Doles dos Santos
+                                </SpanNomeIdoso>
+                            </DivProfileItem>
+                        </DivProfiles>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={modalStyle}>
+                                <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                                <SpanAvaliacao>
+                                    Avaliação
+                                </SpanAvaliacao>
+                                <DivIcone>
+                                    <IconButton onClick={handleClose} id="iconeFechar">
+                                        <HighlightOffIcon id="iconClose" fontSize="large" />
+                                    </IconButton>
+                                </DivIcone>
+                                <DivNomeAvaliado>
+                                    <SpanNomeAvaliado>
+                                        Leonardo Machado Junior
+                                    </SpanNomeAvaliado>
+                                </DivNomeAvaliado>
+                                <DivRating>
+                                    <Stack spacing={1}>
+                                        <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
+                                    </Stack>
+                                </DivRating>
+                                <DivComentario>
+                                    <SpanComentario>
+                                        Comentário
+                                    </SpanComentario>
+                                </DivComentario>
+                                <DivTextField>
+                                    <TextField
+                                        id="outlined-multiline-static"
+                                        multiline
+                                        rows={10}
+                                    />
+                                </DivTextField>
+                                <SpanTexto>
+                                    A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
+                                </SpanTexto>
+                                <DivEnviarAvaliacao>
+                                    <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
+                                </DivEnviarAvaliacao>
+                            </Box>
+                        </Modal>
+
+                    </div>
+                })
+
+
                 }
             </DivBody>
-            
+
 
         </div>
     )
