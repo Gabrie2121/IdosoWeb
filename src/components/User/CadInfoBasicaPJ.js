@@ -51,7 +51,9 @@ function FormCadastroInfoBasicasPJ() {
     SituacaoTributaria: Usuario.SituacaoTributaria,
     Formacao: Usuario.Formacao,
     InscricaoEstadual: Usuario.InscricaoEstadual,
-    Biografia: Usuario.Biografia
+    Biografia: Usuario.Biografia,
+    RazaoSocial: Usuario.RazaoSocial,
+    Celular: Usuario.Celular
   });
 
   function onChange(ev) {
@@ -72,6 +74,10 @@ function FormCadastroInfoBasicasPJ() {
       setInput({ ...input, Formacao: value });
     } else if ([name] == "biografia") {
       setInput({ ...input, Biografia: value });
+    } else if ([name] == "razaoSocial") {
+      setInput({ ...input, RazaoSocial: value });
+    } else if ([name] == "celular") {
+      setInput({ ...input, Celular: value });
     }
     setUsuario(input);
   }
@@ -102,6 +108,14 @@ function FormCadastroInfoBasicasPJ() {
             onChange={onChange}
             value={input.NomeFantasia}
           />
+          <TextField
+            name="razaoSocial"
+            required
+            id="outlined-required"
+            label="Razão Social"
+            onChange={onChange}
+            value={input.RazaoSocial}
+          />
           <MaskedInput
             name="cnpj"
             mask="99.999.999/9999-99"
@@ -126,6 +140,13 @@ function FormCadastroInfoBasicasPJ() {
             alignItems: "center",
           }}
         >
+          <MaskedInput
+            name="celular"
+            mask="(99)99999-9999"
+            value={input.Celular}
+            onChange={onChange}
+            label="Celular"
+          />
           <TextField
             name="inscricaoEstadual"
             required
@@ -164,7 +185,9 @@ function FormCadastroInfoBasicasPJ() {
             >
               <MenuItem value={"ENFERMAGEM"}>Enfermagem</MenuItem>
               <MenuItem value={"AUXILIAR"}>Auxiliar</MenuItem>
-              <MenuItem value={"TECNICO_ENFERMAGEM"}>Técnico em Enfermagem</MenuItem>
+              <MenuItem value={"TECNICO_ENFERMAGEM"}>
+                Técnico em Enfermagem
+              </MenuItem>
             </Select>
           </FormControl>
         </Box>
