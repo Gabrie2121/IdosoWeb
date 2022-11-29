@@ -495,6 +495,7 @@ function ProfileUserOfertasAbertoJuridica() {
                   avaliacaoJuridica={`(${anuncio.avaliacao} em avaliação)`}
                   pcd={anuncio.IsPcd}
                   periodo={anuncio.periodoEnum}
+                  id={anuncio.id}
                 />
               );
             })}
