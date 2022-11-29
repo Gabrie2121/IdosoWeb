@@ -163,6 +163,7 @@ function CardJuridica(props) {
         },
       })
       .then((res) => {
+        alert("Candidatura feita com sucesso!")
         console.log("Post", res.data.anuncioId);
       })
       .catch((error) => {

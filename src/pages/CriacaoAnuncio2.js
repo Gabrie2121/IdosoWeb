@@ -1,4 +1,4 @@
-import React,  { useState }from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import { useIdoso } from '../providers/idoso';
 
@@ -172,29 +172,29 @@ const DivHorarioFinal = styled.div`
     flex-direction: row;
 `
 
-const DivSpanDas= styled.div`
+const DivSpanDas = styled.div`
     width: 55px;
     margin-left: 10px;
 `
 
-const SpanDas= styled.span`
+const SpanDas = styled.span`
     font-weight: 100;
     position: absolute;
     margin-top: 15px;
     margin-left: 20px;
     color: gray;
 `
-const DivTextInicial= styled.div`
+const DivTextInicial = styled.div`
     width: 120px;
     margin-left: 20px;
     font-weight: 100;
 `
 
-const DivSpanAs= styled.div`
+const DivSpanAs = styled.div`
     width: 55px;
 `
 
-const SpanAs= styled.span`
+const SpanAs = styled.span`
     font-weight: 100;
     position: absolute;
     margin-top: 15px;
@@ -202,7 +202,7 @@ const SpanAs= styled.span`
     color: gray;
 `
 
-const DivTextFinal= styled.div`
+const DivTextFinal = styled.div`
     width: 120px;
     margin-left: 20px;
     font-weight: 100;
@@ -221,7 +221,7 @@ function CriacaoAnuncio2() {
 
     //Connection 
 
-    const {Idoso, setIdoso} = useIdoso();
+    const { Idoso, setIdoso } = useIdoso();
     const navigate = useNavigate();
 
     const [input, setInput] = useState({
@@ -231,7 +231,7 @@ function CriacaoAnuncio2() {
         CPF: Idoso.CPF,
         Genero: Idoso.Genero,
         DataNascimento: Idoso.DataNascimento,
-        Idade: Idoso.Idade, 
+        Idade: Idoso.Idade,
         DoencaDisturbioConfirmacao: Idoso.DoencaDisturbioConfirmacao,
         Parentesco: Idoso.Parentesco,
         Frequencia: Idoso.Frequencia,
@@ -252,19 +252,19 @@ function CriacaoAnuncio2() {
         HoraFinal: Idoso.HoraFinal,
 
     });
-    
+
     function onChange(ev) {
         const { name, value } = ev.target;
         if ([name] == "cep") {
             setInput({ ...input, CEP: value });
-          }
+        }
         else if ([name] == 'estado') {
             setInput({ ...input, Estado: value });
         }
-        else if ([name] == 'cidade') {          
+        else if ([name] == 'cidade') {
             setInput({ ...input, Cidade: value });
         }
-        else if ([name] == 'periodo') {          
+        else if ([name] == 'periodo') {
             setInput({ ...input, Periodo: value });
         }
         else if ([name] == 'logradouro') {
@@ -287,7 +287,7 @@ function CriacaoAnuncio2() {
         }
         else if ([name] == 'repetir') {
             setInput({ ...input, Repetir: value });
-        }  
+        }
         else if ([name] == 'datainicial') {
             setInput({ ...input, DataInicial: value });
         }
@@ -304,63 +304,66 @@ function CriacaoAnuncio2() {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
+        const idPf = localStorage.getItem("idUsuario")
 
-        const novo  = {
-            "usuario": {         
-                "id": 1     
-              },
-              "idoso": {         
-                "grauParentesco": Idoso.Parentesco,         
-                "nome": Idoso.Nome,         
-                "sobrenome": Idoso.Sobrenome,         
-                "cpf": Idoso.CPF,        
-                "genero": Idoso.Genero,         
-                "dataNasc": Idoso.DataNascimento,        
-                "idade": Idoso.Idade,         
-                "pcd": Idoso.PCD,         
-                "disturbio": Idoso.DoencaDisturbioConfirmacao,         
-                "endereco": {             
-                "cep": Idoso.CEP,             
-                "uf": Idoso.Estado,            
-                "cidade": Idoso.Cidade,           
-                "logradouro": Idoso.Logradouro,              
-                "complemento": Idoso.Complemento,           
-                "apelido": Idoso.Apelido,          
-                "principal": true         }     },     
-                "periodo": Idoso.Periodo,     
-                "frequencia": Idoso.Frequencia,
-                "pagamentoBase": Idoso.Pagamento, 
-                "dInicio": Idoso.DataInicial,
-                "dFim": Idoso.DataFinal,    
-                "horaInicio": Idoso.HoraInicial,     
-                "horaFim": Idoso.HoraFinal,   
-                "moraJunto": Idoso.MoramJuntos,     
-                "descricao": Idoso.Descricao,     
-                "foto": "YWJjZGVm",     
-                "laudos": ["YWJjZGVm", "YWJjZGVm"] 
+        const novo = {
+            "usuario": {
+                "id": idPf
+            },
+            "idoso": {
+                "grauParentesco": Idoso.Parentesco,
+                "nome": Idoso.Nome,
+                "sobrenome": Idoso.Sobrenome,
+                "cpf": Idoso.CPF,
+                "genero": Idoso.Genero,
+                "dataNasc": Idoso.DataNascimento,
+                "idade": Idoso.Idade,
+                "pcd": Idoso.PCD,
+                "disturbio": Idoso.DoencaDisturbioConfirmacao,
+                "endereco": {
+                    "cep": Idoso.CEP,
+                    "uf": Idoso.Estado,
+                    "cidade": Idoso.Cidade,
+                    "logradouro": Idoso.Logradouro,
+                    "complemento": Idoso.Complemento,
+                    "apelido": Idoso.Apelido,
+                    "principal": true
+                }
+            },
+            "periodo": Idoso.Periodo,
+            "frequencia": Idoso.Frequencia,
+            "pagamentoBase": Idoso.Pagamento,
+            "dInicio": Idoso.DataInicial,
+            "dFim": Idoso.DataFinal,
+            "horaInicio": Idoso.HoraInicial,
+            "horaFim": Idoso.HoraFinal,
+            "moraJunto": Idoso.MoramJuntos,
+            "descricao": Idoso.Descricao,
+            "foto": "YWJjZGVm",
+            "laudos": ["YWJjZGVm", "YWJjZGVm"]
         };
-         
+
         console.log(novo);
 
-        axios.post(`http://localhost:9999/anuncios/novo`,JSON.stringify(novo),{headers: { 'Content-Type': 'application/json'}})
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-            alert("Anúncio criado com sucesso!");
-            navigate("/profile-fisica");
-        })
-        .catch((error) => {
-            // Trate o erro aqui.
-            alert(error.message);
-            console.log('Whoops! Houve um erro.', error.message || error)
-        })
+        axios.post(`http://localhost:9999/anuncios/novo`, JSON.stringify(novo), { headers: { 'Content-Type': 'application/json' } })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                alert("Anúncio criado com sucesso!");
+                navigate("/profile-fisica");
+            })
+            .catch((error) => {
+                // Trate o erro aqui.
+                alert(error.message);
+                console.log('Whoops! Houve um erro.', error.message || error)
+            })
     };
 
 
     return (
         <div>
-           <Header
+            <Header
                 one="MEU PERFIL"
                 two="LOGOUT"
                 three=""
@@ -379,13 +382,13 @@ function CriacaoAnuncio2() {
                 <DivForm>
                     <Column>
                         <DivCep>
-                            <MaskedInput id="cepTextField" mask="99999-999" label="CEP" name="cep" onChange={onChange} value={(input.CEP)}/>
+                            <MaskedInput id="cepTextField" mask="99999-999" label="CEP" name="cep" onChange={onChange} value={(input.CEP)} />
                         </DivCep>
                         <DivEstado>
-                            <TextField id="cpfTextField" label="Estado" variant="outlined" name="estado" onChange={onChange} value={(input.Estado)} inputProps={{ maxLength: 2 }}/>
+                            <TextField id="cpfTextField" label="Estado" variant="outlined" name="estado" onChange={onChange} value={(input.Estado)} inputProps={{ maxLength: 2 }} />
                         </DivEstado>
                         <DivCidade>
-                            <TextField id="cidadeTextField" label="Cidade" variant="outlined" name="cidade" onChange={onChange} value={(input.Cidade)}/>
+                            <TextField id="cidadeTextField" label="Cidade" variant="outlined" name="cidade" onChange={onChange} value={(input.Cidade)} />
                         </DivCidade>
                         <DivRadios>
                             <FormControl>
@@ -404,8 +407,8 @@ function CriacaoAnuncio2() {
                             </FormControl>
                         </DivRadios>
                         <DivLogradouro>
-                            <TextField 
-                                id="logradouroTextField" 
+                            <TextField
+                                id="logradouroTextField"
                                 label="Logradouro" variant="outlined"
                                 name="logradouro"
                                 onChange={onChange} value={(input.Logradouro)}
@@ -430,16 +433,16 @@ function CriacaoAnuncio2() {
                             </FormControl>
                         </DivSelect>
                         <DivComplemento>
-                            <TextField 
-                                id="complementoTextField" 
-                                label="Complemento" variant="outlined" 
+                            <TextField
+                                id="complementoTextField"
+                                label="Complemento" variant="outlined"
                                 name="complemento"
                                 onChange={onChange} value={(input.Complemento)}
                             />
                         </DivComplemento>
                         <DivApelido>
-                            <TextField 
-                                id="apelidoTextField" 
+                            <TextField
+                                id="apelidoTextField"
                                 label="Apelido" variant="outlined"
                                 name="apelido"
                                 onChange={onChange} value={(input.Apelido)}
@@ -477,7 +480,7 @@ function CriacaoAnuncio2() {
                                         <DatePicker
                                             mask="__-__-____"
                                             id="pagamentoTextField"
-                                            label="Data inicial" 
+                                            label="Data inicial"
                                             name="datainicial"
                                             value={(input.DataInicial)}
                                             onChange={(newValue) => {
@@ -493,7 +496,7 @@ function CriacaoAnuncio2() {
                                         <DatePicker
                                             mask="__-__-____"
                                             id="pagamentoTextField"
-                                            label="Data final" 
+                                            label="Data final"
                                             name="datafinal"
                                             value={(input.DataFinal)}
                                             onChange={(newValue) => {
@@ -514,7 +517,7 @@ function CriacaoAnuncio2() {
                                         <MaskedInput
                                             mask="99:99"
                                             id="pagamentoTextField"
-                                            label="Hora inicial" 
+                                            label="Hora inicial"
                                             name="horainicial"
                                             onChange={onChange} value={(input.HoraInicial)}
                                         />
@@ -529,16 +532,16 @@ function CriacaoAnuncio2() {
                                             mask="99:99"
                                             id="pagamentoTextField"
                                             label="Hora final"
-                                            name="horafinal" 
+                                            name="horafinal"
                                             onChange={onChange} value={(input.HoraFinal)}
                                         />
                                     </DivTextFinal>
-                                </DivHorarioFinal>                             
+                                </DivHorarioFinal>
                             </DivHorarios>
                         </DivFooterOptions>
-                        <Button 
-                            id="criarAnuncioButton" 
-                            variant="contained" 
+                        <Button
+                            id="criarAnuncioButton"
+                            variant="contained"
                             onClick={handleSubmit}
                         >
                             Criar anúncio
@@ -551,6 +554,7 @@ function CriacaoAnuncio2() {
                 <Button id="numberTwoReverseButton" variant="contained" disabled>2</Button>
             </DivFooter>
         </div>
-    );}
+    );
+}
 
 export default CriacaoAnuncio2;

@@ -607,8 +607,8 @@ function ProfileUserOfertasAbertoFisica() {
         three="CRIAR OFERTA"
         four="LOGOUT"
         linkOne="/"
-        linkTwo="/criacaoanuncio"
-        linkThree="criacaoanuncio"
+        linkTwo="/historicocontrato"
+        linkThree="/criacaoanuncio"
         linkFour="/"
       />
       <DivDad>
