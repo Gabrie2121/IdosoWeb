@@ -255,39 +255,17 @@ const SpanPcdModal = styled.div`
   font-size: 8pt;
   `
 const DivPcdModal = styled.div`
-      width: 50%;
-      height: 25px;
-      background-color: #76BE74;
-      border-radius: 20px;
+  width: 50%;
+  height: 25px;
+  background-color: #76BE74;
+  border-radius: 20px;
   `
 
 const SpanPcdValueModal = styled.span`
-      margin-left: 16px;
-      font-size: 10pt; 
-      
-  `
-  
-const DivReportModal = styled.div`
-      width: 100%;
-      height: 70%;
-  `
-
-const DivReportSpan = styled.div`
-      width: 100%;
-      height: 20%;
-  `
-
-const SpanReport = styled.span`
-      font-size: 13pt;
-      color: #000000;
-      font-weight: 100;
-  `
-
-const DivAreaReport = styled.div`
-      width: 100%;
-      heigth: 80%; 
-  `
-
+  margin-left: 16px;
+  font-size: 10pt; 
+    
+`
 const DivBodyModal = styled.div`
   width: 100%;
   height: 260px;
@@ -312,13 +290,6 @@ const DivIcone = styled.div`
 
 const DivNomeAvaliado = styled.div`
   margin-top: 20px;
-`
-
-const SpanNomeAvaliado = styled.span`
-  margin-left: 170px;
-  font-size: 18pt;
-  font-weight: 100;
-  color: black;
 `
 
 const ProfieImageModal = styled.img`
