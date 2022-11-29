@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { MdOutlineLocationOn } from "react-icons/md";
 
-import NossaMissao from "../../assets/NossaMissao.png";
+import TodoCuidado from "../../assets/TodoCuidado.png";
 
 import { Link } from "react-router-dom";
 import CardPeople from "../CardFisica";
@@ -616,7 +616,7 @@ function ProfileUserOfertasAbertoFisica() {
           <DivDataProfileChildren>
             <DivDataProfileLittleOne>
               <DivPhoto>
-                <ImageProfile src={NossaMissao} />
+                <ImageProfile src={TodoCuidado} />
               </DivPhoto>
               <DivText>{usuario.nome}</DivText>
               <DivLocation>
