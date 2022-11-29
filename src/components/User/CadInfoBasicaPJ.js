@@ -134,9 +134,9 @@ function FormCadastroInfoBasicasPJ() {
             onChange={onChange}
             value={input.InscricaoEstadual}
           />
-         <FormControl fullWidth sx={{m:2}}>
+          <FormControl fullWidth sx={{ m: 2 }}>
             <InputLabel id="demo-simple-select-label">
-            <Text>Situação Tributária(ICMS)</Text>
+              <Text>Situação Tributária(ICMS)</Text>
             </InputLabel>
             <Select
               name="situacaoTributaria"
@@ -150,27 +150,36 @@ function FormCadastroInfoBasicasPJ() {
               <MenuItem value={"O"}>Prefiro não informar</MenuItem>
             </Select>
           </FormControl>
-          <TextField
-            name="formacao"
-            required
-            id="outlined-required"
-            label="Formação"
-            onChange={onChange}
-            value={input.Formacao}
-          />
+          <FormControl fullWidth sx={{ m: 2 }}>
+            <InputLabel id="demo-simple-select-label">
+              <Text>Formação</Text>
+            </InputLabel>
+            <Select
+              name="formacao"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={input.Formacao}
+              label="Formação"
+              onChange={onChange}
+            >
+              <MenuItem value={"ENFERMAGEM"}>Enfermagem</MenuItem>
+              <MenuItem value={"AUXILIAR"}>Auxiliar</MenuItem>
+              <MenuItem value={"TECNICO_ENFERMAGEM"}>Técnico em Enfermagem</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
         <DivAreaDescri>
-        <SpanBoxDescricao>
-          <TextField
-            id="descricaoField"
-            name="biografia"
-            label="Biografia"
-            onChange={onChange}
-            multiline
-            value={input.Biografia}
-          />
-        </SpanBoxDescricao>
-      </DivAreaDescri>
+          <SpanBoxDescricao>
+            <TextField
+              id="descricaoField"
+              name="biografia"
+              label="Biografia"
+              onChange={onChange}
+              multiline
+              value={input.Biografia}
+            />
+          </SpanBoxDescricao>
+        </DivAreaDescri>
       </Box>
     </div>
   );

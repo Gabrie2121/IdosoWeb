@@ -142,7 +142,8 @@ function FormCadastroEndereco() {
         profileEntities: profileEntities,
         certificados: certificados,
         biografia : Usuario.Biografia,
-        razaoSocial: Usuario.NomeFantasia
+        razaoSocial: Usuario.NomeFantasia,
+        curso: Usuario.Formacao
       };
 
       user = userJuridica;
