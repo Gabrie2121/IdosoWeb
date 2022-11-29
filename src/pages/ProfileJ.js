@@ -15,7 +15,7 @@ function ProfileUserJ() {
                 three="CRIAR OFERTA"
                 four="LOGOUT"
                 linkOne="/"
-                linkTwo="/criacaoanuncio"
+                linkTwo="/historicocontratos"
                 linkThree="/criacaoanuncio"
                 linkFour="/"
             />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import axios from "axios";
@@ -260,6 +260,7 @@ const LinkSeleccion = styled(Link)`
 function ProfileUserJuridica() {
   const [open, setOpen] = React.useState(false);
   const [usuario, setUsuario] = React.useState({});
+  const [hist, setHist] = React.useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

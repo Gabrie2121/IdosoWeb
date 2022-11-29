@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styled from 'styled-components'
 
@@ -22,6 +22,8 @@ import TextField from '@mui/material/TextField';
 import style from './../styles/Favoritos.css';
 import styleAvaliacaoModal from './../styles/modalAvaliacao.css';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import axios from "axios";
+import { color } from "@mui/system";
 
 const DivBody = styled.div`
     display: flex;
@@ -206,12 +208,31 @@ const DivEnviarAvaliacao = styled.div`
     margin-top: 20px;
 `
 
-function HistoricoContratos() {
 
+function HistoricoContratos() {
+    const receiveHistorico = () =>{
+        const idPf = localStorage.getItem("idUsuario");
+        axios.get(`http://localhost:9999/prestador/historico/${idPf}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setHist(res.data)
+          })
+          .catch((error) => {
+            console.log("Whoops! Houve um erro.", error.message || error);
+          });
+    }
     const [open, setOpen] = React.useState(false);
+    const [hist, setHist] = React.useState([]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    useEffect(() => {
+        receiveHistorico();
+      }, []);
     return (
         <div>
             <Header
@@ -224,7 +245,8 @@ function HistoricoContratos() {
                 linkThree="/criacaoanuncio"
                 linkFour="/"
             />
-            <DivBody>
+            
+                <DivBody>
                 <DivSearch>
                     <Items>
                         <SpanHistorico>
@@ -235,7 +257,9 @@ function HistoricoContratos() {
                         <SearchField />
                     </Items>
                 </DivSearch>
-                <DivProfiles>
+                {hist.length == 0? <><h1 style={{color:"black"}}>SEM HISTORICO</h1></> : hist.map((value)=>{
+                        return <>
+                        <DivProfiles>
                     <DivProfileItem>
                         <Profile />
                         <SpanNome>
@@ -258,46 +282,6 @@ function HistoricoContratos() {
                         <SpanNomeIdoso>
                             Alice Doles dos Santos
                         </SpanNomeIdoso>
-                    </DivProfileItem>
-                    <DivProfileItem>
-                        <Profile />
-                        <SpanNome>
-                            Leonardo Machado Junior
-                        </SpanNome>
-                        <ProfileImage src={leonardo} />
-                        <HeartImage src={heartImg} />
-                        <DivButton>
-                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
-                        </DivButton>
-                        <SpanData>
-                            12/05/2022
-                        </SpanData>
-                        <SpanHorario>
-                            Das 08:00 às 11:30
-                        </SpanHorario>
-                        <SpanValor>
-                            R$ 275,00
-                        </SpanValor>
-                    </DivProfileItem>
-                    <DivProfileItem>
-                        <Profile />
-                        <SpanNome>
-                            Sergio Jessé Garcia
-                        </SpanNome>
-                        <ProfileImage src={sergio} />
-                        <HeartImage src={heartImg} />
-                        <DivButton>
-                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                        </DivButton>
-                        <SpanData>
-                            11/03/2022
-                        </SpanData>
-                        <SpanHorario>
-                            Das 07:00 às 12:20
-                        </SpanHorario>
-                        <SpanValor>
-                            R$ 300,00
-                        </SpanValor>
                     </DivProfileItem>
                 </DivProfiles>
                 <Modal
@@ -346,7 +330,13 @@ function HistoricoContratos() {
                      </DivEnviarAvaliacao>         
                     </Box>
                 </Modal>
+                </>
+                    })
+                    
+                    
+                }
             </DivBody>
+            
 
         </div>
     )

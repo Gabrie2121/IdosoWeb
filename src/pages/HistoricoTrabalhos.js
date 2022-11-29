@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styled from 'styled-components'
 
@@ -22,6 +22,7 @@ import TextField from '@mui/material/TextField';
 import style from './../styles/Favoritos.css';
 import styleAvaliacaoModal from './../styles/modalAvaliacao.css';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import axios from "axios";
 
 
 
@@ -210,11 +211,28 @@ const DivEnviarAvaliacao = styled.div`
 `
 
 function HistoricoTrabalhos() {
-
+    const receiveHistorico = () =>{
+        const idPf = localStorage.getItem("idUsuario");
+        axios.get(`http://localhost:9999/prestador/historico/${idPf}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setHist(res.data)
+          })
+          .catch((error) => {
+            console.log("Whoops! Houve um erro.", error.message || error);
+          });
+    }
     const [open, setOpen] = React.useState(false);
+    const [hist, setHist] = React.useState([]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    useEffect(() => {
+        receiveHistorico();
+      }, []);
     return (
         <div>
             <Header
@@ -238,11 +256,13 @@ function HistoricoTrabalhos() {
                         <SearchField />
                     </Items>
                 </DivSearch>
-                <DivProfiles>
+                {hist.length == 0? <><h1 style={{color:"black"}}>SEM HISTORICO</h1></> : hist.map((value)=>{
+                        return <>
+                        <DivProfiles>
                     <DivProfileItem>
                         <Profile />
                         <SpanNome>
-                            David Luís Nunes
+                            Karina Alves
                         </SpanNome>
                         <ProfileImage src={david} />
                         <HeartImage src={heartImg} />
@@ -250,62 +270,16 @@ function HistoricoTrabalhos() {
                             <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
                         </DivButton>
                         <SpanData>
-                            03/03/2022
+                            10/05/2022
                         </SpanData>
                         <SpanHorario>
-                            Das 09:00 às 16:00
+                            Das 09:00 às 12:00
                         </SpanHorario>
                         <SpanValor>
-                            R$ 320,00
+                            R$ 250,00
                         </SpanValor>
                         <SpanNomeIdoso>
-                            Roberta Nunes
-                        </SpanNomeIdoso>
-                    </DivProfileItem>
-                    <DivProfileItem>
-                        <Profile />
-                        <SpanNome>
-                            Eduarda C. Lorenzo
-                        </SpanNome>
-                        <ProfileImage src={eduarda} />
-                        <HeartImage src={heartImg} />
-                        <DivButton>
-                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Avaliar</Button>
-                        </DivButton>
-                        <SpanData>
-                            05/03/2022
-                        </SpanData>
-                        <SpanHorario>
-                            Das 11:00 às 17:00
-                        </SpanHorario>
-                        <SpanValor>
-                            R$ 290,00
-                        </SpanValor>
-                        <SpanNomeIdoso>
-                            Roberta C. Lorenzo
-                        </SpanNomeIdoso>
-                    </DivProfileItem>
-                    <DivProfileItem>
-                        <Profile />
-                        <SpanNome>
-                            Manoela de Jesus
-                        </SpanNome>
-                        <ProfileImage src={manoela} />
-                        <HeartImage src={heartImg} />
-                        <DivButton>
-                            <Button id="avaliadoButton" variant="contained" disabled>Avaliado</Button>
-                        </DivButton>
-                        <SpanData>
-                            11/03/2022
-                        </SpanData>
-                        <SpanHorario>
-                            Das 13:00 às 15:00
-                        </SpanHorario>
-                        <SpanValor>
-                            R$ 210,00
-                        </SpanValor>
-                        <SpanNomeIdoso>
-                            Matheus de Jesus
+                            Alice Doles dos Santos
                         </SpanNomeIdoso>
                     </DivProfileItem>
                 </DivProfiles>
@@ -316,45 +290,50 @@ function HistoricoTrabalhos() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={modalStyle}>
-                        <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
-                        <SpanAvaliacao>
-                            Avaliação
-                        </SpanAvaliacao>
-                        <DivIcone>
-                            <IconButton onClick={handleClose} id="iconeFechar">
-                                <HighlightOffIcon id="iconClose" fontSize="large" />
-                            </IconButton>
-                        </DivIcone>
-                        <DivNomeAvaliado>
-                            <SpanNomeAvaliado>
-                                Eduarda C. Lorenzo
-                            </SpanNomeAvaliado>
-                        </DivNomeAvaliado>
-                        <DivRating>
-                            <Stack spacing={1}>
-                                <Rating id="estrelasIcon" name="half-rating-read" defaultValue={4.5} precision={0.5} />
-                            </Stack>
-                        </DivRating>
-                        <DivComentario>
-                            <SpanComentario>
-                                Comentário
-                            </SpanComentario>
-                        </DivComentario>
-                        <DivTextField>
-                            <TextField
-                                id="outlined-multiline-static"
-                                multiline
-                                rows={10}
-                            />
-                        </DivTextField>
-                        <SpanTexto>
-                            Gostei de cuidar da Sra. Camila, inclusive lembrou a minha avó. Jogamos muito Dominó.
-                        </SpanTexto>
-                        <DivEnviarAvaliacao>
-                            <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>
-                        </DivEnviarAvaliacao>
+                    <Button id="buttonDenunciar" variant="outlined">Denunciar</Button>
+                    <SpanAvaliacao>
+                        Avaliação
+                    </SpanAvaliacao>
+                    <DivIcone>
+                        <IconButton onClick={handleClose} id="iconeFechar">
+                            <HighlightOffIcon id="iconClose" fontSize ="large"/>
+                        </IconButton>
+                    </DivIcone>
+                    <DivNomeAvaliado>
+                        <SpanNomeAvaliado>
+                            Leonardo Machado Junior
+                        </SpanNomeAvaliado>
+                    </DivNomeAvaliado>
+                    <DivRating>
+                        <Stack spacing={1}>
+                            <Rating id="estrelasIcon"  name="half-rating-read" defaultValue={4.5} precision={0.5}/>
+                        </Stack>
+                     </DivRating>
+                     <DivComentario>                          
+                        <SpanComentario>
+                            Comentário
+                        </SpanComentario>
+                     </DivComentario>
+                     <DivTextField>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={10}
+                        />  
+                     </DivTextField>
+                     <SpanTexto>
+                        A atenção e cuidado que o Leonardo teve com a minha mãe foi o diferencial, muito atencioso. Sem dúvida o contratarei mais vezes.
+                     </SpanTexto>
+                     <DivEnviarAvaliacao>
+                        <Button onClick={handleOpen} id="avaliarButton" variant="contained">Enviar Avaliação</Button>  
+                     </DivEnviarAvaliacao>         
                     </Box>
                 </Modal>
+                </>
+                    })
+                    
+                    
+                }
             </DivBody>
 
         </div>

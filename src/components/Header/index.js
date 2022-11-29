@@ -38,15 +38,15 @@ const OpcoesHeader = styled(Link)`
 const Logo = styled.img`
     width: 12%;
     display: flex;
+    cursor: pointer;
 `
-
 
 
 function Header(props) {
     return (
         <HeaderStyle props>
             <NavBar>
-                <Logo src={logoIdoso} />
+                <Logo className="logo" onClick={()=>window.location.href = 'http://localhost:3000/'} src={logoIdoso} />
                 <Opcoes>
                     <OpcoesHeader to={`${props.linkOne.toLowerCase()}`}>{props.one}</OpcoesHeader>
                     <OpcoesHeader to={`${props.linkTwo.toLowerCase()}`}>{props.two}</OpcoesHeader>
