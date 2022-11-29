@@ -240,7 +240,7 @@ function HistoricoContratos() {
                 two="FAVORITOS"
                 three="HISTÓRICO DE CONTRATOS"
                 four="LOGOUT"
-                linkOne="/profile"
+                linkOne="/profile-fisica"
                 linkTwo="/favoritos"
                 linkThree="/criacaoanuncio"
                 linkFour="/"

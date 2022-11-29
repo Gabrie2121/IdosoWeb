@@ -240,7 +240,7 @@ function HistoricoTrabalhos() {
                 two="FAVORITOS"
                 three="HISTÓRICO DE TRABALHOS"
                 four="LOGOUT"
-                linkOne="/profile"
+                linkOne="/profile-juridica"
                 linkTwo="/favoritos"
                 linkThree="/criacaoanuncio"
                 linkFour="/"
