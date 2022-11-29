@@ -81,7 +81,8 @@ function FormCadastro() {
     Foto: Usuario.Foto,
     Cidade: Usuario.Cidade,
     Biografia: Usuario.Biografia,
-    NomeFantasia: Usuario.NomeFantasia
+    NomeFantasia: Usuario.NomeFantasia,
+    RazaoSocial: Usuario.RazaoSocial
   });  
 
   const [valuesPassword, setPassword] = useState({

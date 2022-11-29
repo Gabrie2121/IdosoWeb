@@ -382,7 +382,7 @@ function CriacaoAnuncio2() {
                             <MaskedInput id="cepTextField" mask="99999-999" label="CEP" name="cep" onChange={onChange} value={(input.CEP)}/>
                         </DivCep>
                         <DivEstado>
-                            <TextField id="cpfTextField" label="Estado" variant="outlined" name="estado" onChange={onChange} value={(input.Estado)}/>
+                            <TextField id="cpfTextField" label="Estado" variant="outlined" name="estado" onChange={onChange} value={(input.Estado)} inputProps={{ maxLength: 2 }}/>
                         </DivEstado>
                         <DivCidade>
                             <TextField id="cidadeTextField" label="Cidade" variant="outlined" name="cidade" onChange={onChange} value={(input.Cidade)}/>
