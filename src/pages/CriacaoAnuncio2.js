@@ -17,10 +17,11 @@ import Select from '@mui/material/Select';
 
 import Header from "../components/Header/";
 
-import aliceImage from '../assets/criacaoOfertas/alice.png';
-import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
-import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import MaskedInput from '../../src/components/User/MaskedInput';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { useNavigate } from "react-router-dom";
 
 
 import styled from 'styled-components';
@@ -38,84 +39,14 @@ const SpanTitle = styled.span`
     font-size: 20pt;
     color: #666666;
     justify-content: center;
-    margin-left: 40%;
+    margin-left: 38%;
 `
 
 const DivBody = styled.div`
     margin-top: 50px;
     width: 80%;
     height: 600px;
-    display: flex;
-    flex-direction: row;
-    margin-left: 10%;
-`
-const DivDescription = styled.div`
-   width: 30%;
-`
-const DivCampoFoto = styled.div`
-    width: 100%;
-    height: 35%;
-`
-
-
-const ProfieImage1 = styled.img`
-    width: 150px;
-    height: 150px;
-    margin-left: 90px;
-    margin-top: 30px;
-`
-
-const EditarFoto = styled.img`
-    width: 30px;
-    height: 30px;
-    margin-left: -38px;
-    margin-top: 140px;
-    position: absolute;
-`
-
-const ButttonEditarFoto = styled.button`
-    width: 50px;
-    height: 50px;
-    margin-left: -40px;
-    border-radius: 30px;
-    background-color: #A9F0A6;
-    border: 0px solid transparent;
-`
-
-const DivCampoDescricao = styled.div`
-    width: 100%;
-    height: 60%;
-`
-
-const DivSpanDescri = styled.div`
-    width: 20%;
-    height: 5%;
-    margin-left: -30px;
-`
-
-const SpanDescricao = styled.span`
-    margin-top: 40px;
-    margin-left: 30px;
-    font-size: 15pt;
-    font-weight: bold;
-    color: gray;
-`
-
-const DivAreaDescri = styled.div`
-    width: 80%;
-    height: 90%;
-    margin-left: 380px;
-    margin-top: -30px;
-`
-const SpanBoxDescricao = styled.span`
-    width: 360px;
-    height: 200px;
-    position: absolute;
-    margin-top: 60px;
-    margin-left: -380px;
-    font-size: 12pt;
-    font-weight: 500;
-    color: gray;
+    margin-left: 20%;
 `
 
 const DivForm = styled.div`
@@ -156,7 +87,7 @@ const DivRadios = styled.div`
 
 const DivLogradouro = styled.div`
     margin-top: 260px;
-    margin-left: -1253px;
+    margin-left: -1220px;
 `
 
 const DivSelect = styled.div`
@@ -195,19 +126,38 @@ const DivFooterOptions = styled.div`
 `
 
 const DivRadiosMoradia = styled.div`
+    width: 420px;
+    margin-left: 10px;
     
 `
-const DivRepetirAnuncio = styled.div`
+const DivDataAnuncio = styled.div`
+    width: 550px;
+    flex-direction: row;
     margin-left: 20px;
+    display: flex;
 `
 
 const DivHorarios = styled.div`
     position: absolute;
     width: 350px;
-    margin-left: 460px;
+    margin-left: 550px;
     display: flex;
     flex-direction: row;
 `
+const DivDataInicial = styled.div`
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+`
+
+const DivDataFinal = styled.div`
+    position: absolute;
+    width: 160px;
+    margin-left: 175px;
+    display: flex;
+    flex-direction: row;
+`
+
 const DivHorarioInicial = styled.div`
     width: 175px;
     display: flex;
@@ -224,6 +174,7 @@ const DivHorarioFinal = styled.div`
 
 const DivSpanDas= styled.div`
     width: 55px;
+    margin-left: 10px;
 `
 
 const SpanDas= styled.span`
@@ -263,7 +214,6 @@ const DivFooter = styled.div`
     width: 100%;
     height: 50px;
     display: flex;
-    margin-left: 0%;
     align-items: center;
 `
 
@@ -272,6 +222,7 @@ function CriacaoAnuncio2() {
     //Connection 
 
     const {Idoso, setIdoso} = useIdoso();
+    const navigate = useNavigate();
 
     const [input, setInput] = useState({
         Nome: Idoso.Nome,
@@ -295,6 +246,8 @@ function CriacaoAnuncio2() {
         Periodo: Idoso.Periodo,
         Pagamento: Idoso.Pagamento,
         Repetir: Idoso.Repetir,
+        DataInicial: Idoso.DataInicial,
+        DataFinal: Idoso.DataFinal,
         HoraInicial: Idoso.HoraInicial,
         HoraFinal: Idoso.HoraFinal,
 
@@ -305,9 +258,6 @@ function CriacaoAnuncio2() {
         if ([name] == "cep") {
             setInput({ ...input, CEP: value });
           }
-        else if ([name] == 'descricao') {
-            setInput({ ...input, Descricao: value });
-        }
         else if ([name] == 'estado') {
             setInput({ ...input, Estado: value });
         }
@@ -337,6 +287,12 @@ function CriacaoAnuncio2() {
         }
         else if ([name] == 'repetir') {
             setInput({ ...input, Repetir: value });
+        }  
+        else if ([name] == 'datainicial') {
+            setInput({ ...input, DataInicial: value });
+        }
+        else if ([name] == 'datafinal') {
+            setInput({ ...input, DataFinal: value });
         }
         else if ([name] == 'horainicial') {
             setInput({ ...input, HoraInicial: value });
@@ -374,7 +330,9 @@ function CriacaoAnuncio2() {
                 "principal": true         }     },     
                 "periodo": Idoso.Periodo,     
                 "frequencia": Idoso.Frequencia,
-                "pagamentoBase": Idoso.Pagamento,     
+                "pagamentoBase": Idoso.Pagamento, 
+                "dInicio": Idoso.DataInicial,
+                "dFim": Idoso.DataFinal,    
                 "horaInicio": Idoso.HoraInicial,     
                 "horaFim": Idoso.HoraFinal,   
                 "moraJunto": Idoso.MoramJuntos,     
@@ -389,7 +347,8 @@ function CriacaoAnuncio2() {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            alert("Usuario cadastrado com sucesso!");
+            alert("Anúncio criado com sucesso!");
+            navigate("/profile-fisica");
         })
         .catch((error) => {
             // Trate o erro aqui.
@@ -403,11 +362,11 @@ function CriacaoAnuncio2() {
         <div>
            <Header
                 one="MEU PERFIL"
-                two="FAVORITOS"
-                three="LOGOUT"
+                two="LOGOUT"
+                three=""
                 four=""
-                linkOne=""
-                linkTwo=""
+                linkOne="/profile-fisica"
+                linkTwo="/"
                 linkThree=""
                 linkFour=""
             />
@@ -417,29 +376,6 @@ function CriacaoAnuncio2() {
                 </SpanTitle>
             </DivTitle>
             <DivBody>
-                <DivDescription>
-                    <DivCampoFoto>
-                        <ProfieImage1 src={aliceImage} />
-                        <ButttonEditarFoto />
-                        <EditarFoto src={editarFoto} />
-                    </DivCampoFoto>
-                    <DivCampoDescricao>
-                        <DivSpanDescri>
-                            <SpanDescricao> Descrição</SpanDescricao>
-                        </DivSpanDescri>
-                        <DivAreaDescri>
-                            <SpanBoxDescricao>
-                                <TextField  
-                                        id="descricaoField" 
-                                        name="descricao" 
-                                        onChange={onchange} 
-                                        multiline
-                                        row={10}
-                                />
-                            </SpanBoxDescricao>
-                        </DivAreaDescri>
-                    </DivCampoDescricao>
-                </DivDescription>
                 <DivForm>
                     <Column>
                         <DivCep>
@@ -461,9 +397,8 @@ function CriacaoAnuncio2() {
                                     name="periodo"
                                     onChange={onChange} value={(input.Periodo)}
                                 >
-                                    {/* Ajustar vespertino */}
                                     <FormControlLabel id="matutinoRadio" value="MATUTINO" control={<Radio color="success" />} label="Matutino" />
-                                    <FormControlLabel id="vespertinoRadio" value="VERSPERTINO" control={<Radio color="success" />} label="Vespertino" />
+                                    <FormControlLabel id="vespertinoRadio" value="VESPERTINO" control={<Radio color="success" />} label="Vespertino" />
                                     <FormControlLabel id="noturnoRadio" value="NOTURNO" control={<Radio color="success" />} label="Noturno" />
                                 </RadioGroup>
                             </FormControl>
@@ -485,11 +420,12 @@ function CriacaoAnuncio2() {
                                     name="frequencia"
                                     onChange={onChange} value={(input.Frequencia)}
                                 >
-                                    {/* Ajustar os itens passados */}
-                                    <MenuItem value="ALTERNADO">Dia sim e dia não</MenuItem>
-                                    <MenuItem value={2}>Uma vez na semana</MenuItem>
-                                    <MenuItem value={3}>Duas vezes na semana</MenuItem>
-                                    <MenuItem value={4}>Final de semana</MenuItem>
+                                    <MenuItem value="UMDIA">Uma vez na semana</MenuItem>
+                                    <MenuItem value="DOISDIAS">Duas vezes na semana</MenuItem>
+                                    <MenuItem value="DIASIMNAO">Dia sim e dia não</MenuItem>
+                                    <MenuItem value="SEGUNDASEXTA">Segunda à sexta</MenuItem>
+                                    <MenuItem value="FINALSEMANA">Final de semana</MenuItem>
+                                    <MenuItem value="TODOSDIAS">Todos os dias</MenuItem>
                                 </Select>
                             </FormControl>
                         </DivSelect>
@@ -535,22 +471,40 @@ function CriacaoAnuncio2() {
                                     </RadioGroup>
                                 </FormControl>
                             </DivRadiosMoradia>
-                            <DivRepetirAnuncio>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label-moradia">Repetir anúncio anterior?</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        id="row-radio-buttons-group"
-                                        defaultValue="Nao"
-                                        name="repetir"
-                                        onChange={onChange} value={(input.Repetir)}
-                                    >
-                                        <FormControlLabel id="simRadioOption" value="true" control={<Radio color="success" />} label="Sim" />
-                                        <FormControlLabel id="naoRadioOption" value="false" control={<Radio color="success" />} label="Não" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </DivRepetirAnuncio>
+                            <DivDataAnuncio>
+                                <DivDataInicial>
+                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        <DatePicker
+                                            mask="__-__-____"
+                                            id="pagamentoTextField"
+                                            label="Data inicial" 
+                                            name="datainicial"
+                                            value={(input.DataInicial)}
+                                            onChange={(newValue) => {
+                                                setIdoso({ ...Idoso, DataInicial: newValue });
+                                                setInput({ ...input, DataInicial: newValue });
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
+                                </DivDataInicial>
+                                <DivDataFinal>
+                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        <DatePicker
+                                            mask="__-__-____"
+                                            id="pagamentoTextField"
+                                            label="Data final" 
+                                            name="datafinal"
+                                            value={(input.DataFinal)}
+                                            onChange={(newValue) => {
+                                                setIdoso({ ...Idoso, DataFinal: newValue });
+                                                setInput({ ...input, DataFinal: newValue });
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
+                                </DivDataFinal>
+                            </DivDataAnuncio>
                             <DivHorarios>
                                 <DivHorarioInicial>
                                     <DivSpanDas>
@@ -579,8 +533,7 @@ function CriacaoAnuncio2() {
                                             onChange={onChange} value={(input.HoraFinal)}
                                         />
                                     </DivTextFinal>
-                                </DivHorarioFinal>
-                               
+                                </DivHorarioFinal>                             
                             </DivHorarios>
                         </DivFooterOptions>
                         <Button 

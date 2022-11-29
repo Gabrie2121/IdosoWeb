@@ -467,18 +467,91 @@ const DivBodyModal = styled.div`
     margin-top:-20px;
   `
 
+const ButtonPincel = styled.button`
+  background-color: #5bb159;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+`
+const modalStyleBio = {
+  position: "absolute",
+  top: "50%",
+  left: "45%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  height: 500,
+  bgcolor: "#fff",
+  p: 4,
+  borderRadius: 3,
+};
+
+const SpanTitle = styled.span`
+  color: #666666;
+  display: flex;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+`
+
+const NameUser = styled.div`
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  padding: 0 5px;
+`
+
+const TextArea = styled.textarea`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 98%;
+  height: 50%;
+  color: #666666;
+  font-size: 15px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  padding: 0 5px;
+`
+
+const DivButtonBio = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const ButtonAtualizeBio = styled.button`
+  background-color: #5bb159;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 175px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+`
+
+
 function ProfileUserOfertasAbertoFisica() {
   const [open, setOpen] = React.useState(false);
-  const [openCandidatura, setOpenCandidatura] = React.useState(false);
 
   const [usuario, setUsuario] = React.useState({});
   const [anuncios, setAnuncios] = React.useState([]);
+  const [openBio, setOpenBio] = React.useState(false);
+  const [bio, setBio] = React.useState(usuario.biografia);
 
   const handleOpen = () => setOpen(true);
-  const handleOpenCandidatura = () => setOpenCandidatura(true);
-
   const handleClose = () => setOpen(false);
-  const handleCloseCandidatura = () => setOpenCandidatura(false);
+  const handleOpenBio = () => setOpenBio(true);
+  const handleCloseBio = () => setOpenBio(false);
 
 
   const handleInformation = () => {
@@ -497,6 +570,31 @@ function ProfileUserOfertasAbertoFisica() {
         console.log("Whoops! Houve um erro.", error.message || error);
       });
   };
+
+  const handleBio = () => {
+    const idPf = localStorage.getItem("idUsuario")
+    console.log("usuario.biografia", usuario.biografia)
+    const atualizarBio = {
+      id: idPf,
+      biografia: bio
+    }
+    console.log("bio", atualizarBio)
+    axios
+      .patch(`http://localhost:9999/idoso/atualizaBiografia`, JSON.stringify(atualizarBio), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Deu certo", res.statusText);
+        alert("Biografia alterada com sucesso")
+        window.location.reload(true);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
+  }
+
 
   useEffect(() => {
     handleInformation();
@@ -541,7 +639,9 @@ function ProfileUserOfertasAbertoFisica() {
           <DivDataDescriptionChildren>
             <DivDataDescriptionTextOne>
               <DivTextDescription>Bio</DivTextDescription>
-              <HiPencilAlt size={24} />
+              <ButtonPincel onClick={handleOpenBio}>
+                <HiPencilAlt size={24} />
+              </ButtonPincel>
             </DivDataDescriptionTextOne>
 
             <DivDataDescriptionTextTwo>
@@ -605,6 +705,35 @@ function ProfileUserOfertasAbertoFisica() {
             </DivNomeAvaliado>
           </Box>
         </Modal>
+
+        <Modal
+          open={openBio}
+          onClose={handleCloseBio}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyleBio}>
+            <NameUser>
+              {usuario.nome}
+            </NameUser>
+
+            <SpanTitle>
+              Atualize sua bio
+            </SpanTitle>
+            <TextArea
+              value={bio}
+              onChange={(event) => setBio(event.target.value)}>
+              {usuario.biografia}
+            </TextArea>
+
+            <DivButtonBio>
+              <ButtonAtualizeBio onClick={() => handleBio(bio)}>
+                Salvar
+              </ButtonAtualizeBio>
+            </DivButtonBio>
+          </Box>
+        </Modal>
+
       </DivDad>
     </div>
   );

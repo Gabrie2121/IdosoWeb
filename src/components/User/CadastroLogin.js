@@ -31,13 +31,12 @@ const ImageUser = styled.img`
 const DivCampoFoto = styled.div`
   width: 100%;
   height: 35%;
+  position: flex;
 `;
 
 const ProfieImage1 = styled.img`
   width: 150px;
   height: 150px;
-  margin-left: 160px;
-  margin-top: 30px;
 `;
 
 const EditarFoto = styled.img`
@@ -80,7 +79,8 @@ function FormCadastro() {
     Complemento: Usuario.Complemento,
     Apelido: Usuario.Apelido,
     Foto: Usuario.Foto,
-    Cidade: Usuario.Cidade
+    Cidade: Usuario.Cidade,
+    Biografia: Usuario.Biografia
   });  
 
   const [valuesPassword, setPassword] = useState({
@@ -124,7 +124,7 @@ function FormCadastro() {
         case "password":
           if (input.Password && value !== input.ConfirmPassword) {
             stateObj["confirmPassword"] =
-              "Password and Confirm Password does not match.";
+              "Senhas não coincidem";
           } else {
             stateObj["confirmPassword"] = Usuario.confirmPassword
               ? ""
@@ -134,7 +134,7 @@ function FormCadastro() {
 
         case "confirmPassword":
           if (input.Password && value !== input.ConfirmPassword) {
-            stateObj[name] = "Password and Confirm Password does not match.";
+            stateObj[name] = "Senhas não coincidem.";
           }
           break;
 
@@ -179,13 +179,9 @@ function FormCadastro() {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <DivCampoFoto>
           <ProfieImage1 src={foto} />
           {/* <input type={"file"} onChange={fileSelectedHandler}></input>
           <button onClick={fileUploadHandler}>Upload</button> */}
-          <ButttonEditarFoto/>
-          <EditarFoto src={editarFoto} />
-        </DivCampoFoto>
         <TextField
           name="email"
           required

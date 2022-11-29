@@ -18,13 +18,13 @@ import style from './../styles/criacaoAnuncio.css';
 
 import Header from "../components/Header/";
 
-import aliceImage from '../assets/criacaoOfertas/alice.png';
 import campoDescricao from '../assets/criacaoOfertas/areaDescricao.png';
 import editarFoto from '../assets/criacaoOfertas/iconeEditar.png';
 import MaskedInput from '../../src/components/User/MaskedInput';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import TodoCuidado from "../assets/TodoCuidado.png";
 
 
 import Uppy from '@uppy/core';
@@ -51,7 +51,7 @@ const SpanTitle = styled.span`
     font-size: 20pt;
     color: #666666;
     justify-content: center;
-    margin-left: 40%;
+    margin-left: 38%;
 `
 
 const DivBody = styled.div`
@@ -68,6 +68,7 @@ const DivDescription = styled.div`
 const DivCampoFoto = styled.div`
     width: 100%;
     height: 35%;
+    margin-left: 110px;
 `
 
 const ProfieImage1 = styled.img`
@@ -97,6 +98,7 @@ const ButttonEditarFoto = styled.button`
 const DivCampoDescricao = styled.div`
     width: 100%;
     height: 60%;
+    margin-left: 100px;
 `
 
 const DivSpanDescri = styled.div`
@@ -120,15 +122,11 @@ const DivAreaDescri = styled.div`
     margin-top: -30px;
 `
 
-const SpanBoxDescricao = styled.span`
-    width: 360px;
+const DivBoxDescricao = styled.div`
+    width: 340px;
     height: 200px;
-    position: absolute;
     margin-top: 60px;
     margin-left: -380px;
-    font-size: 12pt;
-    font-weight: 500;
-    color: gray;
 `
 
 const DivForm = styled.div`
@@ -205,7 +203,6 @@ const DivFooter = styled.div`
     width: 100%;
     height: 50px;
     display: flex;
-    margin-left: 0%;
     align-items: center;
 `
 
@@ -252,6 +249,8 @@ function CriacaoAnuncio() {
         Periodo: Idoso.Periodo,
         Pagamento: Idoso.Pagamento,
         Repetir: Idoso.Repetir,
+        DataInicial: Idoso.DataInicial,
+        DataFinal: Idoso.DataFinal,
         HoraInicial: Idoso.HoraInicial,
         HoraFinal: Idoso.HoraFinal,
     });
@@ -295,11 +294,11 @@ function CriacaoAnuncio() {
         <div>
            <Header
                 one="MEU PERFIL"
-                two="FAVORITOS"
-                three="LOGOUT"
+                two="LOGOUT"
+                three=""
                 four=""
-                linkOne=""
-                linkTwo=""
+                linkOne="/profile-fisica"
+                linkTwo="/"
                 linkThree=""
                 linkFour=""
             />
@@ -311,24 +310,31 @@ function CriacaoAnuncio() {
             <DivBody>
                 <DivDescription>
                     <DivCampoFoto>
-                        <ProfieImage1 src={aliceImage} />
-                        <ButttonEditarFoto />
-                        <EditarFoto src={editarFoto} />
+                        <ProfieImage1 src={TodoCuidado} />
+                        {/* <ButttonEditarFoto />
+                        <EditarFoto src={editarFoto} /> */}
                     </DivCampoFoto>
                     <DivCampoDescricao>
                         <DivSpanDescri>
                             <SpanDescricao> Descrição</SpanDescricao>
                         </DivSpanDescri>
                         <DivAreaDescri>
-                            <SpanBoxDescricao>
-                               <TextField  
+                            <DivBoxDescricao>
+                               {/* <TextField  
                                     id="descricaoField" 
                                     name="descricao" 
                                     onChange={onchange} 
+                                    value={(input.Descricao)}
+                                /> */}
+                                 <TextField 
+                                    id="descricaoField"
+                                    name="descricao" 
+                                    onChange={onChange} 
+                                    value={(input.Descricao)}
                                     multiline
                                     row={10}
                                 />
-                            </SpanBoxDescricao>
+                            </DivBoxDescricao>
                         </DivAreaDescri>
                     </DivCampoDescricao>
                 </DivDescription>
@@ -367,12 +373,12 @@ function CriacaoAnuncio() {
                                     name="parentesco"
                                     onChange={onChange} value={(input.Parentesco)}
                                 >
-                                    {/* Consertar opcoes passadas aqui e o que o back aceita*/}
                                     <MenuItem value="MAE" selected>Mãe</MenuItem>
-                                    <MenuItem value="TIA">Tia</MenuItem>
-                                    <MenuItem value="AVO">Avó</MenuItem>
-                                    <MenuItem value="TIAAVO">Tia avó</MenuItem>
-                                    <MenuItem value="PRIMA">Prima</MenuItem>
+                                    <MenuItem value="PAI" selected>Pai</MenuItem>
+                                    <MenuItem value="TIA" selected>Tia</MenuItem>
+                                    <MenuItem value="TIO">Tio</MenuItem>
+                                    <MenuItem value="VO">Vó</MenuItem>
+                                    <MenuItem value="AVO">Avô</MenuItem>
                                 </Select>
                             </FormControl>
                         </DivSelect>
@@ -428,7 +434,7 @@ function CriacaoAnuncio() {
                                 </RadioGroup>
                             </FormControl>
                         </DivRadiosDoencas>
-                        <DivDragDrop>
+                        {/* <DivDragDrop>
                             <DragDrop
                                 width="200px"
                                 height="200px"
@@ -444,7 +450,7 @@ function CriacaoAnuncio() {
                                     },
                                 }}
                             />
-                        </DivDragDrop>
+                        </DivDragDrop> */}
                     </Column>
                 </DivForm>
             </DivBody>

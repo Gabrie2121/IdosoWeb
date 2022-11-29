@@ -158,39 +158,21 @@ function CardJuridica(props) {
     prestadorId: idPrestador,
   }
 
-  // const idsAnuncios = () => {
-  //   axios.get(`http://localhost:9999/prestador/anuncioIds`, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   }).then((res) => {
-  //     setAnuncioIds(res.data);
-  //   })
-  //     .catch((error) => {
-  //       console.log("Whoops! Houve um erro.", error.message || error);
-  //     })
-  // }
+  const handleCandidatar = (anuncioId) => {
+    axios
+      .post(`http://localhost:9999/prestador/candidatar/${anuncioId}`, JSON.stringify(idsCandidatura), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("Post", res.data.anuncioId);
+      })
+      .catch((error) => {
+        console.log("Whoops! Houve um erro.", error.message || error);
+      });
 
-  const handleCandidatar = () => {
-   
-      axios
-        .post(`http://localhost:9999/prestador/candidatar/${1}`, JSON.stringify(idsCandidatura), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log("Post", res.data.anuncioId);
-        })
-        .catch((error) => {
-          console.log("Whoops! Houve um erro.", error.message || error);
-        });
-    
   }
-
-  // useEffect(() => {
-  //   idsAnuncios();
-  // }, []);
 
   return (
     <WrapperCard>
@@ -221,7 +203,7 @@ function CardJuridica(props) {
           </DivFormação>
         </DivValuation>
 
-        <DivWhatsAppPai onClick={handleCandidatar}>
+        <DivWhatsAppPai id={props.anuncioId} onClick={() => handleCandidatar(props.anuncioId)}>
           <DivWhatsApp>Candidatar-se</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>

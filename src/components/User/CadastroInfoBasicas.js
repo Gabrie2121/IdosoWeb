@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import "../../styles/global.css";
 import { useAuth } from "../../providers/auth";
 import CadastroPF from "./CadInfoBasicaPF";
 import CadastroPJ from "./CadInfoBasicaPJ";
+import axios from "axios";
 
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
@@ -24,6 +25,8 @@ const TextInput = styled.span`
 
 function FormCadastroInfoBasicas() {
   const { Usuario, setUsuario } = useAuth();
+
+  var idUsuario = localStorage.getItem("idUsuario");
 
   const [input, setInput] = useState({
     Email: Usuario.Email,
@@ -47,6 +50,36 @@ function FormCadastroInfoBasicas() {
     InscricaoEstadual: Usuario.InscricaoEstadual,
     Celular: Usuario.Celular
   });
+
+  const carregaUsuario = () => {
+    axios
+      .get(`http://localhost:9999/idoso/getById/${idUsuario}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    .then((res) => {
+      console.log('resp',res.data);
+      setUsuario({... Usuario, Email: res.data.email,Nome: res.data.nome, Sobrenome: res.data.sobrenome, 
+                Documento: res.data.ndoc, Celular: res.data.celular, Sexo: res.data.genero, DataNascimento: res.data.dataNasc,
+                CEP: res.data.endereco.cep, Logradouro: res.data.endereco.logradouro, Cidade: res.data.endereco.cidade, UF:res.data.endereco.uf,
+                Complemento:res.data.endereco.complemento, Apelido: res.data.endereco.apelido, EnderecoId: res.data.EnderecoId});
+      setInput({...input, Nome :res.data.nome})
+    })
+    .catch((error) => {
+      // Trate o erro aqui.
+      console.log("Whoops! Houve um erro.", error.message || error);
+    });
+  }
+
+  useEffect(() => {
+    if(idUsuario>0)
+    {
+      carregaUsuario();
+    }
+  }, []);
+
+
 
   var cadastro = <CadastroPF />;
 

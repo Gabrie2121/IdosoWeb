@@ -36,3 +36,10 @@ pcd{
     font-size: 10pt;
     margin-left: 20px;
 }
+
+#recusarButton {
+    background-color: #EA5757;
+    color: white;
+    font-size: 10pt;
+    margin-left: 20px;
+}
