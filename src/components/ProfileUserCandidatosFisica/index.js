@@ -434,9 +434,9 @@ function ProfileUserCandidatosFisica() {
         two="HISTORICO DE CONTRATOS"
         three="CRIAR OFERTA"
         four="LOGOUT"
-        linkOne="/"
-        linkTwo="/criacaoanuncio"
-        linkThree="criacaoanuncio"
+        linkOne=""
+        linkTwo="/historicocontratos"
+        linkThree="/criacaoanuncio"
         linkFour="/"
       />
       <DivDad>
