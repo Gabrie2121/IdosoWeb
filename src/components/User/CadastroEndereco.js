@@ -60,7 +60,8 @@ function FormCadastroEndereco() {
     UFEmpresa: Usuario.UFEmpresa,
     InscricaoEstadual: Usuario.InscricaoEstadual,
     Celular: Usuario.Celular,
-    Biografia: Usuario.Biografia
+    Biografia: Usuario.Biografia,
+    NomeFantasia: Usuario.NomeFantasia
   });
 
   function onChange(ev) {
@@ -140,7 +141,8 @@ function FormCadastroEndereco() {
         endereco: endereco,
         profileEntities: profileEntities,
         certificados: certificados,
-        biografia : Usuario.Biografia
+        biografia : Usuario.Biografia,
+        razaoSocial: Usuario.NomeFantasia
       };
 
       user = userJuridica;

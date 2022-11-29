@@ -48,7 +48,8 @@ function FormCadastroInfoBasicas() {
     Formacao: Usuario.Formacao,
     UFEmpresa: Usuario.UFEmpresa,
     InscricaoEstadual: Usuario.InscricaoEstadual,
-    Celular: Usuario.Celular
+    Celular: Usuario.Celular,
+    NomeFantasia: Usuario.NomeFantasia
   });
 
   const carregaUsuario = () => {
