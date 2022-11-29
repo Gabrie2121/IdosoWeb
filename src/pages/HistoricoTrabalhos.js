@@ -238,11 +238,11 @@ function HistoricoTrabalhos() {
             <Header
                 one="MEU PERFIL"
                 two="FAVORITOS"
-                three="HISTÓRICO DE TRABALHOS"
-                four="LOGOUT"
+                three="LOGOUT"
+                four=""
                 linkOne="/profile-juridica"
                 linkTwo="/favoritos"
-                linkThree="/criacaoanuncio"
+                linkThree="/"
                 linkFour="/"
             />
             <DivBody>

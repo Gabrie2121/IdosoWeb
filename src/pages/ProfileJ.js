@@ -11,12 +11,13 @@ function ProfileUserJ() {
     return (
         <div>
             <Header
-                two="HISTORICO DE TRABALHOS"
-                three="CRIAR OFERTA"
-                four="LOGOUT"
-                linkOne="/"
-                linkTwo="/historicotrabalhos"
-                linkThree="/criacaoanuncio"
+                one="HISTORICO DE TRABALHOS"
+                two="LOGOUT"
+                three=""
+                four=""
+                linkOne="/historicotrabalhos"
+                linkTwo="/"
+                linkThree="/"
                 linkFour="/"
             />
             <ProfileUserJuridica />

@@ -238,11 +238,11 @@ function HistoricoContratos() {
             <Header
                 one="MEU PERFIL"
                 two="FAVORITOS"
-                three="HISTÓRICO DE CONTRATOS"
-                four="LOGOUT"
+                three="LOGOUT"
+                four=""
                 linkOne="/profile-fisica"
                 linkTwo="/favoritos"
-                linkThree="/criacaoanuncio"
+                linkThree="/"
                 linkFour="/"
             />
             
