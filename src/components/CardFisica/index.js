@@ -180,7 +180,7 @@ function CardPeople(props) {
         </DivValuation>
 
         <DivWhatsAppPai onClick={() => console.log("click")}>
-          <DivWhatsApp>WhatsApp</DivWhatsApp>
+          <DivWhatsApp>Abrir Chat</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>
     </WrapperCard>
