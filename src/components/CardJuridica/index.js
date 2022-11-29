@@ -149,18 +149,15 @@ const DivTitle = styled.h1`
 `;
 
 function CardJuridica(props) {
-  const [anuncioIds, setAnuncioIds] = React.useState([]);
 
   const idPrestador = localStorage.getItem("idUsuario")
-
-
   const idsCandidatura = {
     prestadorId: idPrestador,
   }
 
-  const handleCandidatar = (anuncioId) => {
+  const handleCandidatar = (id) => {
     axios
-      .post(`http://localhost:9999/prestador/candidatar/${anuncioId}`, JSON.stringify(idsCandidatura), {
+      .post(`http://localhost:9999/prestador/candidatar/${id}`, JSON.stringify(idsCandidatura), {
         headers: {
           "Content-Type": "application/json",
         },
@@ -203,7 +200,7 @@ function CardJuridica(props) {
           </DivFormação>
         </DivValuation>
 
-        <DivWhatsAppPai id={props.anuncioId} onClick={() => handleCandidatar(props.anuncioId)}>
+        <DivWhatsAppPai id={props.id} onClick={() => handleCandidatar(props.id)}>
           <DivWhatsApp>Candidatar-se</DivWhatsApp>
         </DivWhatsAppPai>
       </CardDiv>
