@@ -602,11 +602,11 @@ function ListaOfertas() {
             <Header
                 one="MEU PERFIL"
                 two="FAVORITOS"
-                three="LISTA DE OFERTAS"
-                four="LOGOUT"
-                linkOne="/profile"
+                three="LOGOUT"
+                four=""
+                linkOne="/profile-fisica"
                 linkTwo="/favoritos"
-                linkThree="/criacaoanuncio"
+                linkThree="/"
                 linkFour="/"
             />
             <DivBody>
